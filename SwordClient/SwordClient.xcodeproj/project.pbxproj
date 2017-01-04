@@ -13,9 +13,12 @@
 		713DE4CA1E1CDEA600ACAED0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 713DE4C81E1CDEA600ACAED0 /* Main.storyboard */; };
 		713DE4CC1E1CDEA600ACAED0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 713DE4CB1E1CDEA600ACAED0 /* Assets.xcassets */; };
 		713DE4CF1E1CDEA600ACAED0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 713DE4CD1E1CDEA600ACAED0 /* LaunchScreen.storyboard */; };
+		D1A1C45E0D139F892EC6434E /* libPods-SwordClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A243E3F48EF0F6755273BC1 /* Pods-SwordClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient.release.xcconfig"; sourceTree = "<group>"; };
+		70205F93C23D2B5220DA6036 /* Pods-SwordClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient.debug.xcconfig"; sourceTree = "<group>"; };
 		713DE4BC1E1CDEA600ACAED0 /* SwordClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwordClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		713DE4C01E1CDEA600ACAED0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		713DE4C21E1CDEA600ACAED0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		713DE4CB1E1CDEA600ACAED0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		713DE4CE1E1CDEA600ACAED0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		713DE4D01E1CDEA600ACAED0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwordClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1A1C45E0D139F892EC6434E /* libPods-SwordClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06095B78976F653281DCE8D8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				70205F93C23D2B5220DA6036 /* Pods-SwordClient.debug.xcconfig */,
+				4A243E3F48EF0F6755273BC1 /* Pods-SwordClient.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		713DE4B31E1CDEA500ACAED0 = {
 			isa = PBXGroup;
 			children = (
 				713DE4BE1E1CDEA600ACAED0 /* SwordClient */,
 				713DE4BD1E1CDEA600ACAED0 /* Products */,
+				06095B78976F653281DCE8D8 /* Pods */,
+				9C75C6495B99799071F948D5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +95,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9C75C6495B99799071F948D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +110,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 713DE4D31E1CDEA600ACAED0 /* Build configuration list for PBXNativeTarget "SwordClient" */;
 			buildPhases = (
+				250BFDFAB14C55EE3385DC75 /* 📦 Check Pods Manifest.lock */,
 				713DE4B81E1CDEA600ACAED0 /* Sources */,
 				713DE4B91E1CDEA600ACAED0 /* Frameworks */,
 				713DE4BA1E1CDEA600ACAED0 /* Resources */,
+				CC54602251F052183594E5C0 /* 📦 Embed Pods Frameworks */,
+				32DCBC63505846B985ECAC50 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -110,6 +137,7 @@
 				TargetAttributes = {
 					713DE4BB1E1CDEA600ACAED0 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = VGN9QRT68D;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -144,6 +172,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		250BFDFAB14C55EE3385DC75 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		32DCBC63505846B985ECAC50 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC54602251F052183594E5C0 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		713DE4B81E1CDEA600ACAED0 /* Sources */ = {
@@ -270,23 +346,32 @@
 		};
 		713DE4D41E1CDEA600ACAED0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70205F93C23D2B5220DA6036 /* Pods-SwordClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: hu longbing (ZBA7D4RHKX)";
+				DEVELOPMENT_TEAM = VGN9QRT68D;
 				INFOPLIST_FILE = SwordClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ARM.SwordClient;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sword.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		713DE4D51E1CDEA600ACAED0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A243E3F48EF0F6755273BC1 /* Pods-SwordClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VGN9QRT68D;
 				INFOPLIST_FILE = SwordClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ARM.SwordClient;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sword.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -309,6 +394,7 @@
 				713DE4D51E1CDEA600ACAED0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

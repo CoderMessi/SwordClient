@@ -1,0 +1,14 @@
+platform :ios, '7.0'
+target ‘SwordClient’ do
+
+    pod 'SDVersion', '2.5.2'
+
+# Network
+    pod 'AFNetworking', '3.1.0'
+    pod 'AFNetworkActivityLogger', :git => 'https://github.com/AFNetworking/AFNetworkActivityLogger.git', :branch => '3_0_0'
+    pod 'MJRefresh', '3.0.7'
+    pod 'SDWebImage', '3.7.6'
+
+# Autolayout
+    pod 'Masonry', '1.0.2'
+end
