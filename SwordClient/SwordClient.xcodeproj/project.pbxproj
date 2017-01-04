@@ -138,7 +138,7 @@
 					713DE4BB1E1CDEA600ACAED0 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = VGN9QRT68D;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -356,7 +356,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sword.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7545ceb9-2893-4348-9ebb-05456e059be2";
+				PROVISIONING_PROFILE_SPECIFIER = swordClient;
 			};
 			name = Debug;
 		};
@@ -371,7 +372,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sword.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7545ceb9-2893-4348-9ebb-05456e059be2";
+				PROVISIONING_PROFILE_SPECIFIER = swordClient;
 			};
 			name = Release;
 		};
