@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7122D73B1E1E44810052F6D9 /* LJInfoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 7122D73A1E1E44810052F6D9 /* LJInfoListApi.m */; };
+		7122D73E1E1E49690052F6D9 /* LJInfoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7122D73D1E1E49690052F6D9 /* LJInfoListViewController.m */; };
 		713DE4C11E1CDEA600ACAED0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4C01E1CDEA600ACAED0 /* main.m */; };
 		713DE4C41E1CDEA600ACAED0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4C31E1CDEA600ACAED0 /* AppDelegate.m */; };
 		713DE4C71E1CDEA600ACAED0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4C61E1CDEA600ACAED0 /* ViewController.m */; };
@@ -23,6 +25,10 @@
 		4A243E3F48EF0F6755273BC1 /* Pods-SwordClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient.release.xcconfig"; sourceTree = "<group>"; };
 		70205F93C23D2B5220DA6036 /* Pods-SwordClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient.debug.xcconfig"; sourceTree = "<group>"; };
 		7122D7261E1DEB8C0052F6D9 /* LJConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJConstant.h; sourceTree = "<group>"; };
+		7122D7391E1E44810052F6D9 /* LJInfoListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJInfoListApi.h; sourceTree = "<group>"; };
+		7122D73A1E1E44810052F6D9 /* LJInfoListApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJInfoListApi.m; sourceTree = "<group>"; };
+		7122D73C1E1E49690052F6D9 /* LJInfoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJInfoListViewController.h; sourceTree = "<group>"; };
+		7122D73D1E1E49690052F6D9 /* LJInfoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJInfoListViewController.m; sourceTree = "<group>"; };
 		713DE4BC1E1CDEA600ACAED0 /* SwordClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwordClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		713DE4C01E1CDEA600ACAED0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		713DE4C21E1CDEA600ACAED0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -68,13 +74,41 @@
 		7122D7271E1DF8F20052F6D9 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				7122D7391E1E44810052F6D9 /* LJInfoListApi.h */,
+				7122D73A1E1E44810052F6D9 /* LJInfoListApi.m */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		7122D7371E1E43D10052F6D9 /* InfoList */ = {
+			isa = PBXGroup;
+			children = (
+				7122D73C1E1E49690052F6D9 /* LJInfoListViewController.h */,
+				7122D73D1E1E49690052F6D9 /* LJInfoListViewController.m */,
+			);
+			path = InfoList;
+			sourceTree = "<group>";
+		};
+		7122D7381E1E43DF0052F6D9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		7122D73F1E1E49F20052F6D9 /* RegisterAndLogin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RegisterAndLogin;
 			sourceTree = "<group>";
 		};
 		713DE4B31E1CDEA500ACAED0 = {
 			isa = PBXGroup;
 			children = (
+				7122D73F1E1E49F20052F6D9 /* RegisterAndLogin */,
+				7122D7381E1E43DF0052F6D9 /* Settings */,
+				7122D7371E1E43D10052F6D9 /* InfoList */,
 				7122D7271E1DF8F20052F6D9 /* API */,
 				713DE4D61E1CFA8900ACAED0 /* NetWork */,
 				713DE4BE1E1CDEA600ACAED0 /* SwordClient */,
@@ -273,8 +307,10 @@
 			files = (
 				713DE4E21E1CFA8900ACAED0 /* BusError.m in Sources */,
 				713DE4C71E1CDEA600ACAED0 /* ViewController.m in Sources */,
+				7122D73E1E1E49690052F6D9 /* LJInfoListViewController.m in Sources */,
 				713DE4C41E1CDEA600ACAED0 /* AppDelegate.m in Sources */,
 				713DE4E41E1CFA8900ACAED0 /* IEMNetworkManager.m in Sources */,
+				7122D73B1E1E44810052F6D9 /* LJInfoListApi.m in Sources */,
 				713DE4E11E1CFA8900ACAED0 /* BaseNetWorking.m in Sources */,
 				713DE4C11E1CDEA600ACAED0 /* main.m in Sources */,
 			);
