@@ -147,7 +147,7 @@
         _httpSessionManager.requestSerializer.timeoutInterval = 40.0f;
         [_httpSessionManager.requestSerializer setValue:[self userAgent] forHTTPHeaderField:@"User-Agent"];
         
-        // 百度剪辑视频列表接口返回text/html
+        // 接口返回text/html 、application/json两种类型数据
         _httpSessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
         
         //_httpSessionManager.operationQueue.maxConcurrentOperationCount = 5;

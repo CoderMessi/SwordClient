@@ -24,7 +24,7 @@
  */
 - (void)get:(NSString *)urlStr
       param:(NSDictionary *)param
-responseSuccessBlock:(void (^)(id responseData))success failed:(void (^)(BusError *error))failed;
+responseSuccessBlock:(void (^)(id responseData))success failed:(void (^)(NSError *error))failed;
 
 /**
  *  post请求
@@ -36,7 +36,7 @@ responseSuccessBlock:(void (^)(id responseData))success failed:(void (^)(BusErro
  */
 - (void)post:(NSString *)urlStr
        param:(NSDictionary *)param
-responseSuccessBlock:(void (^)(id responseData))success failed:(void (^)(BusError *error))failed;
+responseSuccessBlock:(void (^)(id responseData))success failed:(void (^)(NSError *error))failed;
 
 /**
  *  上传数据
@@ -50,6 +50,6 @@ responseSuccessBlock:(void (^)(id responseData))success failed:(void (^)(BusErro
 - (void)post:(NSString *)urlStr
        param:(NSDictionary *)param
    fileParam:(NSDictionary *)fileParam
-     success:(void(^)(id responseData))success failure:(void(^)(BusError * error))failed;
+     success:(void(^)(id responseData))success failure:(void(^)(NSError * error))failed;
 
 @end

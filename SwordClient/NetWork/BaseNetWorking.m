@@ -24,36 +24,40 @@
 
 #pragma mark - Get Method
 
-- (void)get:(NSString *)urlStr param:(NSDictionary *)param responseSuccessBlock:(void (^)(id responseData))success failed:(void (^)(BusError *error))failed
+- (void)get:(NSString *)urlStr param:(NSDictionary *)param responseSuccessBlock:(void (^)(id responseData))success failed:(void (^)(NSError *error))failed
 {
     [self.networkManager GET:urlStr
-                  parameters:[self paramsWithDict:param] 
+                  parameters:param
                      success:^(NSURLSessionDataTask *task, id responseObject) {
                          if (success) {
                              success(responseObject);
                          }
                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                         [self handleFailure:task error:error failedBlock:failed];
+                         if (failed) {
+                             failed(error);
+                         }
                      }];
 }
 
 #pragma mark - Post Method
 
 - (void)post:(NSString *)urlStr param:(NSDictionary *)param responseSuccessBlock:(void (^)(id))success
-      failed:(void (^)(BusError *))failed
+      failed:(void (^)(NSError *))failed
 {
     [self.networkManager POST:urlStr
-                   parameters:[self paramsWithDict:param] 
+                   parameters:param
                       success:^(NSURLSessionDataTask *task, id responseObject) {
                           if (success) {
                               success(responseObject);
                           }
                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                          [self handleFailure:task error:error failedBlock:failed];
+                          if (failed) {
+                              failed(error);
+                          }
                       }];
 }
 
-- (void)post:(NSString *)urlStr param:(NSDictionary *)param fileParam:(NSDictionary *)fileParam success:(void (^)(id))success failure:(void (^)(BusError *))failed
+- (void)post:(NSString *)urlStr param:(NSDictionary *)param fileParam:(NSDictionary *)fileParam success:(void (^)(id))success failure:(void(^)(NSError * error))failed
 {
     [self.networkManager POST:urlStr
                    parameters:[self paramsWithDict:param] 
@@ -63,7 +67,9 @@
                               success(responseObject);
                           }
                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                          [self handleFailure:task error:error failedBlock:failed];
+                          if (failed) {
+                              failed(error);
+                          }
                       }];
 }
 
@@ -71,7 +77,6 @@
 
 - (NSMutableDictionary *)paramsWithDict:(NSDictionary *)parameters {
     NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] initWithDictionary:parameters];
-    
     
     return dictParams;
 }
