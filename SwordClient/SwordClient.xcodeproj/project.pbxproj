@@ -13,12 +13,16 @@
 		713DE4CA1E1CDEA600ACAED0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 713DE4C81E1CDEA600ACAED0 /* Main.storyboard */; };
 		713DE4CC1E1CDEA600ACAED0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 713DE4CB1E1CDEA600ACAED0 /* Assets.xcassets */; };
 		713DE4CF1E1CDEA600ACAED0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 713DE4CD1E1CDEA600ACAED0 /* LaunchScreen.storyboard */; };
+		713DE4E11E1CFA8900ACAED0 /* BaseNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4D81E1CFA8900ACAED0 /* BaseNetWorking.m */; };
+		713DE4E21E1CFA8900ACAED0 /* BusError.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4DB1E1CFA8900ACAED0 /* BusError.m */; };
+		713DE4E41E1CFA8900ACAED0 /* IEMNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4DF1E1CFA8900ACAED0 /* IEMNetworkManager.m */; };
 		D1A1C45E0D139F892EC6434E /* libPods-SwordClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4A243E3F48EF0F6755273BC1 /* Pods-SwordClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient.release.xcconfig"; sourceTree = "<group>"; };
 		70205F93C23D2B5220DA6036 /* Pods-SwordClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient.debug.xcconfig"; sourceTree = "<group>"; };
+		7122D7261E1DEB8C0052F6D9 /* LJConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJConstant.h; sourceTree = "<group>"; };
 		713DE4BC1E1CDEA600ACAED0 /* SwordClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwordClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		713DE4C01E1CDEA600ACAED0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		713DE4C21E1CDEA600ACAED0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -29,6 +33,14 @@
 		713DE4CB1E1CDEA600ACAED0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		713DE4CE1E1CDEA600ACAED0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		713DE4D01E1CDEA600ACAED0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		713DE4D71E1CFA8900ACAED0 /* BaseNetWorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetWorking.h; sourceTree = "<group>"; };
+		713DE4D81E1CFA8900ACAED0 /* BaseNetWorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetWorking.m; sourceTree = "<group>"; };
+		713DE4DA1E1CFA8900ACAED0 /* BusError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusError.h; sourceTree = "<group>"; };
+		713DE4DB1E1CFA8900ACAED0 /* BusError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusError.m; sourceTree = "<group>"; };
+		713DE4DE1E1CFA8900ACAED0 /* IEMNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IEMNetworkManager.h; sourceTree = "<group>"; };
+		713DE4DF1E1CFA8900ACAED0 /* IEMNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IEMNetworkManager.m; sourceTree = "<group>"; };
+		713DE4E01E1CFA8900ACAED0 /* IEMURLDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IEMURLDefine.h; sourceTree = "<group>"; };
+		713DE4E51E1CFB6200ACAED0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwordClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -56,6 +68,7 @@
 		713DE4B31E1CDEA500ACAED0 = {
 			isa = PBXGroup;
 			children = (
+				713DE4D61E1CFA8900ACAED0 /* NetWork */,
 				713DE4BE1E1CDEA600ACAED0 /* SwordClient */,
 				713DE4BD1E1CDEA600ACAED0 /* Products */,
 				06095B78976F653281DCE8D8 /* Pods */,
@@ -91,8 +104,32 @@
 			isa = PBXGroup;
 			children = (
 				713DE4C01E1CDEA600ACAED0 /* main.m */,
+				713DE4E51E1CFB6200ACAED0 /* PrefixHeader.pch */,
+				7122D7261E1DEB8C0052F6D9 /* LJConstant.h */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		713DE4D61E1CFA8900ACAED0 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				713DE4D91E1CFA8900ACAED0 /* Error */,
+				713DE4D71E1CFA8900ACAED0 /* BaseNetWorking.h */,
+				713DE4D81E1CFA8900ACAED0 /* BaseNetWorking.m */,
+				713DE4DE1E1CFA8900ACAED0 /* IEMNetworkManager.h */,
+				713DE4DF1E1CFA8900ACAED0 /* IEMNetworkManager.m */,
+				713DE4E01E1CFA8900ACAED0 /* IEMURLDefine.h */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		713DE4D91E1CFA8900ACAED0 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				713DE4DA1E1CFA8900ACAED0 /* BusError.h */,
+				713DE4DB1E1CFA8900ACAED0 /* BusError.m */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		9C75C6495B99799071F948D5 /* Frameworks */ = {
@@ -226,8 +263,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				713DE4E21E1CFA8900ACAED0 /* BusError.m in Sources */,
 				713DE4C71E1CDEA600ACAED0 /* ViewController.m in Sources */,
 				713DE4C41E1CDEA600ACAED0 /* AppDelegate.m in Sources */,
+				713DE4E41E1CFA8900ACAED0 /* IEMNetworkManager.m in Sources */,
+				713DE4E11E1CFA8900ACAED0 /* BaseNetWorking.m in Sources */,
 				713DE4C11E1CDEA600ACAED0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +391,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: hu longbing (ZBA7D4RHKX)";
 				DEVELOPMENT_TEAM = VGN9QRT68D;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SwordClient/PrefixHeader.pch";
 				INFOPLIST_FILE = SwordClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -367,6 +409,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VGN9QRT68D;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SwordClient/PrefixHeader.pch";
 				INFOPLIST_FILE = SwordClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
