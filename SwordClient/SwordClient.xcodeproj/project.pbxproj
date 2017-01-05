@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5ECCD70A1E1E8F6900F19136 /* JKEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD7091E1E8F6900F19136 /* JKEncrypt.m */; };
+		5ECCD70D1E1E923300F19136 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD70C1E1E923300F19136 /* NSString+MD5.m */; };
+		5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD70F1E1E9F1400F19136 /* NetWorkTool.m */; };
+		5ECCD7161E1E9F4D00F19136 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD7121E1E9F4D00F19136 /* GTMBase64.m */; };
+		5ECCD7171E1E9F4D00F19136 /* SMEncryptTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD7151E1E9F4D00F19136 /* SMEncryptTool.m */; };
 		7122D73B1E1E44810052F6D9 /* LJInfoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 7122D73A1E1E44810052F6D9 /* LJInfoListApi.m */; };
 		7122D73E1E1E49690052F6D9 /* LJInfoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7122D73D1E1E49690052F6D9 /* LJInfoListViewController.m */; };
 		713DE4C11E1CDEA600ACAED0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4C01E1CDEA600ACAED0 /* main.m */; };
@@ -23,6 +28,17 @@
 
 /* Begin PBXFileReference section */
 		4A243E3F48EF0F6755273BC1 /* Pods-SwordClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient.release.xcconfig"; sourceTree = "<group>"; };
+		5ECCD7081E1E8F6900F19136 /* JKEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEncrypt.h; sourceTree = "<group>"; };
+		5ECCD7091E1E8F6900F19136 /* JKEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKEncrypt.m; sourceTree = "<group>"; };
+		5ECCD70B1E1E923300F19136 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		5ECCD70C1E1E923300F19136 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		5ECCD70E1E1E9F1400F19136 /* NetWorkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkTool.h; sourceTree = "<group>"; };
+		5ECCD70F1E1E9F1400F19136 /* NetWorkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkTool.m; sourceTree = "<group>"; };
+		5ECCD7111E1E9F4D00F19136 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		5ECCD7121E1E9F4D00F19136 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		5ECCD7131E1E9F4D00F19136 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		5ECCD7141E1E9F4D00F19136 /* SMEncryptTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEncryptTool.h; sourceTree = "<group>"; };
+		5ECCD7151E1E9F4D00F19136 /* SMEncryptTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEncryptTool.m; sourceTree = "<group>"; };
 		70205F93C23D2B5220DA6036 /* Pods-SwordClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient.debug.xcconfig"; sourceTree = "<group>"; };
 		7122D7261E1DEB8C0052F6D9 /* LJConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJConstant.h; sourceTree = "<group>"; };
 		7122D7391E1E44810052F6D9 /* LJInfoListApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJInfoListApi.h; sourceTree = "<group>"; };
@@ -71,6 +87,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5ECCD7071E1E8F6000F19136 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				5ECCD7111E1E9F4D00F19136 /* GTMBase64.h */,
+				5ECCD7121E1E9F4D00F19136 /* GTMBase64.m */,
+				5ECCD7131E1E9F4D00F19136 /* GTMDefines.h */,
+				5ECCD7141E1E9F4D00F19136 /* SMEncryptTool.h */,
+				5ECCD7151E1E9F4D00F19136 /* SMEncryptTool.m */,
+				5ECCD70E1E1E9F1400F19136 /* NetWorkTool.h */,
+				5ECCD70F1E1E9F1400F19136 /* NetWorkTool.m */,
+				5ECCD7081E1E8F6900F19136 /* JKEncrypt.h */,
+				5ECCD7091E1E8F6900F19136 /* JKEncrypt.m */,
+				5ECCD70B1E1E923300F19136 /* NSString+MD5.h */,
+				5ECCD70C1E1E923300F19136 /* NSString+MD5.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		7122D7271E1DF8F20052F6D9 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +140,7 @@
 		713DE4B31E1CDEA500ACAED0 = {
 			isa = PBXGroup;
 			children = (
+				5ECCD7071E1E8F6000F19136 /* Tools */,
 				7122D73F1E1E49F20052F6D9 /* RegisterAndLogin */,
 				7122D7381E1E43DF0052F6D9 /* Settings */,
 				7122D7371E1E43D10052F6D9 /* InfoList */,
@@ -307,12 +342,17 @@
 			files = (
 				713DE4E21E1CFA8900ACAED0 /* BusError.m in Sources */,
 				713DE4C71E1CDEA600ACAED0 /* ViewController.m in Sources */,
+				5ECCD70D1E1E923300F19136 /* NSString+MD5.m in Sources */,
 				7122D73E1E1E49690052F6D9 /* LJInfoListViewController.m in Sources */,
+				5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */,
 				713DE4C41E1CDEA600ACAED0 /* AppDelegate.m in Sources */,
 				713DE4E41E1CFA8900ACAED0 /* IEMNetworkManager.m in Sources */,
+				5ECCD7161E1E9F4D00F19136 /* GTMBase64.m in Sources */,
+				5ECCD7171E1E9F4D00F19136 /* SMEncryptTool.m in Sources */,
 				7122D73B1E1E44810052F6D9 /* LJInfoListApi.m in Sources */,
 				713DE4E11E1CFA8900ACAED0 /* BaseNetWorking.m in Sources */,
 				713DE4C11E1CDEA600ACAED0 /* main.m in Sources */,
+				5ECCD70A1E1E8F6900F19136 /* JKEncrypt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

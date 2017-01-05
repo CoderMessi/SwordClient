@@ -12,4 +12,7 @@
 
 + (LJInfoListApi *)api;
 
+
+//- (void)loginWith
+
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "NSString+MD5.h"
+#import "JKEncrypt.h"
 
 @interface ViewController ()
 
@@ -16,7 +18,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    NSString *password = @"123456";
+    NSString *md5Password = [NSString stirngToMD5:password];
+    NSLog(@"md5>>>%@", md5Password);
+    
+    NSDictionary *param = @{}
+//    NSString *param = 
+}
+
+- (NSString*)dictionaryToJson:(NSDictionary *)dic
+
+{
+    
+    NSError *parseError = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
 }
 
 
