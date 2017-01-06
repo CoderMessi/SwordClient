@@ -23,7 +23,7 @@
     NSString *md5Password = [NSString stirngToMD5:password];
     NSLog(@"md5>>>%@", md5Password);
     
-    NSDictionary *param = @{}
+    NSDictionary *param = @{};
 //    NSString *param = 
 }
 
