@@ -29,7 +29,7 @@ NSString * const mbUpdateEmotion = @"v3_3/saveMood";
     url = [NSString stringWithFormat:@"%@%@",KServerUrl,url];
     [NetWorkTool changeSerializerHeader:manager];
     
-    NSString *jsonStr = [SMEncryptTool encryptWithText:[parameter JSONString]];
+    NSString *jsonStr = [SMEncryptTool encryptWithText:[parameter mj_JSONString]];
     NSDictionary *paramDic = [NSDictionary dictionaryWithObject:jsonStr forKey:@"param"];
     NSLog(@"url -- %@  param -- %@ encodeParam -- %@",url,parameter,paramDic);
     [manager POST:url parameters:paramDic progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -48,7 +48,7 @@ NSString * const mbUpdateEmotion = @"v3_3/saveMood";
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (requestFail) {
-            [MBProgressHUD showHint:@"网络出错了，请稍后重试" toView:nil offset:CGPointZero];
+//            [MBProgressHUD showHint:@"网络出错了，请稍后重试" toView:nil offset:CGPointZero];
             requestFail(error);
 #if RequestJSOMPrint == 1
             NSLog(@"RequestErrorMesg : %@", error);

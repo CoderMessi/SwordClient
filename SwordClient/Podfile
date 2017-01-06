@@ -9,6 +9,7 @@ target ‘SwordClient’ do
     pod 'MJRefresh', '3.0.7'
     pod 'SDWebImage', '3.7.6'
     pod 'MBProgressHUD', '0.9.1'
+    pod 'MJExtension', '3.0.10'
 
 # Autolayout
     pod 'Masonry', '1.0.2'

@@ -10,7 +10,7 @@
 		5ECCD70A1E1E8F6900F19136 /* JKEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD7091E1E8F6900F19136 /* JKEncrypt.m */; };
 		5ECCD70D1E1E923300F19136 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD70C1E1E923300F19136 /* NSString+MD5.m */; };
 		5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD70F1E1E9F1400F19136 /* NetWorkTool.m */; };
-		5ECCD7161E1E9F4D00F19136 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD7121E1E9F4D00F19136 /* GTMBase64.m */; };
+		5ECCD7161E1E9F4D00F19136 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD7121E1E9F4D00F19136 /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5ECCD7171E1E9F4D00F19136 /* SMEncryptTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD7151E1E9F4D00F19136 /* SMEncryptTool.m */; };
 		7122D73B1E1E44810052F6D9 /* LJInfoListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 7122D73A1E1E44810052F6D9 /* LJInfoListApi.m */; };
 		7122D73E1E1E49690052F6D9 /* LJInfoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7122D73D1E1E49690052F6D9 /* LJInfoListViewController.m */; };
@@ -23,6 +23,10 @@
 		713DE4E11E1CFA8900ACAED0 /* BaseNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4D81E1CFA8900ACAED0 /* BaseNetWorking.m */; };
 		713DE4E21E1CFA8900ACAED0 /* BusError.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4DB1E1CFA8900ACAED0 /* BusError.m */; };
 		713DE4E41E1CFA8900ACAED0 /* IEMNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4DF1E1CFA8900ACAED0 /* IEMNetworkManager.m */; };
+		715571831E1F288300F4746B /* SvUDIDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 715571821E1F288300F4746B /* SvUDIDTools.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7155718D1E1F356700F4746B /* SMUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7155718A1E1F356700F4746B /* SMUserModel.m */; };
+		7162F1121E1F932900071EF4 /* LJNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7162F1111E1F932900071EF4 /* LJNavigationController.m */; };
+		7162F1151E1F943000071EF4 /* LJLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7162F1141E1F943000071EF4 /* LJLoginViewController.m */; };
 		D1A1C45E0D139F892EC6434E /* libPods-SwordClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +67,14 @@
 		713DE4DF1E1CFA8900ACAED0 /* IEMNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IEMNetworkManager.m; sourceTree = "<group>"; };
 		713DE4E01E1CFA8900ACAED0 /* IEMURLDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IEMURLDefine.h; sourceTree = "<group>"; };
 		713DE4E51E1CFB6200ACAED0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		715571811E1F288300F4746B /* SvUDIDTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SvUDIDTools.h; sourceTree = "<group>"; };
+		715571821E1F288300F4746B /* SvUDIDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SvUDIDTools.m; sourceTree = "<group>"; };
+		715571891E1F356700F4746B /* SMUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUserModel.h; sourceTree = "<group>"; };
+		7155718A1E1F356700F4746B /* SMUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUserModel.m; sourceTree = "<group>"; };
+		7162F1101E1F932900071EF4 /* LJNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJNavigationController.h; sourceTree = "<group>"; };
+		7162F1111E1F932900071EF4 /* LJNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJNavigationController.m; sourceTree = "<group>"; };
+		7162F1131E1F943000071EF4 /* LJLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJLoginViewController.h; sourceTree = "<group>"; };
+		7162F1141E1F943000071EF4 /* LJLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJLoginViewController.m; sourceTree = "<group>"; };
 		9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwordClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -90,6 +102,8 @@
 		5ECCD7071E1E8F6000F19136 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				715571811E1F288300F4746B /* SvUDIDTools.h */,
+				715571821E1F288300F4746B /* SvUDIDTools.m */,
 				5ECCD7111E1E9F4D00F19136 /* GTMBase64.h */,
 				5ECCD7121E1E9F4D00F19136 /* GTMBase64.m */,
 				5ECCD7131E1E9F4D00F19136 /* GTMDefines.h */,
@@ -133,6 +147,8 @@
 		7122D73F1E1E49F20052F6D9 /* RegisterAndLogin */ = {
 			isa = PBXGroup;
 			children = (
+				7162F1131E1F943000071EF4 /* LJLoginViewController.h */,
+				7162F1141E1F943000071EF4 /* LJLoginViewController.m */,
 			);
 			path = RegisterAndLogin;
 			sourceTree = "<group>";
@@ -140,6 +156,8 @@
 		713DE4B31E1CDEA500ACAED0 = {
 			isa = PBXGroup;
 			children = (
+				7162F10F1E1F930100071EF4 /* Base */,
+				715571841E1F356700F4746B /* SMUserDataManager */,
 				5ECCD7071E1E8F6000F19136 /* Tools */,
 				7122D73F1E1E49F20052F6D9 /* RegisterAndLogin */,
 				7122D7381E1E43DF0052F6D9 /* Settings */,
@@ -207,6 +225,24 @@
 				713DE4DB1E1CFA8900ACAED0 /* BusError.m */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		715571841E1F356700F4746B /* SMUserDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				715571891E1F356700F4746B /* SMUserModel.h */,
+				7155718A1E1F356700F4746B /* SMUserModel.m */,
+			);
+			path = SMUserDataManager;
+			sourceTree = "<group>";
+		};
+		7162F10F1E1F930100071EF4 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7162F1101E1F932900071EF4 /* LJNavigationController.h */,
+				7162F1111E1F932900071EF4 /* LJNavigationController.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		9C75C6495B99799071F948D5 /* Frameworks */ = {
@@ -340,17 +376,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				715571831E1F288300F4746B /* SvUDIDTools.m in Sources */,
 				713DE4E21E1CFA8900ACAED0 /* BusError.m in Sources */,
 				713DE4C71E1CDEA600ACAED0 /* ViewController.m in Sources */,
 				5ECCD70D1E1E923300F19136 /* NSString+MD5.m in Sources */,
 				7122D73E1E1E49690052F6D9 /* LJInfoListViewController.m in Sources */,
+				7162F1151E1F943000071EF4 /* LJLoginViewController.m in Sources */,
 				5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */,
 				713DE4C41E1CDEA600ACAED0 /* AppDelegate.m in Sources */,
 				713DE4E41E1CFA8900ACAED0 /* IEMNetworkManager.m in Sources */,
 				5ECCD7161E1E9F4D00F19136 /* GTMBase64.m in Sources */,
 				5ECCD7171E1E9F4D00F19136 /* SMEncryptTool.m in Sources */,
+				7155718D1E1F356700F4746B /* SMUserModel.m in Sources */,
 				7122D73B1E1E44810052F6D9 /* LJInfoListApi.m in Sources */,
 				713DE4E11E1CFA8900ACAED0 /* BaseNetWorking.m in Sources */,
+				7162F1121E1F932900071EF4 /* LJNavigationController.m in Sources */,
 				713DE4C11E1CDEA600ACAED0 /* main.m in Sources */,
 				5ECCD70A1E1E8F6900F19136 /* JKEncrypt.m in Sources */,
 			);

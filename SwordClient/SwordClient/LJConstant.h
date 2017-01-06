@@ -9,6 +9,11 @@
 #ifndef LJConstant_h
 #define LJConstant_h
 
+static const char kKeyChainUDIDAccessGroup[] = "com.sword.client";
+
+#define KServerUrl @"http://api.loulan360.com"
+
+
 // app版本
 #define LJAPPBUILDVERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
 
@@ -18,5 +23,6 @@
 //获取物理屏幕的尺寸
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
+
 
 #endif /* LJConstant_h */
