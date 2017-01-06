@@ -24,7 +24,7 @@
     
     LJLoginViewController *loginVc = [[LJLoginViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVc];
-    self.window.rootViewController = nav;
+    self.window.rootViewController = loginVc;
     
     return YES;
 }
