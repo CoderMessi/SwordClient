@@ -25,4 +25,9 @@ static const char kKeyChainUDIDAccessGroup[] = "com.sword.client";
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 
 
+#define Image(imageName) [UIImage imageNamed:imageName]
+#define HexColor(hexColor, alpha) [UIColor colorWithHexString:hexColor withAlpha:alpha]
+#define Font(fontSize) [UIFont systemFontOfSize:fontSize]
+
+
 #endif /* LJConstant_h */

@@ -18,6 +18,9 @@
 
 #ifdef __OBJC__
 
+#import <Foundation/Foundation.h>
+#import <MJExtension/MJExtension.h>
+#import <UIKit/UIKit.h>
 #import <Masonry/Masonry.h>
 #import <MJRefresh/MJRefresh.h>
 #import <MBProgressHUD/MBProgressHUD.h>

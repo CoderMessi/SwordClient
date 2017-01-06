@@ -7,9 +7,13 @@
 //
 
 #import "LJLoginViewController.h"
-#import <CoreImage/CIImage.h>
 
 @interface LJLoginViewController ()
+
+@property (nonatomic, strong) UIImageView *bgImageView;
+@property (nonatomic, strong) UIImageView *iconView;
+@property (nonatomic, strong) UIView *inputBgView;
+//@property (nonatomic, strong) UIView *
 
 @end
 
