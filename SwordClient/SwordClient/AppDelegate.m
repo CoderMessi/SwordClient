@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "LJLoginViewController.h"
+#import "LJNavigationController.h"
+#import "LJInfoListViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,8 +25,11 @@
     
     
     LJLoginViewController *loginVc = [[LJLoginViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVc];
-    self.window.rootViewController = loginVc;
+    
+    LJInfoListViewController *listVc = [[LJInfoListViewController alloc] init];
+    LJNavigationController *nav = [[LJNavigationController alloc] initWithRootViewController:listVc];
+    
+    self.window.rootViewController = nav;
     
     return YES;
 }
