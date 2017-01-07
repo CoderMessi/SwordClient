@@ -7,6 +7,7 @@
 //
 
 #import "LJPersonInfoViewController.h"
+#import "SMUserModel.h"
 
 #define rowHeight 50
 #define headerHeight 140
@@ -57,6 +58,8 @@
     
     return headerView;
 }
+
+
 
 #pragma mark - tableView dataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -15,18 +15,17 @@ MJCodingImplementation
 +(NSDictionary*)replacedKeyFromPropertyName
 {
     return @{
-             @"fullname":@"data.name",
+             @"name":@"data.name",
              @"qqAccount":@"data.qq",
              @"userId":@"data.uid",
              @"departmentName":@"data.com_name",
              @"isOpenMusic":@"data.is_music",
              @"isOpenNotice":@"data.is_open",
              @"isOpenShake":@"data.is_shake",
-             @"role":@"data.role",
+             @"wechat":@"data.wechat",
              @"token":@"data.token",
-             @"ib":@"data.ib",
-             @"zhiduurl":@"data.zhiduurl",
-             @"avatar":@"data.avatar"
+             @"avatar":@"data.avatar",
+             @"mobile":@"data.mobile"
              };
 }
 //获取用户信息

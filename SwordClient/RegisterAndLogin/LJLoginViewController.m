@@ -31,8 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardDidHideNotification object:nil];
     
     [self initSubviews];
     [self layout];
@@ -48,7 +48,7 @@
 }
 
 - (void)loginClick {
-    NSDictionary *param = @{@"username" : @"13426122288",
+    NSDictionary *param = @{@"username" : @"13499999999",
                             @"password" : [SMEncryptTool md5:@"123456"],
                             @"last_login_ip" : [NSString getIpAddresses]};
     [NetWorkTool executePOST:@"/api/cuser/login" paramters:param success:^(id responseObject) {
@@ -67,8 +67,7 @@
 }
 
 - (void)keyboardShow:(NSNotification *)notification {
-    
-    self.inputBgView.top -= 300;
+    self.bgImageView.top -= 300;
 }
 
 - (void)keyboardHide:(NSNotification *)notification {

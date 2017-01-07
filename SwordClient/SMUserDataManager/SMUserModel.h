@@ -11,8 +11,10 @@
 //#import "SCOrgStructModel.h"
 
 typedef NS_ENUM(NSUInteger, SCLoginState) {
-    SCLoginStateOnline = 200,/** 在线 */
-    SCLoginStateDropped /** 掉线 */
+    SCLoginStateGenjin = 1,         /** 跟进中 */
+    SCLoginStateOpening = 2,        /** 开户中 */
+    SCLoginStateNewRegister = 3,    /** 新注册 */
+    SCLoginStateExpired = 4         // 已过期
 };
 
 @interface SMUserModel : NSObject
@@ -29,21 +31,16 @@ typedef NS_ENUM(NSUInteger, SCLoginState) {
 /** 手机号 */
 @property (nonatomic, copy) NSString *mobile;
 /** 用户名 */
-@property (nonatomic, copy)NSString *fullname;
+@property (nonatomic, copy)NSString *name;
 /** QQ */
 @property (nonatomic, copy)NSString *qqAccount;
-/** 公司名 */
-@property (nonatomic, copy) NSString *departmentName;
-/** 身份 */
-@property (nonatomic,assign) NSInteger role;
+/** 微信 */
+@property (nonatomic, copy) NSString *wechat;
 /** token */
 @property (nonatomic,copy) NSString *token;
-/** 制度链接 */
-@property (nonatomic,copy) NSString *zhiduurl;
-/** IB */
-@property (nonatomic,copy) NSString *ib;
+
 /** 登录的状态 */
-@property (nonatomic, assign) SCLoginState loginState;
+@property (nonatomic, assign) SCLoginState status;
 
 //获取用户信息
 + (SMUserModel *)getUserData;
