@@ -35,9 +35,9 @@
     [self.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont systemFontOfSize:19],
        NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    __weak __typeof(self) weakSelf = self;
+//    __weak __typeof(self) weakSelf = self;
     self.interactivePopGestureRecognizer.enabled = YES ;
-    self.interactivePopGestureRecognizer.delegate = weakSelf;
+//    self.interactivePopGestureRecognizer.delegate = weakSelf;
     self.navigationBar.translucent = YES;
 }
 

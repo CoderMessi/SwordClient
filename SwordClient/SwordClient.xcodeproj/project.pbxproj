@@ -27,6 +27,9 @@
 		7155718D1E1F356700F4746B /* SMUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7155718A1E1F356700F4746B /* SMUserModel.m */; };
 		7162F1121E1F932900071EF4 /* LJNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7162F1111E1F932900071EF4 /* LJNavigationController.m */; };
 		7162F1151E1F943000071EF4 /* LJLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7162F1141E1F943000071EF4 /* LJLoginViewController.m */; };
+		717799611E208EC2002A93BC /* LJMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799601E208EC2002A93BC /* LJMenuView.m */; };
+		717799641E208FF8002A93BC /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799631E208FF8002A93BC /* UIViewExt.m */; };
+		717799671E20BC32002A93BC /* LJPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799661E20BC32002A93BC /* LJPersonInfoViewController.m */; };
 		D1A1C45E0D139F892EC6434E /* libPods-SwordClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +78,12 @@
 		7162F1111E1F932900071EF4 /* LJNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJNavigationController.m; sourceTree = "<group>"; };
 		7162F1131E1F943000071EF4 /* LJLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJLoginViewController.h; sourceTree = "<group>"; };
 		7162F1141E1F943000071EF4 /* LJLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJLoginViewController.m; sourceTree = "<group>"; };
+		7177995F1E208EC2002A93BC /* LJMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJMenuView.h; sourceTree = "<group>"; };
+		717799601E208EC2002A93BC /* LJMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJMenuView.m; sourceTree = "<group>"; };
+		717799621E208FF8002A93BC /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		717799631E208FF8002A93BC /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
+		717799651E20BC32002A93BC /* LJPersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJPersonInfoViewController.h; sourceTree = "<group>"; };
+		717799661E20BC32002A93BC /* LJPersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJPersonInfoViewController.m; sourceTree = "<group>"; };
 		9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwordClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -102,6 +111,8 @@
 		5ECCD7071E1E8F6000F19136 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				717799621E208FF8002A93BC /* UIViewExt.h */,
+				717799631E208FF8002A93BC /* UIViewExt.m */,
 				715571811E1F288300F4746B /* SvUDIDTools.h */,
 				715571821E1F288300F4746B /* SvUDIDTools.m */,
 				5ECCD7111E1E9F4D00F19136 /* GTMBase64.h */,
@@ -131,6 +142,7 @@
 		7122D7371E1E43D10052F6D9 /* InfoList */ = {
 			isa = PBXGroup;
 			children = (
+				7177995E1E208E1D002A93BC /* Subviews */,
 				7122D73C1E1E49690052F6D9 /* LJInfoListViewController.h */,
 				7122D73D1E1E49690052F6D9 /* LJInfoListViewController.m */,
 			);
@@ -140,6 +152,8 @@
 		7122D7381E1E43DF0052F6D9 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				717799651E20BC32002A93BC /* LJPersonInfoViewController.h */,
+				717799661E20BC32002A93BC /* LJPersonInfoViewController.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -243,6 +257,15 @@
 				7162F1111E1F932900071EF4 /* LJNavigationController.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		7177995E1E208E1D002A93BC /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				7177995F1E208EC2002A93BC /* LJMenuView.h */,
+				717799601E208EC2002A93BC /* LJMenuView.m */,
+			);
+			name = Subviews;
 			sourceTree = "<group>";
 		};
 		9C75C6495B99799071F948D5 /* Frameworks */ = {
@@ -385,14 +408,17 @@
 				5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */,
 				713DE4C41E1CDEA600ACAED0 /* AppDelegate.m in Sources */,
 				713DE4E41E1CFA8900ACAED0 /* IEMNetworkManager.m in Sources */,
+				717799641E208FF8002A93BC /* UIViewExt.m in Sources */,
 				5ECCD7161E1E9F4D00F19136 /* GTMBase64.m in Sources */,
 				5ECCD7171E1E9F4D00F19136 /* SMEncryptTool.m in Sources */,
 				7155718D1E1F356700F4746B /* SMUserModel.m in Sources */,
 				7122D73B1E1E44810052F6D9 /* LJInfoListApi.m in Sources */,
 				713DE4E11E1CFA8900ACAED0 /* BaseNetWorking.m in Sources */,
 				7162F1121E1F932900071EF4 /* LJNavigationController.m in Sources */,
+				717799611E208EC2002A93BC /* LJMenuView.m in Sources */,
 				713DE4C11E1CDEA600ACAED0 /* main.m in Sources */,
 				5ECCD70A1E1E8F6900F19136 /* JKEncrypt.m in Sources */,
+				717799671E20BC32002A93BC /* LJPersonInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

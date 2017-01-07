@@ -27,6 +27,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <HexColors/HexColor.h>
 
+#import "UIViewExt.h"
 #import "LJConstant.h"
 
 
