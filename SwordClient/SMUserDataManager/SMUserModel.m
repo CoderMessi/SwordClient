@@ -18,7 +18,7 @@ MJCodingImplementation
              @"name":@"data.name",
              @"qqAccount":@"data.qq",
              @"userId":@"data.uid",
-             @"departmentName":@"data.com_name",
+             @"userStatus":@"data.status",
              @"isOpenMusic":@"data.is_music",
              @"isOpenNotice":@"data.is_open",
              @"isOpenShake":@"data.is_shake",

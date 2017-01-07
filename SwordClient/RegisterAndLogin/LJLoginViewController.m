@@ -10,6 +10,7 @@
 #import "NetWorkTool.h"
 #import "SMEncryptTool.h"
 #import "NSString+MD5.h"
+#import "SMUserModel.h"
 
 @interface LJLoginViewController ()
 
@@ -31,8 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardDidHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardDidShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardDidHideNotification object:nil];
     
     [self initSubviews];
     [self layout];
@@ -52,7 +53,12 @@
                             @"password" : [SMEncryptTool md5:@"123456"],
                             @"last_login_ip" : [NSString getIpAddresses]};
     [NetWorkTool executePOST:@"/api/cuser/login" paramters:param success:^(id responseObject) {
-        NSLog(@"data>>>%@", responseObject);
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            SMUserModel *userModel = [SMUserModel mj_objectWithKeyValues:responseObject];
+            userModel.loginStatus = SCLoginStateOnline;
+            
+            NSLog(@"%ld\n%@\n%@\n%@\n%@\n%@\n%ld\n%ld\n%d\n%d\n%d",userModel.userId,userModel.name,userModel.mobile,userModel.avatar,userModel.qqAccount,userModel.token,userModel.userStatus, userModel.loginStatus, userModel.isOpenMusic, userModel.isOpenShake, userModel. isOpenNotice);
+        }
     } failure:^(NSError *error) {
         NSLog(@"error>>>%@", error);
     }];
