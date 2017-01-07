@@ -23,13 +23,15 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
     
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = YES;
     
     LJLoginViewController *loginVc = [[LJLoginViewController alloc] init];
     
     LJInfoListViewController *listVc = [[LJInfoListViewController alloc] init];
     LJNavigationController *nav = [[LJNavigationController alloc] initWithRootViewController:listVc];
     
-    self.window.rootViewController = nav;
+    self.window.rootViewController = loginVc;
     
     return YES;
 }

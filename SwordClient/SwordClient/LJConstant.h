@@ -28,6 +28,9 @@ static const char kKeyChainUDIDAccessGroup[] = "com.sword.client";
 #define Image(imageName) [UIImage imageNamed:imageName]
 #define HexColor(hexColor, alpha) [UIColor colorWithHexString:hexColor alpha:alpha]
 #define Font(fontSize) [UIFont systemFontOfSize:fontSize]
+
+//color
 #define ColorBlue [UIColor colorWithHexString:@"1882ce"]
+#define ViewBGColor [UIColor colorWithRed:246/255.0 green:246/255.0 blue:246/255.0 alpha:1.0]
 
 #endif /* LJConstant_h */

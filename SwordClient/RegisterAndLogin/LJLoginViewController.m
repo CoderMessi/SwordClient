@@ -7,6 +7,9 @@
 //
 
 #import "LJLoginViewController.h"
+#import "NetWorkTool.h"
+#import "SMEncryptTool.h"
+#import "NSString+MD5.h"
 
 @interface LJLoginViewController ()
 
@@ -28,11 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.title = @"登录";
-//    [self.navigationController.navigationBar setBackgroundImage:[self imageWithColor:[UIColor blueColor]] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController.navigationBar setTitleTextAttributes:
-//     @{NSFontAttributeName:[UIFont systemFontOfSize:19],
-//       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
     
     [self initSubviews];
     [self layout];
@@ -48,7 +48,14 @@
 }
 
 - (void)loginClick {
-    
+    NSDictionary *param = @{@"username" : @"13426122288",
+                            @"password" : [SMEncryptTool md5:@"123456"],
+                            @"last_login_ip" : [NSString getIpAddresses]};
+    [NetWorkTool executePOST:@"/api/cuser/login" paramters:param success:^(id responseObject) {
+        NSLog(@"data>>>%@", responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"error>>>%@", error);
+    }];
 }
 
 - (void)loginViaQQ {
@@ -59,6 +66,16 @@
     
 }
 
+- (void)keyboardShow:(NSNotification *)notification {
+    
+    self.inputBgView.top -= 300;
+}
+
+- (void)keyboardHide:(NSNotification *)notification {
+    self.inputBgView.top += 300;
+}
+
+#pragma mark - layout
 - (void)layout {
     CGFloat topOffset = 81.5;
     CGFloat btRegisterWidth = 130;
@@ -149,7 +166,7 @@
 - (UIImageView *)iconView {
     if (!_iconView) {
         _iconView = [[UIImageView alloc] init];
-        _iconView.image = Image(@"pic_logo1");
+        _iconView.image = Image(@"LOGO");
     }
     return _iconView;
 }

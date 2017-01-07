@@ -17,6 +17,7 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - HexColors (2.2.0)
+  - IQKeyboardManager (3.3.7)
   - Masonry (1.0.2)
   - MBProgressHUD (0.9.1)
   - MJExtension (3.0.10)
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - AFNetworkActivityLogger (from `https://github.com/AFNetworking/AFNetworkActivityLogger.git`, branch `3_0_0`)
   - AFNetworking (= 3.1.0)
   - HexColors (= 2.2.0)
+  - IQKeyboardManager
   - Masonry (= 1.0.2)
   - MBProgressHUD (= 0.9.1)
   - MJExtension (= 3.0.10)
@@ -51,6 +53,7 @@ SPEC CHECKSUMS:
   AFNetworkActivityLogger: e77f68d014becb33c4306a23f56a64906ff72670
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   HexColors: 84b52fbd913d617b85816f8a0e20130c581ca067
+  IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
@@ -58,6 +61,6 @@ SPEC CHECKSUMS:
   SDVersion: 52f2641db3a580616936b0ce66f4769706570654
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
 
-PODFILE CHECKSUM: 1c95a1b4ece331722ed73a3275c0cd056a40259d
+PODFILE CHECKSUM: 37114d3ae5962ce560557d31f5f9e4b80917fc1a
 
 COCOAPODS: 1.0.0

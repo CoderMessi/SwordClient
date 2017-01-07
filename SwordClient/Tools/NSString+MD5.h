@@ -12,4 +12,5 @@
 
 + (NSString *)stirngToMD5:(NSString *)string;
 
++ (NSString *)getIpAddresses;
 @end
