@@ -31,7 +31,7 @@
     LJInfoListViewController *listVc = [[LJInfoListViewController alloc] init];
     LJNavigationController *nav = [[LJNavigationController alloc] initWithRootViewController:listVc];
     
-    self.window.rootViewController = loginVc;
+    self.window.rootViewController = nav;
     
     return YES;
 }

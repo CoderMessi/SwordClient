@@ -7,6 +7,7 @@
 //
 
 #import "LJChangePasswordViewController.h"
+#import "SMEncryptTool.h"
 
 @interface LJChangePasswordViewController ()
 
@@ -30,7 +31,14 @@
 }
 
 - (void)doneClick {
-    
+    NSDictionary *param = @{@"uid" : @"137",
+                            @"old_pwd" : [SMEncryptTool md5:@"123456"],
+                            @"new_pwd" : [SMEncryptTool md5:@"1234567"]};
+    [NetWorkTool executePOST:@"/api/cuser/pwd" paramters:param success:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)layout {

@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UIImageView *bgImageView;
 @property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UIView *inputBgView;
+@property (nonatomic, strong) UIView *line;
 @property (nonatomic, strong) UIView *textBgView;
 @property (nonatomic, strong) UITextField *phoneText;
 @property (nonatomic, strong) UITextField *passwordText;
@@ -36,8 +37,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardDidShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardDidHideNotification object:nil];
     
     [self initSubviews];
     [self layout];
@@ -93,14 +92,6 @@
     }];
 }
 
-- (void)keyboardShow:(NSNotification *)notification {
-    self.bgImageView.top -= 300;
-}
-
-- (void)keyboardHide:(NSNotification *)notification {
-    self.inputBgView.top += 300;
-}
-
 #pragma mark - layout
 - (void)layout {
     CGFloat topOffset = 81.5;
@@ -122,6 +113,12 @@
         make.left.equalTo(self.bgImageView).offset(20);
         make.right.equalTo(self.bgImageView).offset(-20);
         make.height.equalTo(@88);
+    }];
+    
+    [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.textBgView);
+        make.centerY.equalTo(self.textBgView);
+        make.height.mas_equalTo(1);
     }];
     
     [self.phoneText mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -171,6 +168,7 @@
     [self.bgImageView addSubview:self.iconView];
     [self.bgImageView addSubview:self.inputBgView];
     [self.inputBgView addSubview:self.textBgView];
+    [self.textBgView addSubview:self.line];
     [self.textBgView addSubview:self.phoneText];
     [self.textBgView addSubview:self.passwordText];
     [self.inputBgView addSubview:self.btRegister];
@@ -213,6 +211,14 @@
         _textBgView.layer.cornerRadius = 3.0;
     }
     return _textBgView;
+}
+
+- (UIView *)line {
+    if (!_line) {
+        _line = [UIView new];
+        _line.backgroundColor = [UIColor whiteColor];
+    }
+    return _line;
 }
 
 - (UITextField *)phoneText {
