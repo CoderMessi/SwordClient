@@ -9,6 +9,9 @@
 #import "LJPersonInfoViewController.h"
 #import "SMUserModel.h"
 
+#import "LJSettViewController.h"
+#import "LJChangePasswordViewController.h"
+
 #define rowHeight 50
 #define headerHeight 140
 #define headerImageHeight 98
@@ -29,6 +32,17 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[Image(@"ico_left") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(popClick)];
     
     [self.view addSubview:self.tableView];
+}
+
+#pragma mark - event
+- (void)setClick {
+    LJSettViewController *setVc = [[LJSettViewController alloc] init];
+    [self.navigationController pushViewController:setVc animated:YES];
+}
+
+- (void)changePasswordClick {
+    LJChangePasswordViewController *changePass = [[LJChangePasswordViewController alloc] init];
+    [self.navigationController pushViewController:changePass animated:YES];
 }
 
 #pragma mark - tableView delegate
@@ -59,6 +73,29 @@
     return headerView;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *footer = [UIView new];
+    footer.backgroundColor = ViewBGColor;
+    footer.frame = CGRectMake(0, 0, kScreenWidth, 200);
+    
+    CGFloat gap = 20;
+    CGFloat top = 50;
+    CGFloat btWidth = (kScreenWidth - gap*3) / 2;
+    CGFloat btHeight = 44;
+    UIButton *btSet = [UIButton buttonWithType:UIButtonTypeCustom];
+    btSet.frame = CGRectMake(gap, top, btWidth, btHeight);
+    [btSet setBackgroundImage:Image(@"ico_btn6") forState:UIControlStateNormal];
+    [btSet addTarget:self action:@selector(setClick) forControlEvents:UIControlEventTouchUpInside];
+    [footer addSubview:btSet];
+    
+    UIButton *btChangePassword = [UIButton buttonWithType:UIButtonTypeCustom];
+    btChangePassword.frame = CGRectMake(kScreenWidth - gap - btWidth, top, btWidth, btHeight);
+    [btChangePassword setBackgroundImage:Image(@"ico_btn7") forState:UIControlStateNormal];
+    [btChangePassword addTarget:self action:@selector(changePasswordClick) forControlEvents:UIControlEventTouchUpInside];
+    [footer addSubview:btChangePassword];
+    
+    return footer;
+}
 
 
 #pragma mark - tableView dataSource
@@ -68,10 +105,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     if (indexPath.row == 0) {
         cell.textLabel.text = @"姓名";
     } else if (indexPath.row == 1) {
@@ -90,6 +129,7 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStyleGrouped];
+        _tableView.backgroundColor = ViewBGColor;
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }

@@ -14,6 +14,7 @@
 
 #import "LJRegisterViewController1.h"
 #import "LJNavigationController.h"
+#import "LJForggetPasswordViewController.h"
 
 @interface LJLoginViewController ()
 
@@ -44,7 +45,9 @@
 
 #pragma mark - events
 - (void)forgetPasswordClick {
-    
+    LJForggetPasswordViewController * forgetPassword = [[LJForggetPasswordViewController alloc] init];
+    LJNavigationController * nav = [[LJNavigationController alloc] initWithRootViewController:forgetPassword];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)registerClick {

@@ -10,6 +10,7 @@
 #import "LJMenuView.h"
 
 #import "LJPersonInfoViewController.h"
+#import "LJConnectUsViewController.h"
 
 @interface LJInfoListViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -38,7 +39,8 @@
 - (void)subViewEvent {
     __weak typeof(self) weakSelf = self;
     self.menuView.goConnectUs = ^ {
-        
+        LJConnectUsViewController *connectUs = [[LJConnectUsViewController alloc] init];
+        [weakSelf.navigationController pushViewController:connectUs animated:YES];
     };
     
     self.menuView.goInfoList = ^ {

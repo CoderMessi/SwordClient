@@ -32,6 +32,12 @@
 		717799671E20BC32002A93BC /* LJPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799661E20BC32002A93BC /* LJPersonInfoViewController.m */; };
 		7177996B1E21E2E0002A93BC /* LJRegisterViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7177996A1E21E2E0002A93BC /* LJRegisterViewController1.m */; };
 		7177996E1E21E2EB002A93BC /* LJRegisterViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7177996D1E21E2EB002A93BC /* LJRegisterViewController2.m */; };
+		717799711E2228E3002A93BC /* LJSettViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799701E2228E3002A93BC /* LJSettViewController.m */; };
+		717799741E222C1D002A93BC /* LJChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799731E222C1D002A93BC /* LJChangePasswordViewController.m */; };
+		717799771E223A36002A93BC /* LJConnectUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799761E223A36002A93BC /* LJConnectUsViewController.m */; };
+		7177997A1E224032002A93BC /* LJForggetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799791E224032002A93BC /* LJForggetPasswordViewController.m */; };
+		7177997D1E224043002A93BC /* LJForgetPasswordViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7177997C1E224043002A93BC /* LJForgetPasswordViewController2.m */; };
+		717799801E22429E002A93BC /* LJInfoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7177997F1E22429E002A93BC /* LJInfoDetailViewController.m */; };
 		D1A1C45E0D139F892EC6434E /* libPods-SwordClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +96,18 @@
 		7177996A1E21E2E0002A93BC /* LJRegisterViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJRegisterViewController1.m; sourceTree = "<group>"; };
 		7177996C1E21E2EB002A93BC /* LJRegisterViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJRegisterViewController2.h; sourceTree = "<group>"; };
 		7177996D1E21E2EB002A93BC /* LJRegisterViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJRegisterViewController2.m; sourceTree = "<group>"; };
+		7177996F1E2228E3002A93BC /* LJSettViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJSettViewController.h; sourceTree = "<group>"; };
+		717799701E2228E3002A93BC /* LJSettViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJSettViewController.m; sourceTree = "<group>"; };
+		717799721E222C1D002A93BC /* LJChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJChangePasswordViewController.h; sourceTree = "<group>"; };
+		717799731E222C1D002A93BC /* LJChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJChangePasswordViewController.m; sourceTree = "<group>"; };
+		717799751E223A36002A93BC /* LJConnectUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJConnectUsViewController.h; sourceTree = "<group>"; };
+		717799761E223A36002A93BC /* LJConnectUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJConnectUsViewController.m; sourceTree = "<group>"; };
+		717799781E224032002A93BC /* LJForggetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJForggetPasswordViewController.h; sourceTree = "<group>"; };
+		717799791E224032002A93BC /* LJForggetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJForggetPasswordViewController.m; sourceTree = "<group>"; };
+		7177997B1E224043002A93BC /* LJForgetPasswordViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJForgetPasswordViewController2.h; sourceTree = "<group>"; };
+		7177997C1E224043002A93BC /* LJForgetPasswordViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJForgetPasswordViewController2.m; sourceTree = "<group>"; };
+		7177997E1E22429E002A93BC /* LJInfoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJInfoDetailViewController.h; sourceTree = "<group>"; };
+		7177997F1E22429E002A93BC /* LJInfoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJInfoDetailViewController.m; sourceTree = "<group>"; };
 		9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwordClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -151,6 +169,8 @@
 				7177995E1E208E1D002A93BC /* Subviews */,
 				7122D73C1E1E49690052F6D9 /* LJInfoListViewController.h */,
 				7122D73D1E1E49690052F6D9 /* LJInfoListViewController.m */,
+				7177997E1E22429E002A93BC /* LJInfoDetailViewController.h */,
+				7177997F1E22429E002A93BC /* LJInfoDetailViewController.m */,
 			);
 			path = InfoList;
 			sourceTree = "<group>";
@@ -160,6 +180,12 @@
 			children = (
 				717799651E20BC32002A93BC /* LJPersonInfoViewController.h */,
 				717799661E20BC32002A93BC /* LJPersonInfoViewController.m */,
+				717799751E223A36002A93BC /* LJConnectUsViewController.h */,
+				717799761E223A36002A93BC /* LJConnectUsViewController.m */,
+				7177996F1E2228E3002A93BC /* LJSettViewController.h */,
+				717799701E2228E3002A93BC /* LJSettViewController.m */,
+				717799721E222C1D002A93BC /* LJChangePasswordViewController.h */,
+				717799731E222C1D002A93BC /* LJChangePasswordViewController.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -173,6 +199,10 @@
 				7177996A1E21E2E0002A93BC /* LJRegisterViewController1.m */,
 				7177996C1E21E2EB002A93BC /* LJRegisterViewController2.h */,
 				7177996D1E21E2EB002A93BC /* LJRegisterViewController2.m */,
+				717799781E224032002A93BC /* LJForggetPasswordViewController.h */,
+				717799791E224032002A93BC /* LJForggetPasswordViewController.m */,
+				7177997B1E224043002A93BC /* LJForgetPasswordViewController2.h */,
+				7177997C1E224043002A93BC /* LJForgetPasswordViewController2.m */,
 			);
 			path = RegisterAndLogin;
 			sourceTree = "<group>";
@@ -409,23 +439,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				717799711E2228E3002A93BC /* LJSettViewController.m in Sources */,
+				7177997D1E224043002A93BC /* LJForgetPasswordViewController2.m in Sources */,
 				715571831E1F288300F4746B /* SvUDIDTools.m in Sources */,
 				713DE4E21E1CFA8900ACAED0 /* BusError.m in Sources */,
 				713DE4C71E1CDEA600ACAED0 /* ViewController.m in Sources */,
 				5ECCD70D1E1E923300F19136 /* NSString+MD5.m in Sources */,
+				717799771E223A36002A93BC /* LJConnectUsViewController.m in Sources */,
 				7122D73E1E1E49690052F6D9 /* LJInfoListViewController.m in Sources */,
 				7162F1151E1F943000071EF4 /* LJLoginViewController.m in Sources */,
 				5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */,
 				7177996B1E21E2E0002A93BC /* LJRegisterViewController1.m in Sources */,
+				717799801E22429E002A93BC /* LJInfoDetailViewController.m in Sources */,
 				713DE4C41E1CDEA600ACAED0 /* AppDelegate.m in Sources */,
 				713DE4E41E1CFA8900ACAED0 /* IEMNetworkManager.m in Sources */,
 				717799641E208FF8002A93BC /* UIViewExt.m in Sources */,
 				5ECCD7161E1E9F4D00F19136 /* GTMBase64.m in Sources */,
+				7177997A1E224032002A93BC /* LJForggetPasswordViewController.m in Sources */,
 				5ECCD7171E1E9F4D00F19136 /* SMEncryptTool.m in Sources */,
 				7155718D1E1F356700F4746B /* SMUserModel.m in Sources */,
 				7122D73B1E1E44810052F6D9 /* LJInfoListApi.m in Sources */,
 				713DE4E11E1CFA8900ACAED0 /* BaseNetWorking.m in Sources */,
 				7162F1121E1F932900071EF4 /* LJNavigationController.m in Sources */,
+				717799741E222C1D002A93BC /* LJChangePasswordViewController.m in Sources */,
 				717799611E208EC2002A93BC /* LJMenuView.m in Sources */,
 				7177996E1E21E2EB002A93BC /* LJRegisterViewController2.m in Sources */,
 				713DE4C11E1CDEA600ACAED0 /* main.m in Sources */,
