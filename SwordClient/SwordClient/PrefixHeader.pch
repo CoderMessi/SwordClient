@@ -34,5 +34,7 @@
 #import "SMUserModel.h"
 #import "MBProgressHUD+LJToast.h"
 
+#import "LJBaseViewController.h"
+
 
 #endif

@@ -32,7 +32,6 @@
     self.view.backgroundColor = ViewBGColor;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[Image(@"ico_left") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(popClick)];
     
-    
     self.user = [SMUserModel getUserData];
     [self.view addSubview:self.tableView];
 }

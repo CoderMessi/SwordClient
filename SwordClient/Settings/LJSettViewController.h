@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LJSettViewController : UIViewController
+@interface LJSettViewController : LJBaseViewController
 
 @end

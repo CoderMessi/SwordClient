@@ -40,6 +40,7 @@
 		717799801E22429E002A93BC /* LJInfoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7177997F1E22429E002A93BC /* LJInfoDetailViewController.m */; };
 		717799841E225C30002A93BC /* MBProgressHUD+LJToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799831E225C30002A93BC /* MBProgressHUD+LJToast.m */; };
 		717799871E226834002A93BC /* LJInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799861E226834002A93BC /* LJInfoTableViewCell.m */; };
+		7177998A1E228FC8002A93BC /* LJBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799891E228FC8002A93BC /* LJBaseViewController.m */; };
 		D1A1C45E0D139F892EC6434E /* libPods-SwordClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,8 @@
 		717799831E225C30002A93BC /* MBProgressHUD+LJToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+LJToast.m"; sourceTree = "<group>"; };
 		717799851E226834002A93BC /* LJInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJInfoTableViewCell.h; sourceTree = "<group>"; };
 		717799861E226834002A93BC /* LJInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJInfoTableViewCell.m; sourceTree = "<group>"; };
+		717799881E228FC8002A93BC /* LJBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJBaseViewController.h; sourceTree = "<group>"; };
+		717799891E228FC8002A93BC /* LJBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJBaseViewController.m; sourceTree = "<group>"; };
 		9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwordClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -302,6 +305,8 @@
 			children = (
 				7162F1101E1F932900071EF4 /* LJNavigationController.h */,
 				7162F1111E1F932900071EF4 /* LJNavigationController.m */,
+				717799881E228FC8002A93BC /* LJBaseViewController.h */,
+				717799891E228FC8002A93BC /* LJBaseViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 				717799771E223A36002A93BC /* LJConnectUsViewController.m in Sources */,
 				7122D73E1E1E49690052F6D9 /* LJInfoListViewController.m in Sources */,
 				7162F1151E1F943000071EF4 /* LJLoginViewController.m in Sources */,
+				7177998A1E228FC8002A93BC /* LJBaseViewController.m in Sources */,
 				5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */,
 				7177996B1E21E2E0002A93BC /* LJRegisterViewController1.m in Sources */,
 				717799871E226834002A93BC /* LJInfoTableViewCell.m in Sources */,

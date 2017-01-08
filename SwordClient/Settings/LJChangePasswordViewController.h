@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LJChangePasswordViewController : UIViewController
+@interface LJChangePasswordViewController : LJBaseViewController
 
 @end
