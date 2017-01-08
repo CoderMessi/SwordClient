@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIImageView *headImageView;
+@property (nonatomic, strong) SMUserModel *user;
 
 @end
 
@@ -31,6 +32,8 @@
     self.view.backgroundColor = ViewBGColor;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[Image(@"ico_left") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(popClick)];
     
+    
+    self.user = [SMUserModel getUserData];
     [self.view addSubview:self.tableView];
 }
 
@@ -113,12 +116,46 @@
     
     if (indexPath.row == 0) {
         cell.textLabel.text = @"姓名";
+        
+        UILabel *label = [UILabel new];
+        label.frame = CGRectMake(0, 0, 200, cell.height);
+        label.right = kScreenWidth - 40;
+        label.text = self.user.name;
+        label.textColor = [UIColor colorWithHexString:@"999999"];
+        label.textAlignment = NSTextAlignmentRight;
+        [cell addSubview:label];
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"QQ";
+        
+        UILabel *label = [UILabel new];
+        label.frame = CGRectMake(0, 0, 200, cell.height);
+        label.right = kScreenWidth - 40;
+        label.text = self.user.qqAccount;
+        label.textColor = [UIColor colorWithHexString:@"999999"];
+        label.textAlignment = NSTextAlignmentRight;
+        [cell addSubview:label];
+        
     } else if (indexPath.row == 2) {
         cell.textLabel.text = @"微信";
+        
+        UILabel *label = [UILabel new];
+        label.frame = CGRectMake(0, 0, 200, cell.height);
+        label.right = kScreenWidth - 40;
+        label.text = self.user.wechat;
+        label.textColor = [UIColor colorWithHexString:@"999999"];
+        label.textAlignment = NSTextAlignmentRight;
+        [cell addSubview:label];
+        
     } else if (indexPath.row == 3) {
         cell.textLabel.text = @"手机号";
+        
+        UILabel *label = [UILabel new];
+        label.frame = CGRectMake(0, 0, 200, cell.height);
+        label.right = kScreenWidth - 40;
+        label.text = self.user.mobile;
+        label.textColor = [UIColor colorWithHexString:@"999999"];
+        label.textAlignment = NSTextAlignmentRight;
+        [cell addSubview:label];
     }
     
     return cell;

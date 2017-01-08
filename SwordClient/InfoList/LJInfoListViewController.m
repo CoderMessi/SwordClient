@@ -8,14 +8,18 @@
 
 #import "LJInfoListViewController.h"
 #import "LJMenuView.h"
+#import "LJInfoTableViewCell.h"
 
 #import "LJPersonInfoViewController.h"
 #import "LJConnectUsViewController.h"
+#import "LJInfoDetailViewController.h"
 
 @interface LJInfoListViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *listView;
 @property (nonatomic, strong) LJMenuView *menuView;
+
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
@@ -25,10 +29,30 @@
     [super viewDidLoad];
     self.title = @"消息列表";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[Image(@"ico_menu") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
+    self.dataArray = [NSMutableArray array];
     
     [self.view addSubview:self.listView];
     [self.view addSubview:self.menuView];
     [self subViewEvent];
+    [self requestData];
+}
+
+- (void)requestData {
+    [MBProgressHUD showLoadingHUDAddedTo:self.view withText:nil];
+    SMUserModel *user = [SMUserModel getUserData];
+    NSDictionary *param = @{@"uid" : [NSNumber numberWithInteger:user.userId],
+                            @"page" : [NSNumber numberWithInt:1],
+                            @"num" : @"10",
+                            @"show_type" : @"1"};
+    [NetWorkTool executePOST:@"/api/message/notice" paramters:param success:^(id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:nil];
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            self.dataArray = [NSMutableArray arrayWithArray:[responseObject objectForKey:@"data"]];
+            [self.listView reloadData];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - events
@@ -55,11 +79,13 @@
 
 #pragma mark - tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    LJInfoDetailViewController *detail = [[LJInfoDetailViewController alloc] init];
+    detail.urlString = [self.dataArray[indexPath.row] objectForKey:@"url"];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+    return 70;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -68,16 +94,16 @@
 
 #pragma mark - tableView dataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    LJInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[LJInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    cell.textLabel.text = @"aaa";
-    cell.detailTextLabel.text = @"bbb";
+    NSDictionary *data = self.dataArray[indexPath.row];
+    [cell configUIWithDic:data];
     return cell;
 }
 

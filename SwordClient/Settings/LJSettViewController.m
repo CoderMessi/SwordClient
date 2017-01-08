@@ -7,6 +7,7 @@
 //
 
 #import "LJSettViewController.h"
+#import "AppDelegate.h"
 
 #define rowHeight 50
 #define headerHeight 30
@@ -35,19 +36,73 @@
 
 
 - (void)logoutClick {
-    
+    NSDictionary *param = @{@"uid" : [NSNumber numberWithInteger:self.userModel.userId]};
+    [NetWorkTool executePOST:@"/api/cuser/signout" paramters:param success:^(id responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            SMUserModel *userModel = [[SMUserModel alloc]init];
+            userModel.loginStatus = SCLoginStateDropped;
+            [SMUserModel saveUserData:userModel];
+            
+            [SMUserModel saveUserData:userModel];
+            AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appdelegate jumpToLoginVC];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"登出失败，请稍后再试"];
+    }];
 }
 
 - (void)infoClick:(UISwitch *)sender {
     NSLog(@"消息提示：%d", sender.on);
+    [MBProgressHUD showLoadingHUDAddedTo:self.view withText:nil];
+    NSDictionary *param = @{@"is_open" : [NSNumber numberWithInteger:sender.on]};
+    [NetWorkTool executePOST:@"/api/system/csetting" paramters:param success:^(id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            self.userModel.isOpenNotice = sender.on;
+            [SMUserModel saveUserData:self.userModel];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"设置失败，请稍后再试"];
+    }];
 }
 
 - (void)shakeClick:(UISwitch *)sender {
     NSLog(@"震动：%d", sender.on);
+    [MBProgressHUD showLoadingHUDAddedTo:self.view withText:nil];
+    
+    NSDictionary *param = @{@"is_shake" : [NSNumber numberWithInteger:sender.on]};
+    [NetWorkTool executePOST:@"/api/system/csetting" paramters:param success:^(id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            self.userModel.isOpenShake = sender.on;
+            [SMUserModel saveUserData:self.userModel];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"设置失败，请稍后再试"];
+    }];
 }
 
 - (void)voiceClick:(UISwitch *)sender {
     NSLog(@"声音：%d", sender.on);
+    [MBProgressHUD showLoadingHUDAddedTo:self.view withText:nil];
+    
+    NSDictionary *param = @{@"is_music" : [NSNumber numberWithInteger:sender.on]};
+    [NetWorkTool executePOST:@"/api/system/csetting" paramters:param success:^(id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            self.userModel.isOpenMusic = sender.on;
+            [SMUserModel saveUserData:self.userModel];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"设置失败，请稍后再试"];
+    }];
 }
 
 #pragma mark - tableView delegate

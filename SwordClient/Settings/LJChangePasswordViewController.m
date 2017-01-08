@@ -31,9 +31,14 @@
 }
 
 - (void)doneClick {
-    NSDictionary *param = @{@"uid" : @"137",
+    if (self.passwordText.text.length == 0 || self.rePasswordText.text.length == 0) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入密码"];
+        return;
+    }
+    SMUserModel *user = [SMUserModel getUserData];
+    NSDictionary *param = @{@"uid" : [NSNumber numberWithInteger:user.userId],
                             @"old_pwd" : [SMEncryptTool md5:@"123456"],
-                            @"new_pwd" : [SMEncryptTool md5:@"1234567"]};
+                            @"new_pwd" : [SMEncryptTool md5:self.passwordText.text]};
     [NetWorkTool executePOST:@"/api/cuser/pwd" paramters:param success:^(id responseObject) {
         
     } failure:^(NSError *error) {

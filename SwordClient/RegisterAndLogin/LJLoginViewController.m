@@ -15,6 +15,7 @@
 #import "LJRegisterViewController1.h"
 #import "LJNavigationController.h"
 #import "LJForggetPasswordViewController.h"
+#import "AppDelegate.h"
 
 @interface LJLoginViewController ()
 
@@ -30,6 +31,7 @@
 @property (nonatomic, strong) UIImageView *orImageView;
 @property (nonatomic, strong) UIButton *btQQ;
 @property (nonatomic, strong) UIButton *btWechat;
+
 
 @end
 
@@ -56,15 +58,19 @@
 }
 
 - (void)loginClick {
-    NSDictionary *param = @{@"username" : @"18514456698",
-                            @"password" : [SMEncryptTool md5:@"123456"],
+    NSDictionary *param = @{@"username" : self.phoneText.text,
+                            @"password" : [SMEncryptTool md5:self.passwordText.text],
                             @"last_login_ip" : [NSString getIpAddresses]};
+    
     [NetWorkTool executePOST:@"/api/cuser/login" paramters:param success:^(id responseObject) {
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             SMUserModel *userModel = [SMUserModel mj_objectWithKeyValues:responseObject];
             userModel.loginStatus = SCLoginStateOnline;
             
-            NSLog(@"%ld\n%@\n%@\n%@\n%@\n%@\n%ld\n%ld\n%d\n%d\n%d",userModel.userId,userModel.name,userModel.mobile,userModel.avatar,userModel.qqAccount,userModel.token,userModel.userStatus, userModel.loginStatus, userModel.isOpenMusic, userModel.isOpenShake, userModel. isOpenNotice);
+            
+            [SMUserModel saveUserData:userModel];
+            AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appdelegate jumpToInfoListVC];
         }
     } failure:^(NSError *error) {
         NSLog(@"error>>>%@", error);
@@ -225,6 +231,8 @@
     if (!_phoneText) {
         _phoneText = [UITextField new];
         _phoneText.placeholder = @"手机号";
+        _phoneText.textColor = [UIColor whiteColor];
+        _phoneText.tintColor = [UIColor whiteColor];
         
         UIButton *leftView = [UIButton buttonWithType:UIButtonTypeCustom];
         leftView.enabled = NO;
@@ -240,6 +248,8 @@
     if (!_passwordText) {
         _passwordText = [UITextField new];
         _passwordText.placeholder = @"密码";
+        _passwordText.textColor = [UIColor whiteColor];
+        _passwordText.tintColor = [UIColor whiteColor];
         
         UIButton *leftView = [UIButton buttonWithType:UIButtonTypeCustom];
         leftView.enabled = NO;

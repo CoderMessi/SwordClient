@@ -32,6 +32,7 @@
 #import "LJConstant.h"
 #import "NetWorkTool.h"
 #import "SMUserModel.h"
+#import "MBProgressHUD+LJToast.h"
 
 
 #endif

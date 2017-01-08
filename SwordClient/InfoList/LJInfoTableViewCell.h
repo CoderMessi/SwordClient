@@ -1,5 +1,5 @@
 //
-//  LJInfoDetailViewController.h
+//  LJInfoTableViewCell.h
 //  SwordClient
 //
 //  Created by 宋瑞航 on 2017/1/8.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LJInfoDetailViewController : UIViewController
+@interface LJInfoTableViewCell : UITableViewCell
 
-@property (nonatomic, copy)NSString *urlString;
+- (void)configUIWithDic:(NSDictionary *)dic;
 
 @end
