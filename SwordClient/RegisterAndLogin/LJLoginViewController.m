@@ -12,6 +12,9 @@
 #import "NSString+MD5.h"
 #import "SMUserModel.h"
 
+#import "LJRegisterViewController1.h"
+#import "LJNavigationController.h"
+
 @interface LJLoginViewController ()
 
 @property (nonatomic, strong) UIImageView *bgImageView;
@@ -45,11 +48,13 @@
 }
 
 - (void)registerClick {
-    
+    LJRegisterViewController1 *registerVc = [[LJRegisterViewController1 alloc] init];
+    LJNavigationController *nav = [[LJNavigationController alloc] initWithRootViewController:registerVc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)loginClick {
-    NSDictionary *param = @{@"username" : @"13499999999",
+    NSDictionary *param = @{@"username" : @"18514456698",
                             @"password" : [SMEncryptTool md5:@"123456"],
                             @"last_login_ip" : [NSString getIpAddresses]};
     [NetWorkTool executePOST:@"/api/cuser/login" paramters:param success:^(id responseObject) {
@@ -65,11 +70,24 @@
 }
 
 - (void)loginViaQQ {
-    
+    NSDictionary *param = @{@"mobile" : @"18514456698",
+                            @"type" : @"reg"};
+    [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)loginViaWechet {
-    
+    NSDictionary *param = @{@"mobile" : @"18514456698",
+                           @"password" : [SMEncryptTool md5:@"123456"],
+                            @"verify_code" : @"954607"};
+    [NetWorkTool executePOST:@"/api/cuser/reg" paramters:param success:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)keyboardShow:(NSNotification *)notification {

@@ -30,6 +30,7 @@
 
 #import "UIViewExt.h"
 #import "LJConstant.h"
+#import "NetWorkTool.h"
 
 
 #endif

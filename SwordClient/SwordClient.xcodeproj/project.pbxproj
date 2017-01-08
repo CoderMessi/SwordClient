@@ -30,6 +30,8 @@
 		717799611E208EC2002A93BC /* LJMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799601E208EC2002A93BC /* LJMenuView.m */; };
 		717799641E208FF8002A93BC /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799631E208FF8002A93BC /* UIViewExt.m */; };
 		717799671E20BC32002A93BC /* LJPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799661E20BC32002A93BC /* LJPersonInfoViewController.m */; };
+		7177996B1E21E2E0002A93BC /* LJRegisterViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7177996A1E21E2E0002A93BC /* LJRegisterViewController1.m */; };
+		7177996E1E21E2EB002A93BC /* LJRegisterViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7177996D1E21E2EB002A93BC /* LJRegisterViewController2.m */; };
 		D1A1C45E0D139F892EC6434E /* libPods-SwordClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +86,10 @@
 		717799631E208FF8002A93BC /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		717799651E20BC32002A93BC /* LJPersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJPersonInfoViewController.h; sourceTree = "<group>"; };
 		717799661E20BC32002A93BC /* LJPersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJPersonInfoViewController.m; sourceTree = "<group>"; };
+		717799691E21E2E0002A93BC /* LJRegisterViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJRegisterViewController1.h; sourceTree = "<group>"; };
+		7177996A1E21E2E0002A93BC /* LJRegisterViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJRegisterViewController1.m; sourceTree = "<group>"; };
+		7177996C1E21E2EB002A93BC /* LJRegisterViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJRegisterViewController2.h; sourceTree = "<group>"; };
+		7177996D1E21E2EB002A93BC /* LJRegisterViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJRegisterViewController2.m; sourceTree = "<group>"; };
 		9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwordClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -163,6 +169,10 @@
 			children = (
 				7162F1131E1F943000071EF4 /* LJLoginViewController.h */,
 				7162F1141E1F943000071EF4 /* LJLoginViewController.m */,
+				717799691E21E2E0002A93BC /* LJRegisterViewController1.h */,
+				7177996A1E21E2E0002A93BC /* LJRegisterViewController1.m */,
+				7177996C1E21E2EB002A93BC /* LJRegisterViewController2.h */,
+				7177996D1E21E2EB002A93BC /* LJRegisterViewController2.m */,
 			);
 			path = RegisterAndLogin;
 			sourceTree = "<group>";
@@ -406,6 +416,7 @@
 				7122D73E1E1E49690052F6D9 /* LJInfoListViewController.m in Sources */,
 				7162F1151E1F943000071EF4 /* LJLoginViewController.m in Sources */,
 				5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */,
+				7177996B1E21E2E0002A93BC /* LJRegisterViewController1.m in Sources */,
 				713DE4C41E1CDEA600ACAED0 /* AppDelegate.m in Sources */,
 				713DE4E41E1CFA8900ACAED0 /* IEMNetworkManager.m in Sources */,
 				717799641E208FF8002A93BC /* UIViewExt.m in Sources */,
@@ -416,6 +427,7 @@
 				713DE4E11E1CFA8900ACAED0 /* BaseNetWorking.m in Sources */,
 				7162F1121E1F932900071EF4 /* LJNavigationController.m in Sources */,
 				717799611E208EC2002A93BC /* LJMenuView.m in Sources */,
+				7177996E1E21E2EB002A93BC /* LJRegisterViewController2.m in Sources */,
 				713DE4C11E1CDEA600ACAED0 /* main.m in Sources */,
 				5ECCD70A1E1E8F6900F19136 /* JKEncrypt.m in Sources */,
 				717799671E20BC32002A93BC /* LJPersonInfoViewController.m in Sources */,
