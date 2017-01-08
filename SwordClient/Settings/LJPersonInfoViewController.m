@@ -72,6 +72,7 @@
     
     [headerView addSubview:self.headImageView];
     self.headImageView.frame = CGRectMake((kScreenWidth-headerImageHeight)/2, 21, headerImageHeight, headerImageHeight);
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[SMUserModel getUserData].avatar] placeholderImage:Image(@"guest_default")];
     
     return headerView;
 }

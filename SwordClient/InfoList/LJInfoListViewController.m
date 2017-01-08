@@ -20,6 +20,7 @@
 @property (nonatomic, strong) LJMenuView *menuView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, assign) NSInteger page;
 
 @end
 
@@ -30,30 +31,55 @@
     self.title = @"消息列表";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[Image(@"ico_menu") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
     self.dataArray = [NSMutableArray array];
+    self.page = 1;
     
     [self.view addSubview:self.listView];
     [self.view addSubview:self.menuView];
     [self subViewEvent];
     [self requestData];
+    
+    self.listView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
+    self.listView.mj_footer = [MJRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
 
 - (void)requestData {
     [MBProgressHUD showLoadingHUDAddedTo:self.view withText:nil];
     SMUserModel *user = [SMUserModel getUserData];
     NSDictionary *param = @{@"uid" : [NSNumber numberWithInteger:user.userId],
-                            @"page" : [NSNumber numberWithInt:1],
-                            @"num" : @"10",
+                            @"page" : [NSNumber numberWithInteger:self.page],
+                            @"num" : @"15",
                             @"show_type" : @"1"};
     [NetWorkTool executePOST:@"/api/message/notice" paramters:param success:^(id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:nil];
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             self.dataArray = [NSMutableArray arrayWithArray:[responseObject objectForKey:@"data"]];
             [self.listView reloadData];
+            [self.listView.mj_header endRefreshing];
         }
     } failure:^(NSError *error) {
         
     }];
 }
+
+- (void)loadMoreData {
+    SMUserModel *user = [SMUserModel getUserData];
+    self.page++;
+    NSDictionary *param = @{@"uid" : [NSNumber numberWithInteger:user.userId],
+                            @"page" : [NSNumber numberWithInteger:self.page],
+                            @"num" : @"15",
+                            @"show_type" : @"1"};
+    [NetWorkTool executePOST:@"/api/message/notice" paramters:param success:^(id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:nil];
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            [self.dataArray addObjectsFromArray:[responseObject objectForKey:@"data"]];
+            [self.listView reloadData];
+            [self.listView.mj_footer endRefreshing];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 
 #pragma mark - events
 - (void)rightItemClick {
@@ -90,6 +116,10 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 22;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 1;
 }
 
 #pragma mark - tableView dataSource

@@ -31,7 +31,7 @@
 - (void)configUIWithDic:(NSDictionary *)dic {
     self.msgLabel.text = [dic objectForKey:@"title"];
     self.timeLabel.text = [dic objectForKey:@"c_time"];
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"pic"]] placeholderImage:Image(@"")];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"pic"]] placeholderImage:Image(@"ico_menu")];
 }
 
 - (UILabel *)msgLabel {
