@@ -15,4 +15,9 @@ target ‘SwordClient’ do
 
 # Autolayout
     pod 'Masonry', '1.0.2'
+    
+# 集成QQ
+    pod 'UMengUShare/Social/QQ'
+# 集成微信
+    pod 'UMengUShare/Social/WeChat'
 end
