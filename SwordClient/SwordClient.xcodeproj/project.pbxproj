@@ -12,6 +12,7 @@
 		5EC441EE1E2380AD0029EE15 /* libUMessage_Sdk_1.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC441EC1E2380AD0029EE15 /* libUMessage_Sdk_1.4.0.a */; };
 		5EC441F01E2381520029EE15 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC441EF1E2381520029EE15 /* UserNotifications.framework */; };
 		5EC441F51E239F5F0029EE15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EC441F41E239F5F0029EE15 /* Assets.xcassets */; };
+		5EC441F81E23D7190029EE15 /* LJChangeNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC441F71E23D7190029EE15 /* LJChangeNameViewController.m */; };
 		5ECCD70A1E1E8F6900F19136 /* JKEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD7091E1E8F6900F19136 /* JKEncrypt.m */; };
 		5ECCD70D1E1E923300F19136 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD70C1E1E923300F19136 /* NSString+MD5.m */; };
 		5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD70F1E1E9F1400F19136 /* NetWorkTool.m */; };
@@ -59,6 +60,8 @@
 		5EC441EF1E2381520029EE15 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		5EC441F11E2381670029EE15 /* SwordClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwordClient.entitlements; sourceTree = "<group>"; };
 		5EC441F41E239F5F0029EE15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5EC441F61E23D7190029EE15 /* LJChangeNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJChangeNameViewController.h; sourceTree = "<group>"; };
+		5EC441F71E23D7190029EE15 /* LJChangeNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJChangeNameViewController.m; sourceTree = "<group>"; };
 		5ECCD7081E1E8F6900F19136 /* JKEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEncrypt.h; sourceTree = "<group>"; };
 		5ECCD7091E1E8F6900F19136 /* JKEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKEncrypt.m; sourceTree = "<group>"; };
 		5ECCD70B1E1E923300F19136 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 				717799761E223A36002A93BC /* LJConnectUsViewController.m */,
 				7177996F1E2228E3002A93BC /* LJSettViewController.h */,
 				717799701E2228E3002A93BC /* LJSettViewController.m */,
+				5EC441F61E23D7190029EE15 /* LJChangeNameViewController.h */,
+				5EC441F71E23D7190029EE15 /* LJChangeNameViewController.m */,
 				717799721E222C1D002A93BC /* LJChangePasswordViewController.h */,
 				717799731E222C1D002A93BC /* LJChangePasswordViewController.m */,
 				5EC441E51E233AF60029EE15 /* LJChangeMobileViewController.h */,
@@ -526,6 +531,7 @@
 				7162F1121E1F932900071EF4 /* LJNavigationController.m in Sources */,
 				717799741E222C1D002A93BC /* LJChangePasswordViewController.m in Sources */,
 				717799611E208EC2002A93BC /* LJMenuView.m in Sources */,
+				5EC441F81E23D7190029EE15 /* LJChangeNameViewController.m in Sources */,
 				7177996E1E21E2EB002A93BC /* LJRegisterViewController2.m in Sources */,
 				713DE4C11E1CDEA600ACAED0 /* main.m in Sources */,
 				5ECCD70A1E1E8F6900F19136 /* JKEncrypt.m in Sources */,

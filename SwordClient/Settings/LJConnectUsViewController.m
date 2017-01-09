@@ -14,6 +14,14 @@
 @interface LJConnectUsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIImageView *headImageView;
+@property (nonatomic, strong) UILabel *companyName;
+@property (nonatomic, strong) UILabel *QQ;
+@property (nonatomic, strong) UILabel *mobile;
+@property (nonatomic, strong) UILabel *dizhi;
+@property (nonatomic, strong) UIImageView *QRCodeView;
+@property (nonatomic, strong) UILabel *weixin;
+@property (nonatomic, strong) UILabel *tintLabel;
 
 @end
 
@@ -25,6 +33,28 @@
     self.view.backgroundColor = ViewBGColor;
     
     [self.view addSubview:self.tableView];
+    [self getCompanyInfo];
+}
+
+- (void)getCompanyInfo {
+    NSDictionary *param = @{@"type" : [NSNumber numberWithInt:1],
+                            @"uid" : [NSNumber numberWithInteger:[SMUserModel getUserData].userId]};
+    
+    [NetWorkTool executePOST:@"/api/system/kefu" paramters:param success:^(id responseObject) {
+        NSLog(@"%@", responseObject);
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            [_headImageView sd_setImageWithURL:[NSURL URLWithString:[responseObject[@"data"] objectForKey:@"com_pic"]]];
+            _companyName.text = [responseObject[@"data"] objectForKey:@"com_name"];
+            _QQ.text = [responseObject[@"data"] objectForKey:@"qq"];
+            _mobile.text = [responseObject[@"data"] objectForKey:@"phone"];
+            _dizhi.text = [responseObject[@"data"] objectForKey:@"address"];
+            [_QRCodeView sd_setImageWithURL:[NSURL URLWithString:[responseObject[@"data"] objectForKey:@"qrcode"]]];
+            _weixin.text = [NSString stringWithFormat:@"微信号：%@", [responseObject[@"data"] objectForKey:@"wechat"]];
+            _tintLabel.text = [NSString stringWithFormat:@"打开微信，搜索“%@“联系客服", [responseObject[@"data"] objectForKey:@"wechat"]];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - tableView delegate
@@ -49,21 +79,23 @@
     headerView.backgroundColor = ViewBGColor;
     headerView.frame = CGRectMake(0, 0, kScreenHeight, headerHeight);
     
-    UIImageView *headImageView = [[UIImageView alloc] initWithImage:Image(@"pic_logo2")];
-    [headerView addSubview:headImageView];
-    [headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    _headImageView = [[UIImageView alloc] initWithImage:Image(@"pic_logo2")];
+    [headerView addSubview:_headImageView];
+    [_headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(headerView).offset(13);
         make.centerX.equalTo(headerView);
+        make.width.mas_equalTo(83);
+        make.height.mas_equalTo(100);
     }];
     
-    UILabel *companyName = [UILabel new];
-    companyName.text = @"亮剑集团公司全称";
-    companyName.font = Font(14);
-    companyName.textAlignment = NSTextAlignmentCenter;
-    companyName.textColor = [UIColor colorWithHexString:@"454545"];
-    [headerView addSubview:companyName];
-    [companyName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(headImageView.mas_bottom).offset(16);
+    _companyName = [UILabel new];
+    _companyName.text = @"亮剑集团";
+    _companyName.font = Font(14);
+    _companyName.textAlignment = NSTextAlignmentCenter;
+    _companyName.textColor = [UIColor colorWithHexString:@"454545"];
+    [headerView addSubview:_companyName];
+    [_companyName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_headImageView.mas_bottom).offset(16);
         make.left.right.equalTo(headerView);
     }];
     
@@ -75,33 +107,35 @@
     footer.backgroundColor = ViewBGColor;
     footer.frame = CGRectMake(0, 0, kScreenWidth, 400);
     
-    UIImageView *QRCodeImage = [[UIImageView alloc] initWithImage:Image(@"pic_erweima")];
-    [footer addSubview:QRCodeImage];
-    [QRCodeImage mas_makeConstraints:^(MASConstraintMaker *make) {
+    _QRCodeView = [[UIImageView alloc] initWithImage:Image(@"pic_erweima")];
+    [footer addSubview:_QRCodeView];
+    [_QRCodeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(footer).offset(18);
         make.centerX.equalTo(footer);
+        make.width.mas_equalTo(104);
+        make.height.mas_equalTo(104);
     }];
     
-    UILabel *label1 = [UILabel new];
-    label1.font = Font(12);
-    label1.text = @"微信号：lianjian";
-    label1.textColor = [UIColor colorWithHexString:@"0980d2"];
-    label1.textAlignment = NSTextAlignmentCenter;
-    [footer addSubview:label1];
-    [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(QRCodeImage.mas_bottom).offset(10);
+    _weixin = [UILabel new];
+    _weixin.font = Font(12);
+    _weixin.text = @"微信号：lianjian";
+    _weixin.textColor = [UIColor colorWithHexString:@"0980d2"];
+    _weixin.textAlignment = NSTextAlignmentCenter;
+    [footer addSubview:_weixin];
+    [_weixin mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_QRCodeView.mas_bottom).offset(10);
         make.left.right.equalTo(footer);
         make.height.equalTo(@15);
     }];
     
-    UILabel *label2 = [UILabel new];
-    label2.font = Font(12);
-    label2.text = @"打开微信，搜索“liangjian“联系客服";
-    label2.textColor = [UIColor colorWithHexString:@"999999"];
-    label2.textAlignment = NSTextAlignmentCenter;
-    [footer addSubview:label2];
-    [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label1.mas_bottom).offset(12);
+    _tintLabel = [UILabel new];
+    _tintLabel.font = Font(12);
+    _tintLabel.text = @"打开微信，搜索“liangjian“联系客服";
+    _tintLabel.textColor = [UIColor colorWithHexString:@"999999"];
+    _tintLabel.textAlignment = NSTextAlignmentCenter;
+    [footer addSubview:_tintLabel];
+    [_tintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_weixin.mas_bottom).offset(12);
         make.left.right.equalTo(footer);
         make.height.equalTo(@15);
     }];
@@ -125,33 +159,33 @@
     if (indexPath.row == 0) {
         cell.textLabel.text = @"QQ";
         
-        UILabel *label = [UILabel new];
-        label.frame = CGRectMake(0, 0, 200, cell.height);
-        label.right = kScreenWidth - 10;
-        label.text = @"87128w7r89";
-        label.textColor = [UIColor colorWithHexString:@"0980d2"];
-        label.textAlignment = NSTextAlignmentRight;
-        [cell addSubview:label];
+        _QQ = [UILabel new];
+        _QQ.frame = CGRectMake(0, 0, 200, cell.height);
+        _QQ.right = kScreenWidth - 10;
+        _QQ.text = @"87128w7r89";
+        _QQ.textColor = [UIColor colorWithHexString:@"0980d2"];
+        _QQ.textAlignment = NSTextAlignmentRight;
+        [cell addSubview:_QQ];
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"服务热线";
         
-        UILabel *label = [UILabel new];
-        label.frame = CGRectMake(0, 0, 200, cell.height);
-        label.right = kScreenWidth - 10;
-        label.text = @"18798797876";
-        label.textColor = [UIColor colorWithHexString:@"0980d2"];
-        label.textAlignment = NSTextAlignmentRight;
-        [cell addSubview:label];
+        _mobile = [UILabel new];
+        _mobile.frame = CGRectMake(0, 0, 200, cell.height);
+        _mobile.right = kScreenWidth - 10;
+        _mobile.text = @"18798797876";
+        _mobile.textColor = [UIColor colorWithHexString:@"0980d2"];
+        _mobile.textAlignment = NSTextAlignmentRight;
+        [cell addSubview:_mobile];
     } else if (indexPath.row == 2) {
         cell.textLabel.text = @"公司地址";
         
-        UILabel *label = [UILabel new];
-        label.frame = CGRectMake(0, 0, 200, cell.height);
-        label.right = kScreenWidth - 10;
-        label.text = @"中国湖南";
-        label.textColor = [UIColor colorWithHexString:@"999999"];
-        label.textAlignment = NSTextAlignmentRight;
-        [cell addSubview:label];
+        _dizhi = [UILabel new];
+        _dizhi.frame = CGRectMake(0, 0, 200, cell.height);
+        _dizhi.right = kScreenWidth - 10;
+        _dizhi.text = @"中国湖南";
+        _dizhi.textColor = [UIColor colorWithHexString:@"999999"];
+        _dizhi.textAlignment = NSTextAlignmentRight;
+        [cell addSubview:_dizhi];
     }
     
     return cell;

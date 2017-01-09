@@ -33,6 +33,11 @@
 }
 
 - (void)goNextView {
+    if (self.phoneText.text.length != 11) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确的手机号"];
+        return;
+    }
+    
     LJRegisterViewController2 *vc = [[LJRegisterViewController2 alloc] init];
     vc.verifyCode = self.verifyCode;
     vc.phoneNumber = self.phoneText.text;
@@ -44,6 +49,10 @@
 }
 
 - (void)getVerifyCode {
+    if (self.phoneText.text.length != 11) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确的手机号"];
+        return;
+    }
     NSDictionary *param = @{@"mobile" : self.phoneText.text,
                             @"type" : @"reg"};
     [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {

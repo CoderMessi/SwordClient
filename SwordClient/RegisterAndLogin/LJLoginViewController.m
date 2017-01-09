@@ -59,6 +59,14 @@
 }
 
 - (void)loginClick {
+    if (self.phoneText.text.length != 11) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确的手机号"];
+        return;
+    } else if (self.passwordText.text.length == 0) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入密码"];
+        return;
+    }
+    
     NSDictionary *param = @{@"username" : self.phoneText.text,
                             @"password" : [SMEncryptTool md5:self.passwordText.text],
                             @"last_login_ip" : [NSString getIpAddresses]};

@@ -34,6 +34,10 @@
     [self.view addSubview:self.tableView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
 
 - (void)logoutClick {
     NSDictionary *param = @{@"uid" : [NSNumber numberWithInteger:self.userModel.userId]};
@@ -160,7 +164,7 @@
         
         self.infoSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 9, 60, 32)];
         self.infoSwitch.right = kScreenWidth - 25;
-        self.infoSwitch.on = self.userModel.isOpenNotice;
+        [self.infoSwitch setOn:self.userModel.isOpenNotice];
         [self.infoSwitch addTarget:self action:@selector(infoClick:) forControlEvents:UIControlEventValueChanged];
         [cell addSubview:self.infoSwitch];
     } else if (indexPath.row == 1) {
@@ -168,7 +172,8 @@
         
         self.shakeSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 9, 60, 32)];
         self.shakeSwitch.right = kScreenWidth - 25;
-        self.shakeSwitch.on = self.userModel.isOpenNotice;
+        self.shakeSwitch.on = self.userModel.isOpenShake;
+//        [self.shakeSwitch setOn:self.userModel.isOpenShake];
         [self.shakeSwitch addTarget:self action:@selector(shakeClick:) forControlEvents:UIControlEventValueChanged];
         [cell addSubview:self.shakeSwitch];
     } else if (indexPath.row == 2) {
@@ -176,7 +181,7 @@
         
         self.voiceSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 9, 60, 32)];
         self.voiceSwitch.right = kScreenWidth - 25;
-        self.voiceSwitch.on = self.userModel.isOpenNotice;
+        self.voiceSwitch.on = self.userModel.isOpenMusic;
         [self.voiceSwitch addTarget:self action:@selector(voiceClick:) forControlEvents:UIControlEventValueChanged];
         [cell addSubview:self.voiceSwitch];
     }

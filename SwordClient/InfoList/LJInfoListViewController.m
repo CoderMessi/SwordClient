@@ -106,6 +106,7 @@
 
 #pragma mark - tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.menuView.hidden = YES;
     LJInfoDetailViewController *detail = [[LJInfoDetailViewController alloc] init];
     detail.urlString = [self.dataArray[indexPath.row] objectForKey:@"url"];
     [self.navigationController pushViewController:detail animated:YES];

@@ -7,6 +7,9 @@
 //
 
 #import "LJRegisterViewController2.h"
+#import "SMEncryptTool.h"
+#import "NSString+MD5.h"
+#import "AppDelegate.h"
 
 @interface LJRegisterViewController2 ()
 
@@ -16,6 +19,9 @@
 @property (nonatomic, strong) UITextField *rePasswordText;
 @property (nonatomic, strong) UIButton *btDone;
 
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) NSInteger second;
+
 @end
 
 @implementation LJRegisterViewController2
@@ -24,26 +30,103 @@
     [super viewDidLoad];
     self.title = @"注册";
     self.view.backgroundColor = ViewBGColor;
+    self.second = 59;
     
     [self.view addSubview:self.codeText];
     [self.view addSubview:self.passwordText];
     [self.view addSubview:self.rePasswordText];
     [self.view addSubview:self.btDone];
     [self layout];
+    
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self getVerifyCode];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+}
+
+- (void)countDown {
+    self.second--;
+    [self.btReGet setTitle:[NSString stringWithFormat:@"重新获取(%ld秒)", self.second] forState:UIControlStateNormal];
+    if (self.second == 0) {
+        self.second = 59;
+        [self.timer invalidate];
+        self.timer = nil;
+        self.btReGet.enabled = YES;
+        [self.btReGet setTitle:@"重新获取(59秒)" forState:UIControlStateNormal];
+    }
+}
 
 - (void)getVerifyCode {
+    self.btReGet.enabled = NO;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
+    
     NSDictionary *param = @{@"mobile" : self.phoneNumber,
                             @"type" : @"reg"};
     [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
-        
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            self.verifyCode = [[responseObject objectForKey:@"data"] objectForKey:@""];
+        } else if ([[responseObject objectForKey:@"code"] integerValue] == 1006) {
+            [MBProgressHUD showHUDAddedTo:self.view withText:@"用户已存在"];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:@"请稍后再试"];
+        }
     } failure:^(NSError *error) {
-        
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"请稍后再试"];
     }];
 }
 
 - (void)doneClick {
+    if (self.codeText.text.length == 0) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入验证码"];
+        return;
+    } else if (self.passwordText.text.length == 0 || self.rePasswordText.text.length == 0) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入密码"];
+        return;
+    }
+    
+    NSDictionary *param = @{@"mobile" : @"18514456698",
+                            @"password" : [SMEncryptTool md5:@"123456"],
+                            @"verify_code" : self.codeText.text};
+    [NetWorkTool executePOST:@"/api/cuser/reg" paramters:param success:^(id responseObject) {
+        
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            
+            NSDictionary *param = @{@"username" : self.phoneNumber,
+                                    @"password" : [SMEncryptTool md5:self.passwordText.text],
+                                    @"last_login_ip" : [NSString getIpAddresses]};
+            
+            [NetWorkTool executePOST:@"/api/cuser/login" paramters:param success:^(id responseObject) {
+                if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+                    SMUserModel *userModel = [SMUserModel mj_objectWithKeyValues:responseObject];
+                    userModel.loginStatus = SCLoginStateOnline;
+                    
+                    
+                    [SMUserModel saveUserData:userModel];
+                    AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                    [appdelegate jumpToInfoListVC];
+                } else {
+                    [MBProgressHUD showHUDAddedTo:self.view withText:@"注册失败，请稍后再试"];
+                }
+            } failure:^(NSError *error) {
+                NSLog(@"error>>>%@", error);
+                [MBProgressHUD showHUDAddedTo:self.view withText:@"注册失败，请稍后再试"];
+            }];
+        }
+        
+    } failure:^(NSError *error) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"注册失败，请稍后再试"];
+    }];
     
 }
 
@@ -100,9 +183,11 @@
         _btReGet = [UIButton buttonWithType:UIButtonTypeCustom];
         _btReGet.frame = CGRectMake(5, 0, 129, 50);
         _btReGet.titleLabel.font = Font(15);
+        _btReGet.enabled = NO;
         [_btReGet addTarget:self action:@selector(getVerifyCode) forControlEvents:UIControlEventTouchUpInside];
         [_btReGet setTitle:@"重新获取(59秒)" forState:UIControlStateNormal];
         [_btReGet setTitleColor:[UIColor colorWithHexString:@"454545"] forState:UIControlStateNormal];
+        [_btReGet setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateDisabled];
         [rightView addSubview:_btReGet];
        
     }
