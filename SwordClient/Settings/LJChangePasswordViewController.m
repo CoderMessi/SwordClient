@@ -11,6 +11,7 @@
 
 @interface LJChangePasswordViewController ()
 
+@property (nonatomic, strong) UITextField *oldPasswordText;
 @property (nonatomic,strong) UITextField *passwordText;
 @property (nonatomic,strong) UITextField *rePasswordText;
 @property (nonatomic, strong) UIButton *btDone;
@@ -24,6 +25,7 @@
     self.title = @"修改密码";
     self.view.backgroundColor = ViewBGColor;
     
+    [self.view addSubview:self.oldPasswordText];
     [self.view addSubview:self.passwordText];
     [self.view addSubview:self.rePasswordText];
     [self.view addSubview:self.btDone];
@@ -37,12 +39,17 @@
     }
     SMUserModel *user = [SMUserModel getUserData];
     NSDictionary *param = @{@"uid" : [NSNumber numberWithInteger:user.userId],
-                            @"old_pwd" : [SMEncryptTool md5:@"123456"],
+                            @"old_pwd" : [SMEncryptTool md5:self.oldPasswordText.text],
                             @"new_pwd" : [SMEncryptTool md5:self.passwordText.text]};
     [NetWorkTool executePOST:@"/api/cuser/pwd" paramters:param success:^(id responseObject) {
-        
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            [MBProgressHUD showHUDAddedTo:self.view withText:@"修改密码成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:@"修改失败，请稍后再试"];
+        }
     } failure:^(NSError *error) {
-        
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"修改失败，请稍后再试"];
     }];
 }
 
@@ -50,10 +57,15 @@
     CGFloat topOffset = 64+30;
     CGFloat textHeight = 50;
     
-    [self.passwordText mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.oldPasswordText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(topOffset);
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(textHeight);
+    }];
+    
+    [self.passwordText mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.oldPasswordText.mas_bottom).offset(1);
+        make.left.right.height.equalTo(self.oldPasswordText);
     }];
     
     [self.rePasswordText mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -67,6 +79,21 @@
         make.width.equalTo(@280);
         make.height.equalTo(@44);
     }];
+}
+
+- (UITextField *)oldPasswordText {
+    if (!_oldPasswordText) {
+        _oldPasswordText = [UITextField new];
+        _oldPasswordText.backgroundColor = [UIColor whiteColor];
+        _oldPasswordText.placeholder = @"请输入旧密码";
+        _oldPasswordText.font = Font(15);
+        
+        UIView *leftView = [UIView new];
+        leftView.frame = CGRectMake(0, 0, 10, 1);
+        _oldPasswordText.leftView = leftView;
+        _oldPasswordText.leftViewMode = UITextFieldViewModeAlways;
+    }
+    return _oldPasswordText;
 }
 
 - (UITextField *)passwordText {

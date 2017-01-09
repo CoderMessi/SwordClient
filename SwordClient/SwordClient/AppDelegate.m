@@ -47,7 +47,7 @@
 
 - (void)goAppController {
     SMUserModel *user = [SMUserModel getUserData];
-    if (user.loginStatus) {
+    if (user.loginStatus == SCLoginStateOnline) {
         [self jumpToInfoListVC];
     } else {
         [self jumpToLoginVC];

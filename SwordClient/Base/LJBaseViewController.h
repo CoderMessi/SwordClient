@@ -10,4 +10,6 @@
 
 @interface LJBaseViewController : UIViewController
 
+- (void)popClick;
+
 @end

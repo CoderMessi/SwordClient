@@ -11,6 +11,7 @@
 
 #import "LJSettViewController.h"
 #import "LJChangePasswordViewController.h"
+#import "LJChangeMobileViewController.h"
 
 #define rowHeight 50
 #define headerHeight 140
@@ -49,7 +50,17 @@
 
 #pragma mark - tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.row == 0) {
+        
+    } else if (indexPath.row == 1) {
+        
+    } else if (indexPath.row == 2) {
+        
+    } else if (indexPath.row == 3) {
+        LJChangeMobileViewController *changeMobile = [[LJChangeMobileViewController alloc] init];
+        changeMobile.mobile = self.user.mobile;
+        [self.navigationController pushViewController:changeMobile animated:YES];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

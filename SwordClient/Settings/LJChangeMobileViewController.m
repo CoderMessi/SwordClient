@@ -1,29 +1,27 @@
 //
-//  LJRegisterViewController1.m
+//  LJChangeMobileViewController.m
 //  SwordClient
 //
-//  Created by 宋瑞航 on 2017/1/8.
+//  Created by songruihang on 2017/1/9.
 //  Copyright © 2017年 SRH. All rights reserved.
 //
 
-#import "LJRegisterViewController1.h"
-#import "LJRegisterViewController2.h"
+#import "LJChangeMobileViewController.h"
+#import "LJGetVerifyViewController.h"
 
-@interface LJRegisterViewController1 ()
+@interface LJChangeMobileViewController ()
 
 @property (nonatomic, strong) UITextField *phoneText;
 @property (nonatomic, strong) UILabel *tintLabel;
 @property (nonatomic, strong) UIButton *btNext;
 
-@property (nonatomic, copy) NSString *verifyCode;
-
 @end
 
-@implementation LJRegisterViewController1
+@implementation LJChangeMobileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"注册";
+    self.title = @"信息修改";
     self.view.backgroundColor = ViewBGColor;
     
     [self.view addSubview:self.phoneText];
@@ -32,27 +30,15 @@
     [self layout];
 }
 
-- (void)goNextView {
-    LJRegisterViewController2 *vc = [[LJRegisterViewController2 alloc] init];
-    vc.verifyCode = self.verifyCode;
-    vc.phoneNumber = self.phoneText.text;
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)sureClick {
+    if (self.phoneText.text.length != 11) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确手机号"];
+        return;
+    }
+    LJGetVerifyViewController *getCode = [[LJGetVerifyViewController alloc] init];
+    getCode.mobile = self.phoneText.text;
+    [self.navigationController pushViewController:getCode animated:YES];
 }
-
-- (void)popClick {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)getVerifyCode {
-    NSDictionary *param = @{@"mobile" : self.phoneText.text,
-                            @"type" : @"reg"};
-    [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
-}
-
 
 - (void)layout {
     CGFloat topOffset = 30 + 64;
@@ -83,20 +69,17 @@
         _phoneText = [UITextField new];
         _phoneText.backgroundColor = [UIColor whiteColor];
         _phoneText.placeholder = @"请输入手机号";
+        _phoneText.text = self.mobile;
         _phoneText.font = Font(15);
         
-        UIView *leftView = [UIView new];
-        leftView.frame = CGRectMake(0, 0, 10, 1);
+        UILabel *leftView = [UILabel new];
+        leftView.frame = CGRectMake(0, 0, 80, 50);
+        leftView.text = @"手机号：";
+        leftView.textColor = [UIColor colorWithHexString:@"454545"];
+        leftView.font = Font(15);
+        leftView.textAlignment = NSTextAlignmentCenter;
         _phoneText.leftView = leftView;
         _phoneText.leftViewMode = UITextFieldViewModeAlways;
-        
-        UIButton *rightView = [UIButton buttonWithType:UIButtonTypeCustom];
-        [rightView addTarget:self action:@selector(getVerifyCode) forControlEvents:UIControlEventTouchUpInside];
-        [rightView setImage:Image(@"ico_btn9") forState:UIControlStateNormal];
-        rightView.frame = CGRectMake(0, 0, 50, 100);
-        rightView.right = kScreenWidth - 30;
-        _phoneText.rightView = rightView;
-        _phoneText.rightViewMode = UITextFieldViewModeAlways;
     }
     return _phoneText;
 }
@@ -104,7 +87,7 @@
 - (UILabel *)tintLabel {
     if (!_tintLabel) {
         _tintLabel = [UILabel new];
-        _tintLabel.text = @"请输入手机号获取验证码";
+        _tintLabel.text = @"请输入手机号";
         _tintLabel.font = Font(12);
         _tintLabel.textColor = [UIColor colorWithHexString:@"999999"];
     }
@@ -114,9 +97,9 @@
 - (UIButton *)btNext {
     if (!_btNext) {
         _btNext = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_btNext setBackgroundImage:Image(@"ico_btn12") forState:UIControlStateNormal];
-        [_btNext setBackgroundImage:Image(@"ico_btn12") forState:UIControlStateHighlighted];
-        [_btNext addTarget:self action:@selector(goNextView) forControlEvents:UIControlEventTouchUpInside];
+        [_btNext setBackgroundImage:Image(@"ico_btn5") forState:UIControlStateNormal];
+        [_btNext setBackgroundImage:Image(@"ico_btn5") forState:UIControlStateHighlighted];
+        [_btNext addTarget:self action:@selector(sureClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btNext;
 }
@@ -125,6 +108,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 @end

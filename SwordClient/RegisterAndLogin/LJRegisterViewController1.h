@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LJRegisterViewController1 : UIViewController
+@interface LJRegisterViewController1 : LJBaseViewController
 
 @end

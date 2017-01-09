@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5EC441E71E233AF60029EE15 /* LJChangeMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC441E61E233AF60029EE15 /* LJChangeMobileViewController.m */; };
+		5EC441EA1E2370140029EE15 /* LJGetVerifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC441E91E2370140029EE15 /* LJGetVerifyViewController.m */; };
+		5EC441EE1E2380AD0029EE15 /* libUMessage_Sdk_1.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC441EC1E2380AD0029EE15 /* libUMessage_Sdk_1.4.0.a */; };
+		5EC441F01E2381520029EE15 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC441EF1E2381520029EE15 /* UserNotifications.framework */; };
 		5ECCD70A1E1E8F6900F19136 /* JKEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD7091E1E8F6900F19136 /* JKEncrypt.m */; };
 		5ECCD70D1E1E923300F19136 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD70C1E1E923300F19136 /* NSString+MD5.m */; };
 		5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD70F1E1E9F1400F19136 /* NetWorkTool.m */; };
@@ -46,6 +50,14 @@
 
 /* Begin PBXFileReference section */
 		4A243E3F48EF0F6755273BC1 /* Pods-SwordClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient.release.xcconfig"; sourceTree = "<group>"; };
+		5EC441E51E233AF60029EE15 /* LJChangeMobileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJChangeMobileViewController.h; sourceTree = "<group>"; };
+		5EC441E61E233AF60029EE15 /* LJChangeMobileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJChangeMobileViewController.m; sourceTree = "<group>"; };
+		5EC441E81E2370140029EE15 /* LJGetVerifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJGetVerifyViewController.h; sourceTree = "<group>"; };
+		5EC441E91E2370140029EE15 /* LJGetVerifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJGetVerifyViewController.m; sourceTree = "<group>"; };
+		5EC441EC1E2380AD0029EE15 /* libUMessage_Sdk_1.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.4.0.a; sourceTree = "<group>"; };
+		5EC441ED1E2380AD0029EE15 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
+		5EC441EF1E2381520029EE15 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		5EC441F11E2381670029EE15 /* SwordClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwordClient.entitlements; sourceTree = "<group>"; };
 		5ECCD7081E1E8F6900F19136 /* JKEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEncrypt.h; sourceTree = "<group>"; };
 		5ECCD7091E1E8F6900F19136 /* JKEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKEncrypt.m; sourceTree = "<group>"; };
 		5ECCD70B1E1E923300F19136 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -125,6 +137,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EC441F01E2381520029EE15 /* UserNotifications.framework in Frameworks */,
+				5EC441EE1E2380AD0029EE15 /* libUMessage_Sdk_1.4.0.a in Frameworks */,
 				D1A1C45E0D139F892EC6434E /* libPods-SwordClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +153,15 @@
 				4A243E3F48EF0F6755273BC1 /* Pods-SwordClient.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		5EC441EB1E2380AD0029EE15 /* SDKs */ = {
+			isa = PBXGroup;
+			children = (
+				5EC441EC1E2380AD0029EE15 /* libUMessage_Sdk_1.4.0.a */,
+				5EC441ED1E2380AD0029EE15 /* UMessage.h */,
+			);
+			path = SDKs;
 			sourceTree = "<group>";
 		};
 		5ECCD7071E1E8F6000F19136 /* Tools */ = {
@@ -195,6 +218,10 @@
 				717799701E2228E3002A93BC /* LJSettViewController.m */,
 				717799721E222C1D002A93BC /* LJChangePasswordViewController.h */,
 				717799731E222C1D002A93BC /* LJChangePasswordViewController.m */,
+				5EC441E51E233AF60029EE15 /* LJChangeMobileViewController.h */,
+				5EC441E61E233AF60029EE15 /* LJChangeMobileViewController.m */,
+				5EC441E81E2370140029EE15 /* LJGetVerifyViewController.h */,
+				5EC441E91E2370140029EE15 /* LJGetVerifyViewController.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -219,6 +246,7 @@
 		713DE4B31E1CDEA500ACAED0 = {
 			isa = PBXGroup;
 			children = (
+				5EC441EB1E2380AD0029EE15 /* SDKs */,
 				717799811E225BCA002A93BC /* Categories */,
 				7162F10F1E1F930100071EF4 /* Base */,
 				715571841E1F356700F4746B /* SMUserDataManager */,
@@ -246,6 +274,7 @@
 		713DE4BE1E1CDEA600ACAED0 /* SwordClient */ = {
 			isa = PBXGroup;
 			children = (
+				5EC441F11E2381670029EE15 /* SwordClient.entitlements */,
 				713DE4C21E1CDEA600ACAED0 /* AppDelegate.h */,
 				713DE4C31E1CDEA600ACAED0 /* AppDelegate.m */,
 				713DE4C51E1CDEA600ACAED0 /* ViewController.h */,
@@ -334,6 +363,7 @@
 		9C75C6495B99799071F948D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5EC441EF1E2381520029EE15 /* UserNotifications.framework */,
 				9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */,
 			);
 			name = Frameworks;
@@ -375,6 +405,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = VGN9QRT68D;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -474,8 +509,10 @@
 				7177998A1E228FC8002A93BC /* LJBaseViewController.m in Sources */,
 				5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */,
 				7177996B1E21E2E0002A93BC /* LJRegisterViewController1.m in Sources */,
+				5EC441E71E233AF60029EE15 /* LJChangeMobileViewController.m in Sources */,
 				717799871E226834002A93BC /* LJInfoTableViewCell.m in Sources */,
 				717799801E22429E002A93BC /* LJInfoDetailViewController.m in Sources */,
+				5EC441EA1E2370140029EE15 /* LJGetVerifyViewController.m in Sources */,
 				713DE4C41E1CDEA600ACAED0 /* AppDelegate.m in Sources */,
 				713DE4E41E1CFA8900ACAED0 /* IEMNetworkManager.m in Sources */,
 				717799641E208FF8002A93BC /* UIViewExt.m in Sources */,
@@ -613,6 +650,7 @@
 			baseConfigurationReference = 70205F93C23D2B5220DA6036 /* Pods-SwordClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SwordClient/SwordClient.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: hu longbing (ZBA7D4RHKX)";
 				DEVELOPMENT_TEAM = VGN9QRT68D;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -620,6 +658,10 @@
 				INFOPLIST_FILE = SwordClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDKs",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sword.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7545ceb9-2893-4348-9ebb-05456e059be2";
@@ -632,12 +674,17 @@
 			baseConfigurationReference = 4A243E3F48EF0F6755273BC1 /* Pods-SwordClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SwordClient/SwordClient.entitlements;
 				DEVELOPMENT_TEAM = VGN9QRT68D;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/SwordClient/PrefixHeader.pch";
 				INFOPLIST_FILE = SwordClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDKs",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sword.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7545ceb9-2893-4348-9ebb-05456e059be2";

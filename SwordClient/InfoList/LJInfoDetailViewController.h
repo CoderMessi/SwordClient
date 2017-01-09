@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LJInfoDetailViewController : UIViewController
+@interface LJInfoDetailViewController : LJBaseViewController
 
 @property (nonatomic, copy)NSString *urlString;
 

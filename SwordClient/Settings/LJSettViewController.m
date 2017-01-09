@@ -43,7 +43,6 @@
             userModel.loginStatus = SCLoginStateDropped;
             [SMUserModel saveUserData:userModel];
             
-            [SMUserModel saveUserData:userModel];
             AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             [appdelegate jumpToLoginVC];
         }
