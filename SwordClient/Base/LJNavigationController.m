@@ -33,7 +33,7 @@
                             forBarPosition:UIBarPositionAny
                                 barMetrics:UIBarMetricsDefault];
     [self.navigationBar setTitleTextAttributes:
-     @{NSFontAttributeName:[UIFont systemFontOfSize:19],
+     @{NSFontAttributeName:[UIFont systemFontOfSize:17],
        NSForegroundColorAttributeName:[UIColor whiteColor]}];
     __weak __typeof(self) weakSelf = self;
     self.interactivePopGestureRecognizer.enabled = YES ;

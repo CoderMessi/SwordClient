@@ -35,9 +35,25 @@
         [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确手机号"];
         return;
     }
-    LJGetVerifyViewController *getCode = [[LJGetVerifyViewController alloc] init];
-    getCode.mobile = self.phoneText.text;
-    [self.navigationController pushViewController:getCode animated:YES];
+    
+    NSDictionary *param = @{@"mobile" : self.phoneText.text,
+                            @"type" : @"checkmobile"};
+    [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            
+            LJGetVerifyViewController *getCode = [[LJGetVerifyViewController alloc] init];
+            getCode.mobile = self.phoneText.text;
+            [self.navigationController pushViewController:getCode animated:YES];
+        } else if ([[responseObject objectForKey:@"code"] integerValue] == 1007) {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
+        }
+        else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:@"获取验证码失败，请稍后再试"];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"获取验证码失败，请稍后再试"];
+    }];
+    
 }
 
 - (void)layout {

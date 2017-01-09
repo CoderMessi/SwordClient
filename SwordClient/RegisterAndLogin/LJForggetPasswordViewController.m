@@ -34,10 +34,20 @@
 
 
 - (void)goNextView {
+    if (self.phoneText.text.length != 11) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确的手机号"];
+        return;
+    }
+    
     LJForgetPasswordViewController2 *vc = [[LJForgetPasswordViewController2 alloc] init];
     vc.verifyCode = self.verifyCode;
     vc.phoneNumber = self.phoneText.text;
     [self.navigationController pushViewController:vc animated:YES];
+    
+    
+    
+    
+    
 }
 
 - (void)getVerifyCode {
@@ -50,6 +60,10 @@
     }];
 }
 
+
+- (void)popClick {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)layout {
     CGFloat topOffset = 30 + 64;
@@ -89,7 +103,8 @@
         
         UIButton *rightView = [UIButton buttonWithType:UIButtonTypeCustom];
         [rightView addTarget:self action:@selector(getVerifyCode) forControlEvents:UIControlEventTouchUpInside];
-        [rightView setImage:Image(@"ico_btn9") forState:UIControlStateNormal];
+        [rightView setImage:Image(@"ico_btn9") forState:UIControlStateDisabled];
+        rightView.enabled = NO;
         rightView.frame = CGRectMake(0, 0, 50, 100);
         rightView.right = kScreenWidth - 30;
         _phoneText.rightView = rightView;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LJForgetPasswordViewController2 : UIViewController
+@interface LJForgetPasswordViewController2 : LJBaseViewController
 
 @property (nonatomic, copy) NSString *verifyCode;
 @property (nonatomic, copy) NSString *phoneNumber;
