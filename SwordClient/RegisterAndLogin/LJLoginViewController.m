@@ -11,6 +11,7 @@
 #import "SMEncryptTool.h"
 #import "NSString+MD5.h"
 #import "SMUserModel.h"
+#import <UMSocialCore/UMSocialCore.h>
 
 #import "LJRegisterViewController1.h"
 #import "LJNavigationController.h"
@@ -88,13 +89,36 @@
 }
 
 - (void)loginViaWechet {
-    NSDictionary *param = @{@"mobile" : @"18514456698",
-                           @"password" : [SMEncryptTool md5:@"123456"],
-                            @"verify_code" : @"954607"};
-    [NetWorkTool executePOST:@"/api/cuser/reg" paramters:param success:^(id responseObject) {
+    
+    //构造SendAuthReq结构体
+//    SendAuthReq* req =[[[SendAuthReq alloc ] init ] autorelease ];
+//    req.scope = @"snsapi_userinfo" ;
+//    req.state = @"123" ;
+//    [WXApi sendReq:req];
+}
+
+// 在需要进行获取登录信息的UIViewController中加入如下代码
+- (void)getUserInfoForPlatform:(UMSocialPlatformType)platformType
+{
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:platformType currentViewController:self completion:^(id result, NSError *error) {
         
-    } failure:^(NSError *error) {
+        UMSocialUserInfoResponse *resp = result;
         
+        // 第三方登录数据(为空表示平台未提供)
+        // 授权数据
+        NSLog(@" uid: %@", resp.uid);
+        NSLog(@" openid: %@", resp.openid);
+        NSLog(@" accessToken: %@", resp.accessToken);
+        NSLog(@" refreshToken: %@", resp.refreshToken);
+        NSLog(@" expiration: %@", resp.expiration);
+        
+        // 用户数据
+        NSLog(@" name: %@", resp.name);
+        NSLog(@" iconurl: %@", resp.iconurl);
+        NSLog(@" gender: %@", resp.gender);
+        
+        // 第三方平台SDK原始数据
+        NSLog(@" originalResponse: %@", resp.originalResponse);
     }];
 }
 

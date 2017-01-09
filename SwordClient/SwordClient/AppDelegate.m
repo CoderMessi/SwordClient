@@ -14,6 +14,7 @@
 
 #import "UMessage.h"
 #import <UserNotifications/UserNotifications.h>
+#import <UMSocialCore/UMSocialCore.h>
 
 #import "SMUserModel.h"
 
@@ -54,6 +55,16 @@
     }];
     
     
+    //设置友盟appkey
+    [[UMSocialManager defaultManager] setUmSocialAppkey:@"5870e981aed17974510018ef"];
+    
+    //设置微信的appKey和appSecret
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx01f4645ef3ae442c" appSecret:@"3baf1193c85774b3fd9d18447d76cab0" redirectURL:@"http://mobile.umeng.com/social"];
+    
+    
+    //设置分享到QQ互联的appKey和appSecret
+    // U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"101373221"  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
     
     
     [self goAppController];
@@ -128,6 +139,19 @@
     }
     
 }
+
+// 支持所有iOS系统
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
+    if (!result) {
+        // 其他如支付等SDK的回调
+    }
+    return result;
+}
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
