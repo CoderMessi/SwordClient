@@ -12,9 +12,13 @@
 #import "LJInfoListViewController.h"
 #import <sys/utsname.h>
 
+#import "UMessage.h"
+#import <UserNotifications/UserNotifications.h>
+
 #import "SMUserModel.h"
 
-@interface AppDelegate ()
+
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
 
 @end
 
@@ -25,10 +29,32 @@
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
-    [self initDataWithDeviceToken:[self stringDevicetoken:nil]];
+//    [self initDataWithDeviceToken:[self stringDevicetoken:nil]];
     
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
     manager.enable = YES;
+    
+    
+    // 友盟推送
+    [UMessage startWithAppkey:@"5870e981aed17974510018ef" launchOptions:launchOptions];
+    //注册通知
+    [UMessage registerForRemoteNotifications];
+    //iOS10必须加下面这段代码。
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate=self;
+    UNAuthorizationOptions types10=UNAuthorizationOptionBadge|UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
+    [center requestAuthorizationWithOptions:types10 completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (granted) {
+            //点击允许
+            
+        } else {
+            //点击不允许
+            
+        }
+    }];
+    
+    
+    
     
     [self goAppController];
     return YES;
@@ -56,10 +82,50 @@
 
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    //1.2.7版本开始不需要用户再手动注册devicetoken，SDK会自动注册
+    // [UMessage registerDeviceToken:deviceToken];
+    [self initDataWithDeviceToken:[self stringDevicetoken:deviceToken]];
     
+    NSLog(@"%@",[[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""]
+                  stringByReplacingOccurrencesOfString: @">" withString: @""]
+                 stringByReplacingOccurrencesOfString: @" " withString: @""]);
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    [self initDataWithDeviceToken:@""];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    //关闭友盟自带的弹出框
+    [UMessage setAutoAlert:NO];
+    [UMessage didReceiveRemoteNotification:userInfo];
+}
+
+//iOS10新增：处理前台收到通知的代理方法
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        //应用处于前台时的远程推送接受
+        //必须加这句代码
+        [UMessage didReceiveRemoteNotification:userInfo];
+        
+    }else{
+        //应用处于前台时的本地推送接受
+    }
+    
+}
+
+//iOS10新增：处理后台点击通知的代理方法
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        //应用处于后台时的远程推送接受
+        //必须加这句代码
+        [UMessage didReceiveRemoteNotification:userInfo];
+        
+    }else{
+        //应用处于后台时的本地推送接受
+    }
     
 }
 

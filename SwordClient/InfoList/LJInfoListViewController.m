@@ -38,13 +38,14 @@
     [self subViewEvent];
     [self requestData];
     
-    self.listView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
-    self.listView.mj_footer = [MJRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.listView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
+    self.listView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
 
 - (void)requestData {
     [MBProgressHUD showLoadingHUDAddedTo:self.view withText:nil];
     SMUserModel *user = [SMUserModel getUserData];
+    self.page = 1;
     NSDictionary *param = @{@"uid" : [NSNumber numberWithInteger:user.userId],
                             @"page" : [NSNumber numberWithInteger:self.page],
                             @"num" : @"15",

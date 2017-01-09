@@ -11,6 +11,7 @@
 		5EC441EA1E2370140029EE15 /* LJGetVerifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC441E91E2370140029EE15 /* LJGetVerifyViewController.m */; };
 		5EC441EE1E2380AD0029EE15 /* libUMessage_Sdk_1.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC441EC1E2380AD0029EE15 /* libUMessage_Sdk_1.4.0.a */; };
 		5EC441F01E2381520029EE15 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC441EF1E2381520029EE15 /* UserNotifications.framework */; };
+		5EC441F51E239F5F0029EE15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EC441F41E239F5F0029EE15 /* Assets.xcassets */; };
 		5ECCD70A1E1E8F6900F19136 /* JKEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD7091E1E8F6900F19136 /* JKEncrypt.m */; };
 		5ECCD70D1E1E923300F19136 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD70C1E1E923300F19136 /* NSString+MD5.m */; };
 		5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD70F1E1E9F1400F19136 /* NetWorkTool.m */; };
@@ -22,7 +23,6 @@
 		713DE4C41E1CDEA600ACAED0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4C31E1CDEA600ACAED0 /* AppDelegate.m */; };
 		713DE4C71E1CDEA600ACAED0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4C61E1CDEA600ACAED0 /* ViewController.m */; };
 		713DE4CA1E1CDEA600ACAED0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 713DE4C81E1CDEA600ACAED0 /* Main.storyboard */; };
-		713DE4CC1E1CDEA600ACAED0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 713DE4CB1E1CDEA600ACAED0 /* Assets.xcassets */; };
 		713DE4CF1E1CDEA600ACAED0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 713DE4CD1E1CDEA600ACAED0 /* LaunchScreen.storyboard */; };
 		713DE4E11E1CFA8900ACAED0 /* BaseNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4D81E1CFA8900ACAED0 /* BaseNetWorking.m */; };
 		713DE4E21E1CFA8900ACAED0 /* BusError.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4DB1E1CFA8900ACAED0 /* BusError.m */; };
@@ -58,6 +58,7 @@
 		5EC441ED1E2380AD0029EE15 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		5EC441EF1E2381520029EE15 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		5EC441F11E2381670029EE15 /* SwordClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwordClient.entitlements; sourceTree = "<group>"; };
+		5EC441F41E239F5F0029EE15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5ECCD7081E1E8F6900F19136 /* JKEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEncrypt.h; sourceTree = "<group>"; };
 		5ECCD7091E1E8F6900F19136 /* JKEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKEncrypt.m; sourceTree = "<group>"; };
 		5ECCD70B1E1E923300F19136 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -82,7 +83,6 @@
 		713DE4C51E1CDEA600ACAED0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		713DE4C61E1CDEA600ACAED0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		713DE4C91E1CDEA600ACAED0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		713DE4CB1E1CDEA600ACAED0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		713DE4CE1E1CDEA600ACAED0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		713DE4D01E1CDEA600ACAED0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		713DE4D71E1CFA8900ACAED0 /* BaseNetWorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetWorking.h; sourceTree = "<group>"; };
@@ -279,8 +279,8 @@
 				713DE4C31E1CDEA600ACAED0 /* AppDelegate.m */,
 				713DE4C51E1CDEA600ACAED0 /* ViewController.h */,
 				713DE4C61E1CDEA600ACAED0 /* ViewController.m */,
+				5EC441F41E239F5F0029EE15 /* Assets.xcassets */,
 				713DE4C81E1CDEA600ACAED0 /* Main.storyboard */,
-				713DE4CB1E1CDEA600ACAED0 /* Assets.xcassets */,
 				713DE4CD1E1CDEA600ACAED0 /* LaunchScreen.storyboard */,
 				713DE4D01E1CDEA600ACAED0 /* Info.plist */,
 				713DE4BF1E1CDEA600ACAED0 /* Supporting Files */,
@@ -437,7 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				713DE4CF1E1CDEA600ACAED0 /* LaunchScreen.storyboard in Resources */,
-				713DE4CC1E1CDEA600ACAED0 /* Assets.xcassets in Resources */,
+				5EC441F51E239F5F0029EE15 /* Assets.xcassets in Resources */,
 				713DE4CA1E1CDEA600ACAED0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,6 +650,7 @@
 			baseConfigurationReference = 70205F93C23D2B5220DA6036 /* Pods-SwordClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = SwordClient/SwordClient.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: hu longbing (ZBA7D4RHKX)";
 				DEVELOPMENT_TEAM = VGN9QRT68D;
@@ -674,6 +675,7 @@
 			baseConfigurationReference = 4A243E3F48EF0F6755273BC1 /* Pods-SwordClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = SwordClient/SwordClient.entitlements;
 				DEVELOPMENT_TEAM = VGN9QRT68D;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
