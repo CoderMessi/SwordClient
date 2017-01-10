@@ -92,6 +92,9 @@
         [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入密码"];
         return;
     }
+    [self.codeText resignFirstResponder];
+    [self.passwordText resignFirstResponder];
+    [self.rePasswordText resignFirstResponder];
     
     NSDictionary *param = @{@"mobile" : self.phoneNumber,
                             @"password" : [SMEncryptTool md5:self.passwordText.text],
@@ -99,28 +102,29 @@
     [NetWorkTool executePOST:@"/api/cuser/reg" paramters:param success:^(id responseObject) {
         
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            SMUserModel *userModel = [SMUserModel mj_objectWithKeyValues:responseObject];
+            userModel.loginStatus = SCLoginStateOnline;
             
-            NSDictionary *param = @{@"username" : self.phoneNumber,
-                                    @"password" : [SMEncryptTool md5:self.passwordText.text],
-                                    @"last_login_ip" : [NSString getIpAddresses]};
             
-            [NetWorkTool executePOST:@"/api/cuser/login" paramters:param success:^(id responseObject) {
-                if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
-                    SMUserModel *userModel = [SMUserModel mj_objectWithKeyValues:responseObject];
-                    userModel.loginStatus = SCLoginStateOnline;
-                    
-                    
-                    [SMUserModel saveUserData:userModel];
-                    AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                    [appdelegate jumpToInfoListVC];
-                } else {
-                    [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
-                }
-            } failure:^(NSError *error) {
-                NSLog(@"error>>>%@", error);
-                [MBProgressHUD showHUDAddedTo:self.view withText:@"注册失败，请稍后再试"];
-            }];
+            [SMUserModel saveUserData:userModel];
+            AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appdelegate jumpToInfoListVC];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
+//        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+//            
+//            NSDictionary *param = @{@"username" : self.phoneNumber,
+//                                    @"password" : [SMEncryptTool md5:self.passwordText.text],
+//                                    @"last_login_ip" : [NSString getIpAddresses]};
+//            
+//            [NetWorkTool executePOST:@"/api/cuser/login" paramters:param success:^(id responseObject) {
+//                
+//            } failure:^(NSError *error) {
+//                NSLog(@"error>>>%@", error);
+//                [MBProgressHUD showHUDAddedTo:self.view withText:@"注册失败，请稍后再试"];
+//            }];
+//        }
         
     } failure:^(NSError *error) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"注册失败，请稍后再试"];

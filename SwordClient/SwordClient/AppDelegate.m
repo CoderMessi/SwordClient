@@ -81,14 +81,20 @@
     return YES;
 }
 
+- (void) jumpToLoginVC:(NSNotification *)noti {
+    SMUserModel *userModel = [[SMUserModel alloc]init];
+    userModel.loginStatus = SCLoginStateDropped;
+    [SMUserModel saveUserData:userModel];
+    [self jumpToLoginVC];
+}
+
+
 - (void)jumpToLoginVC {
     LJLoginViewController *loginVc = [[LJLoginViewController alloc] init];
     self.window.rootViewController = loginVc;
 }
 
 - (void)jumpToInfoListVC {
-//    LJInfoListViewController *listVc = [[LJInfoListViewController alloc] init];
-    
     NSArray *viewControllers = @[[LJInfoListViewController class], [LJInfoListViewController2 class]];
     LJPageViewController *pageVc = [[LJPageViewController alloc] initWithViewControllerClasses:viewControllers andTheirTitles:@[@"",@""]];
     pageVc.title = @"消息列表";
