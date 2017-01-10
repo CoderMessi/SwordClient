@@ -265,6 +265,7 @@
     if (!_phoneText) {
         _phoneText = [UITextField new];
         _phoneText.placeholder = @"手机号";
+        _phoneText.font = Font(15);
         _phoneText.textColor = [UIColor whiteColor];
         _phoneText.tintColor = [UIColor whiteColor];
         _phoneText.keyboardType = UIKeyboardTypeNumberPad;
@@ -283,6 +284,7 @@
     if (!_passwordText) {
         _passwordText = [UITextField new];
         _passwordText.placeholder = @"密码";
+        _passwordText.font = Font(15);
         _passwordText.textColor = [UIColor whiteColor];
         _passwordText.tintColor = [UIColor whiteColor];
         _passwordText.secureTextEntry = YES;
@@ -296,6 +298,7 @@
         
         UIButton *rightView = [UIButton buttonWithType:UIButtonTypeCustom];
         rightView.frame = CGRectMake(0, 0, 100, 44);
+        rightView.titleLabel.font = Font(15);
         [rightView setTitle:@"忘记密码？" forState:UIControlStateNormal];
         [rightView setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
         [rightView addTarget:self action:@selector(forgetPasswordClick) forControlEvents:UIControlEventTouchUpInside];

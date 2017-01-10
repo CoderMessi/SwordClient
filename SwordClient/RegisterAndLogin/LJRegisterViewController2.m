@@ -162,6 +162,7 @@
         _codeText.backgroundColor = [UIColor whiteColor];
         _codeText.placeholder = @"请输入验证码";
         _codeText.font = Font(15);
+        _codeText.keyboardType = UIKeyboardTypeNumberPad;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);
@@ -198,6 +199,7 @@
         _passwordText.backgroundColor = [UIColor whiteColor];
         _passwordText.placeholder = @"请输入新密码";
         _passwordText.font = Font(15);
+        _passwordText.secureTextEntry = YES;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);
@@ -214,6 +216,7 @@
         _rePasswordText.backgroundColor = [UIColor whiteColor];
         _rePasswordText.placeholder = @"请再次输入密码";
         _rePasswordText.font = Font(15);
+        _rePasswordText.secureTextEntry = YES;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);

@@ -15,8 +15,6 @@
 @property (nonatomic, strong) UILabel *tintLabel;
 @property (nonatomic, strong) UIButton *btNext;
 
-@property (nonatomic, copy) NSString *verifyCode;
-
 @end
 
 @implementation LJForggetPasswordViewController
@@ -40,7 +38,6 @@
     }
     
     LJForgetPasswordViewController2 *vc = [[LJForgetPasswordViewController2 alloc] init];
-    vc.verifyCode = self.verifyCode;
     vc.phoneNumber = self.phoneText.text;
     [self.navigationController pushViewController:vc animated:YES];
     
@@ -66,7 +63,7 @@
 }
 
 - (void)layout {
-    CGFloat topOffset = 30 + 64;
+    CGFloat topOffset = 30;
     CGFloat textHeight = 50;
     [self.phoneText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(topOffset);
@@ -95,6 +92,7 @@
         _phoneText.backgroundColor = [UIColor whiteColor];
         _phoneText.placeholder = @"请输入手机号";
         _phoneText.font = Font(15);
+        _phoneText.keyboardType = UIKeyboardTypeNumberPad;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);
