@@ -10,6 +10,7 @@
 #import "LJLoginViewController.h"
 #import "LJNavigationController.h"
 #import "LJInfoListViewController.h"
+#import "LJInfoListViewController2.h"
 #import <sys/utsname.h>
 
 #import <UMMobClick/MobClick.h>
@@ -18,7 +19,7 @@
 #import <UMSocialCore/UMSocialCore.h>
 
 #import "SMUserModel.h"
-
+#import "LJPageViewController.h"
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
 
@@ -74,6 +75,8 @@
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"101373221"  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
     
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(jumpToLoginVC:) name:@"jumpToLoginVC" object:nil];
+    
     [self goAppController];
     return YES;
 }
@@ -84,8 +87,13 @@
 }
 
 - (void)jumpToInfoListVC {
-    LJInfoListViewController *listVc = [[LJInfoListViewController alloc] init];
-    LJNavigationController *nav = [[LJNavigationController alloc] initWithRootViewController:listVc];
+//    LJInfoListViewController *listVc = [[LJInfoListViewController alloc] init];
+    
+    NSArray *viewControllers = @[[LJInfoListViewController class], [LJInfoListViewController2 class]];
+    LJPageViewController *pageVc = [[LJPageViewController alloc] initWithViewControllerClasses:viewControllers andTheirTitles:@[@"",@""]];
+    pageVc.title = @"消息列表";
+    pageVc.menuHeight = 0;
+    LJNavigationController *nav = [[LJNavigationController alloc] initWithRootViewController:pageVc];
     self.window.rootViewController = nav;
 }
 

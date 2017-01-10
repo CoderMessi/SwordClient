@@ -173,6 +173,8 @@
 #pragma mark - tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.menuView.hidden = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"HideMenuView" object:nil];
+    
     LJInfoDetailViewController *detail = [[LJInfoDetailViewController alloc] init];
     if (self.listType == 1) {
         detail.urlString = [self.dataArray[indexPath.row] objectForKey:@"url"];

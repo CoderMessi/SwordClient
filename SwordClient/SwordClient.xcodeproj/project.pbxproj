@@ -26,9 +26,6 @@
 		713DE4C71E1CDEA600ACAED0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4C61E1CDEA600ACAED0 /* ViewController.m */; };
 		713DE4CA1E1CDEA600ACAED0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 713DE4C81E1CDEA600ACAED0 /* Main.storyboard */; };
 		713DE4CF1E1CDEA600ACAED0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 713DE4CD1E1CDEA600ACAED0 /* LaunchScreen.storyboard */; };
-		713DE4E11E1CFA8900ACAED0 /* BaseNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4D81E1CFA8900ACAED0 /* BaseNetWorking.m */; };
-		713DE4E21E1CFA8900ACAED0 /* BusError.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4DB1E1CFA8900ACAED0 /* BusError.m */; };
-		713DE4E41E1CFA8900ACAED0 /* IEMNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 713DE4DF1E1CFA8900ACAED0 /* IEMNetworkManager.m */; };
 		715571831E1F288300F4746B /* SvUDIDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 715571821E1F288300F4746B /* SvUDIDTools.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7155718D1E1F356700F4746B /* SMUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7155718A1E1F356700F4746B /* SMUserModel.m */; };
 		7162F1121E1F932900071EF4 /* LJNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7162F1111E1F932900071EF4 /* LJNavigationController.m */; };
@@ -47,6 +44,8 @@
 		717799841E225C30002A93BC /* MBProgressHUD+LJToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799831E225C30002A93BC /* MBProgressHUD+LJToast.m */; };
 		717799871E226834002A93BC /* LJInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799861E226834002A93BC /* LJInfoTableViewCell.m */; };
 		7177998A1E228FC8002A93BC /* LJBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799891E228FC8002A93BC /* LJBaseViewController.m */; };
+		717799931E25169F002A93BC /* LJInfoListViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799921E25169F002A93BC /* LJInfoListViewController2.m */; };
+		717799961E251805002A93BC /* LJPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717799951E251805002A93BC /* LJPageViewController.m */; };
 		D1A1C45E0D139F892EC6434E /* libPods-SwordClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */; };
 /* End PBXBuildFile section */
 
@@ -91,13 +90,6 @@
 		713DE4C91E1CDEA600ACAED0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		713DE4CE1E1CDEA600ACAED0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		713DE4D01E1CDEA600ACAED0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		713DE4D71E1CFA8900ACAED0 /* BaseNetWorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetWorking.h; sourceTree = "<group>"; };
-		713DE4D81E1CFA8900ACAED0 /* BaseNetWorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetWorking.m; sourceTree = "<group>"; };
-		713DE4DA1E1CFA8900ACAED0 /* BusError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusError.h; sourceTree = "<group>"; };
-		713DE4DB1E1CFA8900ACAED0 /* BusError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusError.m; sourceTree = "<group>"; };
-		713DE4DE1E1CFA8900ACAED0 /* IEMNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IEMNetworkManager.h; sourceTree = "<group>"; };
-		713DE4DF1E1CFA8900ACAED0 /* IEMNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IEMNetworkManager.m; sourceTree = "<group>"; };
-		713DE4E01E1CFA8900ACAED0 /* IEMURLDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IEMURLDefine.h; sourceTree = "<group>"; };
 		713DE4E51E1CFB6200ACAED0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		715571811E1F288300F4746B /* SvUDIDTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SvUDIDTools.h; sourceTree = "<group>"; };
 		715571821E1F288300F4746B /* SvUDIDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SvUDIDTools.m; sourceTree = "<group>"; };
@@ -135,6 +127,10 @@
 		717799861E226834002A93BC /* LJInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJInfoTableViewCell.m; sourceTree = "<group>"; };
 		717799881E228FC8002A93BC /* LJBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJBaseViewController.h; sourceTree = "<group>"; };
 		717799891E228FC8002A93BC /* LJBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJBaseViewController.m; sourceTree = "<group>"; };
+		717799911E25169F002A93BC /* LJInfoListViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJInfoListViewController2.h; sourceTree = "<group>"; };
+		717799921E25169F002A93BC /* LJInfoListViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJInfoListViewController2.m; sourceTree = "<group>"; };
+		717799941E251805002A93BC /* LJPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJPageViewController.h; sourceTree = "<group>"; };
+		717799951E251805002A93BC /* LJPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJPageViewController.m; sourceTree = "<group>"; };
 		9A9BB6492ECFBBF362693925 /* libPods-SwordClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwordClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -207,8 +203,12 @@
 				7177995E1E208E1D002A93BC /* Subviews */,
 				7122D73C1E1E49690052F6D9 /* LJInfoListViewController.h */,
 				7122D73D1E1E49690052F6D9 /* LJInfoListViewController.m */,
+				717799911E25169F002A93BC /* LJInfoListViewController2.h */,
+				717799921E25169F002A93BC /* LJInfoListViewController2.m */,
 				7177997E1E22429E002A93BC /* LJInfoDetailViewController.h */,
 				7177997F1E22429E002A93BC /* LJInfoDetailViewController.m */,
+				717799941E251805002A93BC /* LJPageViewController.h */,
+				717799951E251805002A93BC /* LJPageViewController.m */,
 			);
 			path = InfoList;
 			sourceTree = "<group>";
@@ -263,7 +263,6 @@
 				7122D7381E1E43DF0052F6D9 /* Settings */,
 				7122D7371E1E43D10052F6D9 /* InfoList */,
 				7122D7271E1DF8F20052F6D9 /* API */,
-				713DE4D61E1CFA8900ACAED0 /* NetWork */,
 				713DE4BE1E1CDEA600ACAED0 /* SwordClient */,
 				713DE4BD1E1CDEA600ACAED0 /* Products */,
 				06095B78976F653281DCE8D8 /* Pods */,
@@ -304,28 +303,6 @@
 				7122D7261E1DEB8C0052F6D9 /* LJConstant.h */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		713DE4D61E1CFA8900ACAED0 /* NetWork */ = {
-			isa = PBXGroup;
-			children = (
-				713DE4D91E1CFA8900ACAED0 /* Error */,
-				713DE4D71E1CFA8900ACAED0 /* BaseNetWorking.h */,
-				713DE4D81E1CFA8900ACAED0 /* BaseNetWorking.m */,
-				713DE4DE1E1CFA8900ACAED0 /* IEMNetworkManager.h */,
-				713DE4DF1E1CFA8900ACAED0 /* IEMNetworkManager.m */,
-				713DE4E01E1CFA8900ACAED0 /* IEMURLDefine.h */,
-			);
-			path = NetWork;
-			sourceTree = "<group>";
-		};
-		713DE4D91E1CFA8900ACAED0 /* Error */ = {
-			isa = PBXGroup;
-			children = (
-				713DE4DA1E1CFA8900ACAED0 /* BusError.h */,
-				713DE4DB1E1CFA8900ACAED0 /* BusError.m */,
-			);
-			path = Error;
 			sourceTree = "<group>";
 		};
 		715571841E1F356700F4746B /* SMUserDataManager */ = {
@@ -558,21 +535,21 @@
 				717799711E2228E3002A93BC /* LJSettViewController.m in Sources */,
 				7177997D1E224043002A93BC /* LJForgetPasswordViewController2.m in Sources */,
 				715571831E1F288300F4746B /* SvUDIDTools.m in Sources */,
-				713DE4E21E1CFA8900ACAED0 /* BusError.m in Sources */,
 				713DE4C71E1CDEA600ACAED0 /* ViewController.m in Sources */,
 				5ECCD70D1E1E923300F19136 /* NSString+MD5.m in Sources */,
 				717799771E223A36002A93BC /* LJConnectUsViewController.m in Sources */,
 				7122D73E1E1E49690052F6D9 /* LJInfoListViewController.m in Sources */,
 				7162F1151E1F943000071EF4 /* LJLoginViewController.m in Sources */,
 				7177998A1E228FC8002A93BC /* LJBaseViewController.m in Sources */,
+				717799961E251805002A93BC /* LJPageViewController.m in Sources */,
 				5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */,
+				717799931E25169F002A93BC /* LJInfoListViewController2.m in Sources */,
 				7177996B1E21E2E0002A93BC /* LJRegisterViewController1.m in Sources */,
 				5EC441E71E233AF60029EE15 /* LJChangeMobileViewController.m in Sources */,
 				717799871E226834002A93BC /* LJInfoTableViewCell.m in Sources */,
 				717799801E22429E002A93BC /* LJInfoDetailViewController.m in Sources */,
 				5EC441EA1E2370140029EE15 /* LJGetVerifyViewController.m in Sources */,
 				713DE4C41E1CDEA600ACAED0 /* AppDelegate.m in Sources */,
-				713DE4E41E1CFA8900ACAED0 /* IEMNetworkManager.m in Sources */,
 				717799641E208FF8002A93BC /* UIViewExt.m in Sources */,
 				5ECCD7161E1E9F4D00F19136 /* GTMBase64.m in Sources */,
 				7177997A1E224032002A93BC /* LJForggetPasswordViewController.m in Sources */,
@@ -580,7 +557,6 @@
 				717799841E225C30002A93BC /* MBProgressHUD+LJToast.m in Sources */,
 				7155718D1E1F356700F4746B /* SMUserModel.m in Sources */,
 				7122D73B1E1E44810052F6D9 /* LJInfoListApi.m in Sources */,
-				713DE4E11E1CFA8900ACAED0 /* BaseNetWorking.m in Sources */,
 				7162F1121E1F932900071EF4 /* LJNavigationController.m in Sources */,
 				717799741E222C1D002A93BC /* LJChangePasswordViewController.m in Sources */,
 				717799611E208EC2002A93BC /* LJMenuView.m in Sources */,

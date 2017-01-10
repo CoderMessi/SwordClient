@@ -34,6 +34,7 @@ PODS:
     - UMengUShare/Core
   - UMengUShare/Social/WeChat (6.2.1):
     - UMengUShare/Core
+  - WMPageController (2.2.1)
 
 DEPENDENCIES:
   - AFNetworkActivityLogger (from `https://github.com/AFNetworking/AFNetworkActivityLogger.git`, branch `3_0_0`)
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - UMengAnalytics-NO-IDFA
   - UMengUShare/Social/QQ
   - UMengUShare/Social/WeChat
+  - WMPageController
 
 EXTERNAL SOURCES:
   AFNetworkActivityLogger:
@@ -73,7 +75,8 @@ SPEC CHECKSUMS:
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   UMengAnalytics-NO-IDFA: 985292af177111685325c90c321094172b95d2cb
   UMengUShare: 583ac067e747c66429d5063896da0e77c4fe7688
+  WMPageController: 181bcc9b1fb7c9c3466bff66012552953a547d28
 
-PODFILE CHECKSUM: 1438cc6598275faf004c6d0d9d6b0d68399d2ad2
+PODFILE CHECKSUM: 761b7af2e6d370fec2006d24f73085e9231752f1
 
 COCOAPODS: 1.0.0
