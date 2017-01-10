@@ -9,7 +9,7 @@
 #import "LJChangeNameViewController.h"
 #import "NetWorkTool.h"
 
-@interface LJChangeNameViewController ()
+@interface LJChangeNameViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *phoneText;
 @property (nonatomic, strong) UILabel *tintLabel;
@@ -32,6 +32,9 @@
     [self.view addSubview:self.tintLabel];
     [self.view addSubview:self.btNext];
     [self layout];
+    if (self.changeType == LJTypeQQ) {
+        self.tintLabel.text = @"请输入QQ";
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,22 +42,54 @@
     self.phoneText.text = self.name;
 }
 
-- (void)sureClick {
-    if (self.phoneText.text.length < 2 || self.phoneText.text.length > 8) {
-        [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确的姓名"];
-        return;
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (self.changeType == LJTypeName) {
+        if (textField == self.phoneText) {
+            if (range.location >= 16) {
+                NSString *text = textField.text;
+                self.phoneText.text = [text substringToIndex:16];
+                [self.phoneText resignFirstResponder];
+            }
+        }
     }
-    NSDictionary *param = @{@"name" : self.phoneText.text,
+    
+    return YES;
+}
+
+
+- (void)sureClick {
+    if (self.changeType == LJTypeName) {
+        if (self.phoneText.text.length < 2 || self.phoneText.text.length > 16) {
+            [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确的姓名"];
+            return;
+        }
+    }
+    
+    NSString *changeKey = @"name";
+    if (self.changeType == LJTypeQQ) {
+        changeKey = @"qq";
+    } else if (self.changeType == LJTypeWechat) {
+        changeKey = @"wechat";
+    }
+    NSDictionary *param = @{changeKey : self.phoneText.text,
                             @"uid": [NSNumber numberWithInteger:self.user.userId]};
     [MBProgressHUD showLoadingHUDAddedTo:self.view withText:nil];
     [NetWorkTool executePOST:@"/api/cuser/update" paramters:param success:^(id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
-            self.user.name = self.phoneText.text;
+            if (self.changeType == LJTypeName) {
+                self.user.name = self.phoneText.text;
+            } else if (self.changeType == LJTypeQQ) {
+                self.user.qqAccount = self.phoneText.text;
+            } else if (self.changeType == LJTypeWechat) {
+                self.user.wechat = self.phoneText.text;
+            }
+            
             [SMUserModel saveUserData:self.user];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
-            [MBProgressHUD showHUDAddedTo:self.view withText:@"修改失败，请稍后重试"];
+            [MBProgressHUD showHUDAddedTo:self.view withText:[responseObject objectForKey:@"msg"]];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"修改失败，请稍后重试"];
@@ -92,6 +127,7 @@
         _phoneText.placeholder = @"请输入姓名";
         _phoneText.text = self.name;
         _phoneText.font = Font(15);
+        _phoneText.delegate = self;
         
         UILabel *leftView = [UILabel new];
         leftView.frame = CGRectMake(0, 0, 80, 50);
@@ -101,6 +137,17 @@
         leftView.textAlignment = NSTextAlignmentCenter;
         _phoneText.leftView = leftView;
         _phoneText.leftViewMode = UITextFieldViewModeAlways;
+        
+        if (self.changeType == LJTypeQQ) {
+            _phoneText.placeholder = @"请输入QQ";
+            _phoneText.text = self.user.qqAccount;
+            leftView.text = @"QQ：";
+            _phoneText.keyboardType = UIKeyboardTypeNumberPad;
+        } else if (self.changeType == LJTypeWechat) {
+            _phoneText.placeholder = @"请输入微信号";
+            _phoneText.text = self.user.wechat;
+            leftView.text = @"微信号：";
+        }
     }
     return _phoneText;
 }
@@ -111,6 +158,12 @@
         _tintLabel.text = @"请输入姓名，限制为4-16个字符，一个汉字为两个字符";
         _tintLabel.font = Font(12);
         _tintLabel.textColor = [UIColor colorWithHexString:@"999999"];
+        
+        if (self.changeType == LJTypeQQ) {
+            _tintLabel.text = @"请输入QQ号";
+        } else if (self.changeType == LJTypeWechat) {
+            _tintLabel.text = @"请输入微信号";
+        }
     }
     return _tintLabel;
 }

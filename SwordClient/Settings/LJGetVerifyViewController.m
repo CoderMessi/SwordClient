@@ -7,8 +7,9 @@
 //
 
 #import "LJGetVerifyViewController.h"
+#import "LJPersonInfoViewController.h"
 
-@interface LJGetVerifyViewController ()
+@interface LJGetVerifyViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *codeText;
 @property (nonatomic, strong) UIButton *btReGet;
@@ -26,7 +27,7 @@
     [super viewDidLoad];
     self.title = @"获取验证码";
     self.view.backgroundColor = ViewBGColor;
-    self.second = 59;
+    self.second = 60;
     self.user = [SMUserModel getUserData];
     
     [self.view addSubview:self.codeText];
@@ -52,22 +53,24 @@
     self.second--;
     [self.btReGet setTitle:[NSString stringWithFormat:@"重新获取(%ld秒)", self.second] forState:UIControlStateNormal];
     if (self.second == 0) {
-        self.second = 59;
+        self.second = 60;
         [self.timer invalidate];
         self.timer = nil;
         self.btReGet.enabled = YES;
-        [self.btReGet setTitle:@"重新获取(59秒)" forState:UIControlStateNormal];
+        [self.btReGet setTitle:@"重新获取" forState:UIControlStateNormal];
     }
 }
 
 - (void)getVerifyCode {
-    self.btReGet.enabled = NO;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
+    
     NSDictionary *param = @{@"mobile" : self.mobile,
                             @"type" : @"checkmobile"};
     [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
         if ([[responseObject objectForKey:@"code"] integerValue] != 0) {
             [MBProgressHUD showHUDAddedTo:self.view withText:[responseObject objectForKey:@"msg"]];
+        } else {
+            self.btReGet.enabled = NO;
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
         }
         
     } failure:^(NSError *error) {
@@ -88,13 +91,29 @@
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             self.user.mobile = self.mobile;
             [SMUserModel saveUserData:self.user];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+            for (UIViewController *controller in self.navigationController.viewControllers) {
+                if ([controller isKindOfClass:[LJPersonInfoViewController class]]) {
+                    [self.navigationController popToViewController:controller animated:YES];
+                }
+            }
         } else {
             [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"修改失败，请稍后再试"];
     }];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == self.codeText) {
+        if (range.location >= 6) {
+            NSString *text = textField.text;
+            self.codeText.text = [text substringToIndex:6];
+            [self.codeText resignFirstResponder];
+        }
+    }
+    return YES;
 }
 
 - (void)layout {
@@ -121,6 +140,7 @@
         _codeText.placeholder = @"请输入验证码";
         _codeText.font = Font(15);
         _codeText.keyboardType = UIKeyboardTypeNumberPad;
+        _codeText.delegate = self;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);
@@ -140,9 +160,9 @@
         _btReGet = [UIButton buttonWithType:UIButtonTypeCustom];
         _btReGet.frame = CGRectMake(5, 0, 129, 50);
         _btReGet.titleLabel.font = Font(15);
-        _btReGet.enabled = NO;
+//        _btReGet.enabled = NO;
         [_btReGet addTarget:self action:@selector(getVerifyCode) forControlEvents:UIControlEventTouchUpInside];
-        [_btReGet setTitle:@"重新获取(59秒)" forState:UIControlStateNormal];
+        [_btReGet setTitle:@"重新获取" forState:UIControlStateNormal];
         [_btReGet setTitleColor:[UIColor colorWithHexString:@"454545"] forState:UIControlStateNormal];
         [_btReGet setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateDisabled];
         [rightView addSubview:_btReGet];

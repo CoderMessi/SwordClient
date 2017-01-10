@@ -208,7 +208,7 @@
     [dic setValue:[self iphoneType] forKey:@"hw"];
     [dic setValue:@"1" forKey:@"type"];
     [dic setValue:token forKey:@"device_token"];
-    [NetWorkTool executePOST:@"/api/system/info" paramters:dic success:^(id responseObject) {
+    [NetWorkTool executePOST:@"/api/system/cinfo" paramters:dic success:^(id responseObject) {
         
     } failure:^(NSError *error) {
         

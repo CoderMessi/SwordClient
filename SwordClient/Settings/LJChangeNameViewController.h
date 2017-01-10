@@ -8,8 +8,15 @@
 
 #import "LJBaseViewController.h"
 
+typedef NS_ENUM(NSUInteger, LJChangeType) {
+    LJTypeName,
+    LJTypeQQ,
+    LJTypeWechat,
+};
+
 @interface LJChangeNameViewController : LJBaseViewController
 
 @property (nonatomic, copy)NSString *name;
+@property (nonatomic, assign) LJChangeType changeType;
 
 @end

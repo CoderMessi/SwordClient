@@ -9,7 +9,7 @@
 #import "LJForgetPasswordViewController2.h"
 #import "SMEncryptTool.h"
 
-@interface LJForgetPasswordViewController2 ()
+@interface LJForgetPasswordViewController2 () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *codeText;
 @property (nonatomic, strong) UIButton *btReGet;
@@ -115,6 +115,19 @@
 }
 
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == self.codeText) {
+        if (range.location >= 6) {
+            NSString *text = textField.text;
+            self.codeText.text = [text substringToIndex:6];
+            [self.codeText resignFirstResponder];
+            [self.passwordText becomeFirstResponder];
+        }
+    }
+    return YES;
+}
+
+
 - (void)layout {
     CGFloat topOffset = 30;
     CGFloat textHeight = 50;
@@ -149,6 +162,7 @@
         _codeText.placeholder = @"请输入验证码";
         _codeText.font = Font(15);
         _codeText.keyboardType = UIKeyboardTypeNumberPad;
+        _codeText.delegate = self;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);

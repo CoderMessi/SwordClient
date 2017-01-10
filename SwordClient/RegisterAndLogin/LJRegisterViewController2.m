@@ -11,7 +11,7 @@
 #import "NSString+MD5.h"
 #import "AppDelegate.h"
 
-@interface LJRegisterViewController2 ()
+@interface LJRegisterViewController2 () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *codeText;
 @property (nonatomic, strong) UIButton *btReGet;
@@ -43,6 +43,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
 //    [self getVerifyCode];
 }
 
@@ -55,15 +56,27 @@
     }
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == self.codeText) {
+        if (range.location >= 6) {
+            NSString *text = textField.text;
+            self.codeText.text = [text substringToIndex:6];
+            [self.codeText resignFirstResponder];
+            [self.passwordText becomeFirstResponder];
+        }
+    }
+    return YES;
+}
+
 - (void)countDown {
     self.second--;
     [self.btReGet setTitle:[NSString stringWithFormat:@"重新获取(%ld秒)", self.second] forState:UIControlStateNormal];
     if (self.second == 0) {
-        self.second = 59;
+        self.second = 60;
         [self.timer invalidate];
         self.timer = nil;
         self.btReGet.enabled = YES;
-        [self.btReGet setTitle:@"重新获取(59秒)" forState:UIControlStateNormal];
+        [self.btReGet setTitle:@"重新获取" forState:UIControlStateNormal];
     }
 }
 
@@ -167,6 +180,7 @@
         _codeText.placeholder = @"请输入验证码";
         _codeText.font = Font(15);
         _codeText.keyboardType = UIKeyboardTypeNumberPad;
+        _codeText.delegate = self;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);
