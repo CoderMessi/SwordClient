@@ -12,6 +12,7 @@
 #import "LJInfoListViewController.h"
 #import <sys/utsname.h>
 
+#import <UMMobClick/MobClick.h>
 #import "UMessage.h"
 #import <UserNotifications/UserNotifications.h>
 #import <UMSocialCore/UMSocialCore.h>
@@ -36,8 +37,14 @@
     manager.enable = YES;
     
     
+    //友盟统计
+    UMConfigInstance.appKey = @"5870e981aed17974510018ef";
+    UMConfigInstance.channelId = @"App Store";
+    [MobClick startWithConfigure:UMConfigInstance];
+    
     // 友盟推送
     [UMessage startWithAppkey:@"5870e981aed17974510018ef" launchOptions:launchOptions];
+    
     //注册通知
     [UMessage registerForRemoteNotifications];
     //iOS10必须加下面这段代码。

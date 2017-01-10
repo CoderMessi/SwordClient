@@ -26,6 +26,7 @@ PODS:
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
+  - UMengAnalytics-NO-IDFA (4.1.9)
   - UMengUShare/Core (6.2.1):
     - UMengUShare/Network
   - UMengUShare/Network (6.2.1)
@@ -45,6 +46,7 @@ DEPENDENCIES:
   - MJRefresh (= 3.0.7)
   - SDVersion (= 2.5.2)
   - SDWebImage (= 3.7.6)
+  - UMengAnalytics-NO-IDFA
   - UMengUShare/Social/QQ
   - UMengUShare/Social/WeChat
 
@@ -69,8 +71,9 @@ SPEC CHECKSUMS:
   MJRefresh: f3e1228ec3d38c7ba5208d58032631a52f39f495
   SDVersion: 52f2641db3a580616936b0ce66f4769706570654
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  UMengAnalytics-NO-IDFA: 985292af177111685325c90c321094172b95d2cb
   UMengUShare: 583ac067e747c66429d5063896da0e77c4fe7688
 
-PODFILE CHECKSUM: da7d29a8a74b5765fe4f15bee49a4d7d08b47944
+PODFILE CHECKSUM: 1438cc6598275faf004c6d0d9d6b0d68399d2ad2
 
 COCOAPODS: 1.0.0
