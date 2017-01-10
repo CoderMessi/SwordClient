@@ -15,6 +15,8 @@
 #import "LJConnectUsViewController.h"
 #import "LJInfoDetailViewController.h"
 
+#import <UMMobClick/MobClick.h>
+
 @interface LJInfoListViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *listView;
@@ -51,6 +53,17 @@
     self.listView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
     self.listView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:[NSString stringWithUTF8String:object_getClassName(self)]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:[NSString stringWithUTF8String:object_getClassName(self)]];
+}
+
 
 - (void)requestData {
     [MBProgressHUD showLoadingHUDAddedTo:self.view withText:nil];

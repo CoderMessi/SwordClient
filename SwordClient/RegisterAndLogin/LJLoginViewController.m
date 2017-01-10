@@ -12,6 +12,7 @@
 #import "NSString+MD5.h"
 #import "SMUserModel.h"
 #import <UMSocialCore/UMSocialCore.h>
+#import <UMMobClick/MobClick.h>
 
 #import "LJRegisterViewController1.h"
 #import "LJNavigationController.h"
@@ -44,6 +45,17 @@
     [self initSubviews];
     [self layout];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:[NSString stringWithUTF8String:object_getClassName(self)]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:[NSString stringWithUTF8String:object_getClassName(self)]];
+}
+
 
 #pragma mark - events
 - (void)forgetPasswordClick {

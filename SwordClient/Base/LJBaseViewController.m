@@ -7,6 +7,7 @@
 //
 
 #import "LJBaseViewController.h"
+#import <UMMobClick/MobClick.h>
 
 @interface LJBaseViewController ()
 
@@ -20,6 +21,16 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tabBarController.navigationController.navigationBar.translucent=NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:[NSString stringWithUTF8String:object_getClassName(self)]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:[NSString stringWithUTF8String:object_getClassName(self)]];
 }
 
 - (void)popClick {
