@@ -664,7 +664,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = SwordClient/SwordClient.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: hu longbing (ZBA7D4RHKX)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: hu longbing (VGN9QRT68D)";
 				DEVELOPMENT_TEAM = VGN9QRT68D;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/SwordClient/PrefixHeader.pch";
@@ -677,8 +677,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sword.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7545ceb9-2893-4348-9ebb-05456e059be2";
-				PROVISIONING_PROFILE_SPECIFIER = swordClient;
+				PROVISIONING_PROFILE = "6404ab8f-76f9-4fe4-a265-cfbe5c9d7db6";
+				PROVISIONING_PROFILE_SPECIFIER = Distribution_adhoc;
 			};
 			name = Debug;
 		};
@@ -689,6 +689,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = SwordClient/SwordClient.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: hu longbing (VGN9QRT68D)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: hu longbing (VGN9QRT68D)";
 				DEVELOPMENT_TEAM = VGN9QRT68D;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/SwordClient/PrefixHeader.pch";
@@ -701,8 +703,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sword.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7545ceb9-2893-4348-9ebb-05456e059be2";
-				PROVISIONING_PROFILE_SPECIFIER = swordClient;
+				PROVISIONING_PROFILE = "6404ab8f-76f9-4fe4-a265-cfbe5c9d7db6";
+				PROVISIONING_PROFILE_SPECIFIER = Distribution_adhoc;
 			};
 			name = Release;
 		};
