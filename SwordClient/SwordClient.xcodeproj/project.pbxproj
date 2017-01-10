@@ -386,12 +386,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 713DE4D31E1CDEA600ACAED0 /* Build configuration list for PBXNativeTarget "SwordClient" */;
 			buildPhases = (
+				7CF174E898871ED512739464 /* 📦 Check Pods Manifest.lock */,
 				250BFDFAB14C55EE3385DC75 /* [CP] Check Pods Manifest.lock */,
 				713DE4B81E1CDEA600ACAED0 /* Sources */,
 				713DE4B91E1CDEA600ACAED0 /* Frameworks */,
 				713DE4BA1E1CDEA600ACAED0 /* Resources */,
 				CC54602251F052183594E5C0 /* [CP] Embed Pods Frameworks */,
 				32DCBC63505846B985ECAC50 /* [CP] Copy Pods Resources */,
+				021CBC68C03B35B8DEA44431 /* 📦 Embed Pods Frameworks */,
+				04DFDC85F6E1384B4785FA00 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -455,6 +458,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		021CBC68C03B35B8DEA44431 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		04DFDC85F6E1384B4785FA00 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		250BFDFAB14C55EE3385DC75 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -483,6 +516,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7CF174E898871ED512739464 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CC54602251F052183594E5C0 /* [CP] Embed Pods Frameworks */ = {
