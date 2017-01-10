@@ -39,7 +39,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-//    [self getVerifyCode];
+    [self getVerifyCode];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -55,11 +55,11 @@
     self.second--;
     [self.btReGet setTitle:[NSString stringWithFormat:@"重新获取(%ld秒)", self.second] forState:UIControlStateNormal];
     if (self.second == 0) {
-        self.second = 59;
+        self.second = 60;
         [self.timer invalidate];
         self.timer = nil;
         self.btReGet.enabled = YES;
-        [self.btReGet setTitle:@"重新获取(59秒)" forState:UIControlStateNormal];
+        [self.btReGet setTitle:@"重新获取" forState:UIControlStateNormal];
     }
 }
 

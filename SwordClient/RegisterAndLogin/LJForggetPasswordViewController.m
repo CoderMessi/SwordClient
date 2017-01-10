@@ -32,6 +32,7 @@
 
 
 - (void)goNextView {
+    [self.phoneText resignFirstResponder];
     if (self.phoneText.text.length != 11) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确的手机号"];
         return;
