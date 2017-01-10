@@ -34,6 +34,10 @@
     [super viewDidLoad];
     self.title = @"消息列表";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[Image(@"ico_menu") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.tabBarController.navigationController.navigationBar.translucent=NO;
+    
     self.dataArray = [NSMutableArray array];
     self.dataArray2 = [NSMutableArray array];
     self.page = 1;
@@ -62,6 +66,8 @@
             self.dataArray = [NSMutableArray arrayWithArray:[responseObject objectForKey:@"data"]];
             [self.listView reloadData];
             [self.listView.mj_header endRefreshing];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -77,6 +83,8 @@
             self.dataArray2 = [NSMutableArray arrayWithArray:[responseObject objectForKey:@"data"]];
             [self.listView reloadData];
             [self.listView.mj_header endRefreshing];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -96,6 +104,8 @@
             [self.dataArray addObjectsFromArray:[responseObject objectForKey:@"data"]];
             [self.listView reloadData];
             [self.listView.mj_footer endRefreshing];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -111,6 +121,8 @@
             [self.dataArray2 addObjectsFromArray:[responseObject objectForKey:@"data"]];
             [self.listView reloadData];
             [self.listView.mj_footer endRefreshing];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -206,7 +218,7 @@
 #pragma mark - UI
 - (UITableView *)listView {
     if (!_listView) {
-        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64) style:UITableViewStylePlain];
         _listView.delegate = self;
         _listView.dataSource = self;
     }
@@ -217,7 +229,7 @@
     if (!_menuView) {
         _menuView = [[LJMenuView alloc] initWithFrame:CGRectMake(0, 0, 215, 168)];
         _menuView.right = kScreenWidth - 9;
-        _menuView.top = 4.5 + 64;
+        _menuView.top = 4.5;
         _menuView.image = Image(@"pic_menuBg");
         _menuView.userInteractionEnabled = YES;
         _menuView.hidden = YES;

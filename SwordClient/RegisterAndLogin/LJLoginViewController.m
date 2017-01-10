@@ -80,6 +80,8 @@
             [SMUserModel saveUserData:userModel];
             AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             [appdelegate jumpToInfoListVC];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         NSLog(@"error>>>%@", error);
@@ -265,6 +267,7 @@
         _phoneText.placeholder = @"手机号";
         _phoneText.textColor = [UIColor whiteColor];
         _phoneText.tintColor = [UIColor whiteColor];
+        _phoneText.keyboardType = UIKeyboardTypeNumberPad;
         
         UIButton *leftView = [UIButton buttonWithType:UIButtonTypeCustom];
         leftView.enabled = NO;
@@ -282,6 +285,7 @@
         _passwordText.placeholder = @"密码";
         _passwordText.textColor = [UIColor whiteColor];
         _passwordText.tintColor = [UIColor whiteColor];
+        _passwordText.secureTextEntry = YES;
         
         UIButton *leftView = [UIButton buttonWithType:UIButtonTypeCustom];
         leftView.enabled = NO;

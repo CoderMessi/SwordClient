@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LJPersonInfoViewController : UIViewController
+@interface LJPersonInfoViewController : LJBaseViewController
 
 @end

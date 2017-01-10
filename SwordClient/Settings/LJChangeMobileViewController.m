@@ -35,7 +35,13 @@
         [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确手机号"];
         return;
     }
+    [self.phoneText resignFirstResponder];
     
+    LJGetVerifyViewController *getCode = [[LJGetVerifyViewController alloc] init];
+    getCode.mobile = self.phoneText.text;
+    [self.navigationController pushViewController:getCode animated:YES];
+    
+    /* 请求验证码在下级页面获取
     NSDictionary *param = @{@"mobile" : self.phoneText.text,
                             @"type" : @"checkmobile"};
     [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
@@ -48,16 +54,16 @@
             [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
         else {
-            [MBProgressHUD showHUDAddedTo:self.view withText:@"获取验证码失败，请稍后再试"];
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"获取验证码失败，请稍后再试"];
     }];
-    
+    */
 }
 
 - (void)layout {
-    CGFloat topOffset = 30 + 64;
+    CGFloat topOffset = 30;
     CGFloat textHeight = 50;
     [self.phoneText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(topOffset);
@@ -87,6 +93,7 @@
         _phoneText.placeholder = @"请输入手机号";
         _phoneText.text = self.mobile;
         _phoneText.font = Font(15);
+        _phoneText.keyboardType = UIKeyboardTypeNumberPad;
         
         UILabel *leftView = [UILabel new];
         leftView.frame = CGRectMake(0, 0, 80, 50);

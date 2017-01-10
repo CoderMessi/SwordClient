@@ -49,6 +49,8 @@
             
             AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             [appdelegate jumpToLoginVC];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"登出失败，请稍后再试"];
@@ -65,6 +67,8 @@
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             self.userModel.isOpenNotice = sender.on;
             [SMUserModel saveUserData:self.userModel];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -83,6 +87,8 @@
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             self.userModel.isOpenShake = sender.on;
             [SMUserModel saveUserData:self.userModel];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -101,6 +107,8 @@
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             self.userModel.isOpenMusic = sender.on;
             [SMUserModel saveUserData:self.userModel];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];

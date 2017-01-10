@@ -43,7 +43,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self getVerifyCode];
+//    [self getVerifyCode];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -75,11 +75,9 @@
                             @"type" : @"reg"};
     [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
-            self.verifyCode = [[responseObject objectForKey:@"data"] objectForKey:@""];
-        } else if ([[responseObject objectForKey:@"code"] integerValue] == 1006) {
-            [MBProgressHUD showHUDAddedTo:self.view withText:@"用户已存在"];
+            
         } else {
-            [MBProgressHUD showHUDAddedTo:self.view withText:@"请稍后再试"];
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"请稍后再试"];
@@ -95,8 +93,8 @@
         return;
     }
     
-    NSDictionary *param = @{@"mobile" : @"18514456698",
-                            @"password" : [SMEncryptTool md5:@"123456"],
+    NSDictionary *param = @{@"mobile" : self.phoneNumber,
+                            @"password" : [SMEncryptTool md5:self.passwordText.text],
                             @"verify_code" : self.codeText.text};
     [NetWorkTool executePOST:@"/api/cuser/reg" paramters:param success:^(id responseObject) {
         
@@ -116,7 +114,7 @@
                     AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
                     [appdelegate jumpToInfoListVC];
                 } else {
-                    [MBProgressHUD showHUDAddedTo:self.view withText:@"注册失败，请稍后再试"];
+                    [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
                 }
             } failure:^(NSError *error) {
                 NSLog(@"error>>>%@", error);
@@ -132,7 +130,7 @@
 
 
 - (void)layout {
-    CGFloat topOffset = 30 + 64;
+    CGFloat topOffset = 30;
     CGFloat textHeight = 50;
     [self.codeText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(topOffset);

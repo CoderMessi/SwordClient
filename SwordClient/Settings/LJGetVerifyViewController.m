@@ -66,6 +66,9 @@
     NSDictionary *param = @{@"mobile" : self.mobile,
                             @"type" : @"checkmobile"};
     [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] != 0) {
+            [MBProgressHUD showHUDAddedTo:self.view withText:[responseObject objectForKey:@"msg"]];
+        }
         
     } failure:^(NSError *error) {
         
@@ -87,7 +90,7 @@
             [SMUserModel saveUserData:self.user];
             [self.navigationController popToRootViewControllerAnimated:YES];
         } else {
-            [MBProgressHUD showHUDAddedTo:self.view withText:@"修改失败，请稍后再试"];
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"修改失败，请稍后再试"];
@@ -95,7 +98,7 @@
 }
 
 - (void)layout {
-    CGFloat topOffset = 30 + 64;
+    CGFloat topOffset = 30;
     CGFloat textHeight = 50;
     [self.codeText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(topOffset);
@@ -117,6 +120,7 @@
         _codeText.backgroundColor = [UIColor whiteColor];
         _codeText.placeholder = @"请输入验证码";
         _codeText.font = Font(15);
+        _codeText.keyboardType = UIKeyboardTypeNumberPad;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);

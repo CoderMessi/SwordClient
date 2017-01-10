@@ -10,7 +10,6 @@
 
 @interface LJRegisterViewController2 : LJBaseViewController
 
-@property (nonatomic, copy) NSString *verifyCode;
 @property (nonatomic, copy) NSString *phoneNumber;
 
 @end

@@ -62,7 +62,7 @@
 }
 
 - (void)layout {
-    CGFloat topOffset = 30 + 64;
+    CGFloat topOffset = 30;
     CGFloat textHeight = 50;
     [self.phoneText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(topOffset);

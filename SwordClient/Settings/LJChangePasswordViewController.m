@@ -46,7 +46,7 @@
             [MBProgressHUD showHUDAddedTo:self.view withText:@"修改密码成功"];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
-            [MBProgressHUD showHUDAddedTo:self.view withText:@"修改失败，请稍后再试"];
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"修改失败，请稍后再试"];
@@ -54,7 +54,7 @@
 }
 
 - (void)layout {
-    CGFloat topOffset = 64+30;
+    CGFloat topOffset = 30;
     CGFloat textHeight = 50;
     
     [self.oldPasswordText mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -87,6 +87,7 @@
         _oldPasswordText.backgroundColor = [UIColor whiteColor];
         _oldPasswordText.placeholder = @"请输入旧密码";
         _oldPasswordText.font = Font(15);
+        _oldPasswordText.secureTextEntry = YES;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);
@@ -102,6 +103,7 @@
         _passwordText.backgroundColor = [UIColor whiteColor];
         _passwordText.placeholder = @"请输入新密码";
         _passwordText.font = Font(15);
+        _passwordText.secureTextEntry = YES;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);
@@ -117,6 +119,7 @@
         _rePasswordText.backgroundColor = [UIColor whiteColor];
         _rePasswordText.placeholder = @"请再次输入密码";
         _rePasswordText.font = Font(15);
+        _rePasswordText.secureTextEntry = YES;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);

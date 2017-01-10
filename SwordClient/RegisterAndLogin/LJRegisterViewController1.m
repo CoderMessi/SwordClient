@@ -15,8 +15,6 @@
 @property (nonatomic, strong) UILabel *tintLabel;
 @property (nonatomic, strong) UIButton *btNext;
 
-@property (nonatomic, copy) NSString *verifyCode;
-
 @end
 
 @implementation LJRegisterViewController1
@@ -33,15 +31,8 @@
 }
 
 - (void)goNextView {
-    if (self.phoneText.text.length != 11) {
-        [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确的手机号"];
-        return;
-    }
-    
-    LJRegisterViewController2 *vc = [[LJRegisterViewController2 alloc] init];
-    vc.verifyCode = self.verifyCode;
-    vc.phoneNumber = self.phoneText.text;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.phoneText resignFirstResponder];
+    [self getVerifyCode];
 }
 
 - (void)popClick {
@@ -56,6 +47,14 @@
     NSDictionary *param = @{@"mobile" : self.phoneText.text,
                             @"type" : @"reg"};
     [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            
+            LJRegisterViewController2 *vc = [[LJRegisterViewController2 alloc] init];
+            vc.phoneNumber = self.phoneText.text;
+            [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:[responseObject objectForKey:@"msg"]];
+        }
         
     } failure:^(NSError *error) {
         
@@ -64,7 +63,7 @@
 
 
 - (void)layout {
-    CGFloat topOffset = 30 + 64;
+    CGFloat topOffset = 30;
     CGFloat textHeight = 50;
     [self.phoneText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(topOffset);
@@ -93,6 +92,7 @@
         _phoneText.backgroundColor = [UIColor whiteColor];
         _phoneText.placeholder = @"请输入手机号";
         _phoneText.font = Font(15);
+        _phoneText.keyboardType = UIKeyboardTypeNumberPad;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);

@@ -75,9 +75,9 @@
     } else if (indexPath.row == 2) {
         
     } else if (indexPath.row == 3) {
-        LJChangeMobileViewController *changeMobile = [[LJChangeMobileViewController alloc] init];
-        changeMobile.mobile = self.user.mobile;
-        [self.navigationController pushViewController:changeMobile animated:YES];
+//        LJChangeMobileViewController *changeMobile = [[LJChangeMobileViewController alloc] init];
+//        changeMobile.mobile = self.user.mobile;
+//        [self.navigationController pushViewController:changeMobile animated:YES];
     }
 }
 

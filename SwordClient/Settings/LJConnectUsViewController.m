@@ -51,6 +51,8 @@
             [_QRCodeView sd_setImageWithURL:[NSURL URLWithString:[responseObject[@"data"] objectForKey:@"qrcode"]]];
             _weixin.text = [NSString stringWithFormat:@"微信号：%@", [responseObject[@"data"] objectForKey:@"wechat"]];
             _tintLabel.text = [NSString stringWithFormat:@"打开微信，搜索“%@“联系客服", [responseObject[@"data"] objectForKey:@"wechat"]];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
