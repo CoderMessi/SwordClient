@@ -61,7 +61,14 @@
 
 #pragma mark - tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 1) {
+    if (indexPath.row == 0) {
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+        NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",self.QQ.text];
+        NSURL *url = [NSURL URLWithString:qqstr];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [webView loadRequest:request];
+        [self.view addSubview:webView];
+    } else if (indexPath.row == 1) {
         NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.mobile.text];
         UIWebView *callWebview = [[UIWebView alloc] init];
         [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
@@ -167,7 +174,7 @@
         cell.textLabel.text = @"QQ";
         
         _QQ = [UILabel new];
-        _QQ.frame = CGRectMake(0, 0, 200, cell.height);
+        _QQ.frame = CGRectMake(0, 0, 200, rowHeight);
         _QQ.right = kScreenWidth - 10;
         _QQ.text = @"87128w7r89";
         _QQ.textColor = [UIColor colorWithHexString:@"0980d2"];
@@ -177,7 +184,7 @@
         cell.textLabel.text = @"服务热线";
         
         _mobile = [UILabel new];
-        _mobile.frame = CGRectMake(0, 0, 200, cell.height);
+        _mobile.frame = CGRectMake(0, 0, 200, rowHeight);
         _mobile.right = kScreenWidth - 10;
         _mobile.text = @"18798797876";
         _mobile.textColor = [UIColor colorWithHexString:@"0980d2"];
@@ -187,7 +194,7 @@
         cell.textLabel.text = @"公司地址";
         
         _dizhi = [UILabel new];
-        _dizhi.frame = CGRectMake(0, 0, 200, cell.height);
+        _dizhi.frame = CGRectMake(0, 0, 200, rowHeight);
         _dizhi.right = kScreenWidth - 10;
         _dizhi.text = @"中国湖南";
         _dizhi.textColor = [UIColor colorWithHexString:@"999999"];
