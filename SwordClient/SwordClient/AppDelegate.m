@@ -22,6 +22,7 @@
 
 #import "SMUserModel.h"
 #import "LJPageViewController.h"
+#import "LJLaunchViewController.h"
 
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate, WXApiDelegate>
@@ -35,7 +36,6 @@
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
-//    [self initDataWithDeviceToken:[self stringDevicetoken:nil]];
     
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
     manager.enable = YES;
@@ -72,20 +72,15 @@
     [WXApi registerApp:kWechatAppID withDescription:@"wechat"];
     
     
-    /*
-    //设置微信的appKey和appSecret
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx01f4645ef3ae442c" appSecret:@"3baf1193c85774b3fd9d18447d76cab0" redirectURL:@"http://mobile.umeng.com/social"];
-    
-    //设置分享到QQ互联的appKey和appSecret
-    // U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"101373221"  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
-    */
-    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(jumpToLoginVC:) name:@"jumpToLoginVC" object:nil];
     
-    [self goAppController];
+//    [self goAppController];
+    LJLaunchViewController *launchVc = [[LJLaunchViewController alloc] init];
+    self.window.rootViewController = launchVc;
+
     return YES;
 }
+
 
 - (void) jumpToLoginVC:(NSNotification *)noti {
     SMUserModel *userModel = [[SMUserModel alloc]init];

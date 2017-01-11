@@ -14,6 +14,7 @@
 		5EC441F51E239F5F0029EE15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EC441F41E239F5F0029EE15 /* Assets.xcassets */; };
 		5EC441F81E23D7190029EE15 /* LJChangeNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC441F71E23D7190029EE15 /* LJChangeNameViewController.m */; };
 		5EC441FB1E23E76F0029EE15 /* LJInfo2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC441FA1E23E76F0029EE15 /* LJInfo2TableViewCell.m */; };
+		5EC441FE1E2668340029EE15 /* LJLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC441FD1E2668340029EE15 /* LJLaunchViewController.m */; };
 		5ECCD70A1E1E8F6900F19136 /* JKEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD7091E1E8F6900F19136 /* JKEncrypt.m */; };
 		5ECCD70D1E1E923300F19136 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD70C1E1E923300F19136 /* NSString+MD5.m */; };
 		5ECCD7101E1E9F1400F19136 /* NetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCD70F1E1E9F1400F19136 /* NetWorkTool.m */; };
@@ -77,6 +78,8 @@
 		5EC441F71E23D7190029EE15 /* LJChangeNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJChangeNameViewController.m; sourceTree = "<group>"; };
 		5EC441F91E23E76F0029EE15 /* LJInfo2TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJInfo2TableViewCell.h; sourceTree = "<group>"; };
 		5EC441FA1E23E76F0029EE15 /* LJInfo2TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJInfo2TableViewCell.m; sourceTree = "<group>"; };
+		5EC441FC1E2668340029EE15 /* LJLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJLaunchViewController.h; sourceTree = "<group>"; };
+		5EC441FD1E2668340029EE15 /* LJLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJLaunchViewController.m; sourceTree = "<group>"; };
 		5ECCD7081E1E8F6900F19136 /* JKEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEncrypt.h; sourceTree = "<group>"; };
 		5ECCD7091E1E8F6900F19136 /* JKEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKEncrypt.m; sourceTree = "<group>"; };
 		5ECCD70B1E1E923300F19136 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 				713DE4C31E1CDEA600ACAED0 /* AppDelegate.m */,
 				713DE4C51E1CDEA600ACAED0 /* ViewController.h */,
 				713DE4C61E1CDEA600ACAED0 /* ViewController.m */,
+				5EC441FC1E2668340029EE15 /* LJLaunchViewController.h */,
+				5EC441FD1E2668340029EE15 /* LJLaunchViewController.m */,
 				5EC441F41E239F5F0029EE15 /* Assets.xcassets */,
 				713DE4C81E1CDEA600ACAED0 /* Main.storyboard */,
 				713DE4CD1E1CDEA600ACAED0 /* LaunchScreen.storyboard */,
@@ -609,6 +614,7 @@
 				717799711E2228E3002A93BC /* LJSettViewController.m in Sources */,
 				7177997D1E224043002A93BC /* LJForgetPasswordViewController2.m in Sources */,
 				715571831E1F288300F4746B /* SvUDIDTools.m in Sources */,
+				5EC441FE1E2668340029EE15 /* LJLaunchViewController.m in Sources */,
 				713DE4C71E1CDEA600ACAED0 /* ViewController.m in Sources */,
 				5ECCD70D1E1E923300F19136 /* NSString+MD5.m in Sources */,
 				717799771E223A36002A93BC /* LJConnectUsViewController.m in Sources */,

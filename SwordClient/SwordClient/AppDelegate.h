@@ -22,6 +22,7 @@
 
 - (void)jumpToLoginVC;
 - (void)jumpToInfoListVC;
+- (void)goAppController;
 
 @end
 
