@@ -17,11 +17,13 @@
 #import "UMessage.h"
 #import <UserNotifications/UserNotifications.h>
 #import <UMSocialCore/UMSocialCore.h>
+#import "WXApi.h"
 
 #import "SMUserModel.h"
 #import "LJPageViewController.h"
 
-@interface AppDelegate () <UNUserNotificationCenterDelegate>
+
+@interface AppDelegate () <UNUserNotificationCenterDelegate, WXApiDelegate>
 
 @end
 
@@ -39,12 +41,12 @@
     
     
     //友盟统计
-    UMConfigInstance.appKey = @"5870e981aed17974510018ef";
+    UMConfigInstance.appKey = kUMAppKey;
     UMConfigInstance.channelId = @"App Store";
     [MobClick startWithConfigure:UMConfigInstance];
     
     // 友盟推送
-    [UMessage startWithAppkey:@"5870e981aed17974510018ef" launchOptions:launchOptions];
+    [UMessage startWithAppkey:kUMAppKey launchOptions:launchOptions];
     
     //注册通知
     [UMessage registerForRemoteNotifications];
@@ -62,18 +64,21 @@
         }
     }];
     
-    
     //设置友盟appkey
-    [[UMSocialManager defaultManager] setUmSocialAppkey:@"5870e981aed17974510018ef"];
+    [[UMSocialManager defaultManager] setUmSocialAppkey:kUMAppKey];
     
+    
+    [WXApi registerApp:kWechatAppID withDescription:@"wechat"];
+    
+    
+    /*
     //设置微信的appKey和appSecret
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx01f4645ef3ae442c" appSecret:@"3baf1193c85774b3fd9d18447d76cab0" redirectURL:@"http://mobile.umeng.com/social"];
-    
     
     //设置分享到QQ互联的appKey和appSecret
     // U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"101373221"  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
-    
+    */
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(jumpToLoginVC:) name:@"jumpToLoginVC" object:nil];
     
@@ -109,6 +114,31 @@
         [self jumpToInfoListVC];
     } else {
         [self jumpToLoginVC];
+    }
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+- (void)onResp:(BaseResp *)resp {
+    if ([resp isKindOfClass:[SendAuthResp class]]) {
+        // 微信登录授权的类
+        SendAuthResp *temp = (SendAuthResp *)resp;
+        if (temp.errCode == 0) {
+            if ([self.loginDelegate respondsToSelector:@selector(loginWXSuccessWithCode:)]) {
+                [self.loginDelegate loginWXSuccessWithCode:temp.code];
+            }
+        } else {
+            NSLog(@"微信登录失败>>>%@", temp.errStr);
+        }
+    }
+    else {
+        //
     }
 }
 

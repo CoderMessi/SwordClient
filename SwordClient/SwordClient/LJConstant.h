@@ -11,6 +11,11 @@
 
 static const char kKeyChainUDIDAccessGroup[] = "com.sword.client";
 
+static NSString *const kQQAppID = @"101373221";
+static NSString *const kWechatAppID = @"wx01f4645ef3ae442c";
+static NSString *const kUMAppKey = @"5870e981aed17974510018ef";
+static NSString *const kWXAppSecret = @"bea7f2d08f757bf2e6665d5a6a278a2f";
+
 #define KServerUrl @"http://api.loulan360.com"
 
 

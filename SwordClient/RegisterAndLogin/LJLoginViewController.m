@@ -13,13 +13,15 @@
 #import "SMUserModel.h"
 #import <UMSocialCore/UMSocialCore.h>
 #import <UMMobClick/MobClick.h>
+#import "WXApi.h"
+#import <AFNetworking.h>
 
 #import "LJRegisterViewController1.h"
 #import "LJNavigationController.h"
 #import "LJForggetPasswordViewController.h"
 #import "AppDelegate.h"
 
-@interface LJLoginViewController ()
+@interface LJLoginViewController () <LJLoginDelegate>
 
 @property (nonatomic, strong) UIImageView *bgImageView;
 @property (nonatomic, strong) UIImageView *iconView;
@@ -100,47 +102,113 @@
     }];
 }
 
-- (void)loginViaQQ {
-    NSDictionary *param = @{@"mobile" : @"18514456698",
-                            @"type" : @"reg"};
-    [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
+- (void)QQClick {
+    
+}
+
+- (void)wechatClick {
+    //构造SendAuthReq结构体
+    if ([WXApi isWXAppInstalled]) {
+        SendAuthReq *req = [[SendAuthReq alloc] init];
+        req.scope = @"snsapi_userinfo";
+        req.state = @"swordClient";
+        [WXApi sendReq:req];
         
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        appDelegate.loginDelegate = self;
+    } else {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"请先安装微信客户端"];
+    }
+}
+
+- (void)loginViaQQWithOpenID:(NSString *)openID avatar:(NSString *)avatar name:(NSString *)name {
+    NSDictionary *param = @{@"open_id" : openID,
+                            @"type" : [NSNumber numberWithInt:1],
+                            @"avatar" : avatar,
+                            @"name" : name};
+    [NetWorkTool executePOST:@"/api/cuser/oauthlogin" paramters:param success:^(id responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            SMUserModel *userModel = [SMUserModel mj_objectWithKeyValues:responseObject];
+            userModel.loginStatus = SCLoginStateOnline;
+            
+            [SMUserModel saveUserData:userModel];
+            AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appdelegate jumpToInfoListVC];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
+        }
     } failure:^(NSError *error) {
         
     }];
 }
 
-- (void)loginViaWechet {
-    
-    //构造SendAuthReq结构体
-//    SendAuthReq* req =[[[SendAuthReq alloc ] init ] autorelease ];
-//    req.scope = @"snsapi_userinfo" ;
-//    req.state = @"123" ;
-//    [WXApi sendReq:req];
+- (void)loginViaWechetWithOpenID:(NSString *)openID avatar:(NSString *)avatar name:(NSString *)name {
+    NSDictionary *param = @{@"open_id" : openID,
+                            @"type" : [NSNumber numberWithInt:2],
+                            @"avatar" : avatar,
+                            @"name" : name};
+    [NetWorkTool executePOST:@"/api/cuser/oauthlogin" paramters:param success:^(id responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            SMUserModel *userModel = [SMUserModel mj_objectWithKeyValues:responseObject];
+            userModel.loginStatus = SCLoginStateOnline;
+            
+            [SMUserModel saveUserData:userModel];
+            AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appdelegate jumpToInfoListVC];
+        } else {
+            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
-// 在需要进行获取登录信息的UIViewController中加入如下代码
-- (void)getUserInfoForPlatform:(UMSocialPlatformType)platformType
-{
-    [[UMSocialManager defaultManager] getUserInfoWithPlatform:platformType currentViewController:self completion:^(id result, NSError *error) {
+- (void)loginWXSuccessWithCode:(NSString *)code {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];//请求
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", @"text/json",@"text/plain", nil];
+    NSString *accessUrlStr = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code", kWechatAppID, kWXAppSecret, code];
+    [manager GET:accessUrlStr parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
-        UMSocialUserInfoResponse *resp = result;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"请求WX access的response = %@", dic);
+        /*
+         access_token   接口调用凭证
+         expires_in access_token接口调用凭证超时时间，单位（秒）
+         refresh_token  用户刷新access_token
+         openid 授权用户唯一标识
+         scope  用户授权的作用域，使用逗号（,）分隔
+         unionid     当且仅当该移动应用已获得该用户的userinfo授权时，才会出现该字段
+         */
+        NSString* accessToken=[dic valueForKey:@"access_token"];
+        NSString* openID=[dic valueForKey:@"openid"];
+        [self requestWXUserInfoByToken:accessToken andOpenid:openID];
         
-        // 第三方登录数据(为空表示平台未提供)
-        // 授权数据
-        NSLog(@" uid: %@", resp.uid);
-        NSLog(@" openid: %@", resp.openid);
-        NSLog(@" accessToken: %@", resp.accessToken);
-        NSLog(@" refreshToken: %@", resp.refreshToken);
-        NSLog(@" expiration: %@", resp.expiration);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"获取微信授权信息失败>>>%@", error.userInfo);
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"获取微信授权失败"];
+    }];
+}
+
+-(void)requestWXUserInfoByToken:(NSString *)token andOpenid:(NSString *)openID{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",token,openID] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
-        // 用户数据
-        NSLog(@" name: %@", resp.name);
-        NSLog(@" iconurl: %@", resp.iconurl);
-        NSLog(@" gender: %@", resp.gender);
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *dic = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"dic  ==== %@",dic);
+        NSString *openID = [dic objectForKey:@"openid"];
+        NSString *name = [dic objectForKey:@"nickname"];
+        NSString *headimgurl = [dic objectForKey:@"headimgurl"];
+        [self loginViaWechetWithOpenID:openID avatar:headimgurl name:name];
         
-        // 第三方平台SDK原始数据
-        NSLog(@" originalResponse: %@", resp.originalResponse);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"获取微信用户信息失败>>>error %ld",(long)error.code);
     }];
 }
 
@@ -349,7 +417,7 @@
     if (!_btQQ) {
         _btQQ = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btQQ setBackgroundImage:Image(@"ico_btn3") forState:UIControlStateNormal];
-        [_btQQ addTarget:self action:@selector(loginViaQQ) forControlEvents:UIControlEventTouchUpInside];
+        [_btQQ addTarget:self action:@selector(QQClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btQQ;
 }
@@ -358,7 +426,7 @@
     if (!_btWechat) {
         _btWechat = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btWechat setBackgroundImage:Image(@"ico_btn4") forState:UIControlStateNormal];
-        [_btWechat addTarget:self action:@selector(loginViaWechet) forControlEvents:UIControlEventTouchUpInside];
+        [_btWechat addTarget:self action:@selector(wechatClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btWechat;
 }
