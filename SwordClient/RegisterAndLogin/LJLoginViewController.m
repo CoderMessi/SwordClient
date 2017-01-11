@@ -259,7 +259,7 @@
 #pragma mark - layout
 - (void)layout {
     CGFloat topOffset = 81.5;
-    CGFloat btRegisterWidth = 130;
+    CGFloat btRegisterWidth = 140;
     CGFloat btRegisterHeight = 43;
     
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -295,34 +295,36 @@
         make.height.equalTo(@44);
     }];
     
-    [self.btRegister mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.inputBgView).offset(20);
-        make.top.equalTo(self.textBgView.mas_bottom).offset(20);
-        make.width.mas_equalTo(btRegisterWidth);
-        make.height.mas_equalTo(btRegisterHeight);
-    }];
+//    [self.btRegister mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.inputBgView).offset(20);
+//        make.top.equalTo(self.textBgView.mas_bottom).offset(20);
+//        make.width.mas_equalTo(btRegisterWidth);
+//        make.height.mas_equalTo(btRegisterHeight);
+//    }];
     
     [self.btLogin mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.inputBgView).offset(-20);
-        make.top.width.height.equalTo(self.btRegister);
+        make.centerX.equalTo(self.inputBgView);
+        make.height.mas_equalTo(btRegisterHeight);
+        make.width.mas_equalTo(btRegisterWidth);
+        make.top.equalTo(self.textBgView.mas_bottom).offset(25*RATIO);
     }];
     
     [self.orImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.btRegister.mas_bottom).offset(10);
+        make.top.equalTo(self.btLogin.mas_bottom).offset(20*RATIO);
         make.centerX.equalTo(self.bgImageView);
-        make.left.equalTo(self.inputBgView).offset(20);
-        make.right.equalTo(self.inputBgView).offset(-20);
+        make.left.equalTo(self.inputBgView).offset(20*RATIO);
+        make.right.equalTo(self.inputBgView).offset(-20*RATIO);
     }];
     
     [self.btQQ mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.equalTo(@45);
         make.right.equalTo(self.inputBgView.mas_centerX).offset(-10);
-        make.top.equalTo(self.orImageView.mas_bottom).offset(10);
+        make.top.equalTo(self.orImageView.mas_bottom).offset(10*RATIO);
     }];
     
     [self.btWechat mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.width.height.equalTo(self.btQQ);
-        make.left.equalTo(self.inputBgView.mas_centerX).offset(10);
+        make.left.equalTo(self.inputBgView.mas_centerX).offset(10*RATIO);
     }];
 }
 
@@ -335,7 +337,7 @@
     [self.textBgView addSubview:self.line];
     [self.textBgView addSubview:self.phoneText];
     [self.textBgView addSubview:self.passwordText];
-    [self.inputBgView addSubview:self.btRegister];
+//    [self.inputBgView addSubview:self.btRegister];
     [self.inputBgView addSubview:self.btLogin];
     [self.inputBgView addSubview:self.orImageView];
     [self.inputBgView addSubview:self.btQQ];
@@ -423,7 +425,7 @@
         UIButton *rightView = [UIButton buttonWithType:UIButtonTypeCustom];
         rightView.frame = CGRectMake(0, 0, 100, 44);
         rightView.titleLabel.font = Font(15);
-        [rightView setTitle:@"忘记密码？" forState:UIControlStateNormal];
+        [rightView setTitle:@"验证码登录" forState:UIControlStateNormal];
         [rightView setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
         [rightView addTarget:self action:@selector(forgetPasswordClick) forControlEvents:UIControlEventTouchUpInside];
         _passwordText.rightView = rightView;
@@ -444,7 +446,7 @@
 - (UIButton *)btLogin {
     if (!_btLogin) {
         _btLogin = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_btLogin setBackgroundImage:Image(@"ico_btn2") forState:UIControlStateNormal];
+        [_btLogin setBackgroundImage:Image(@"btn_login") forState:UIControlStateNormal];
         [_btLogin addTarget:self action:@selector(loginClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btLogin;

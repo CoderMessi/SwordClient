@@ -8,6 +8,7 @@
 
 #import "LJForgetPasswordViewController2.h"
 #import "SMEncryptTool.h"
+#import "AppDelegate.h"
 
 @interface LJForgetPasswordViewController2 () <UITextFieldDelegate>
 
@@ -25,13 +26,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"忘记密码";
+    self.title = @"验证码登录";
     self.view.backgroundColor = ViewBGColor;
     self.second = 59;
     
     [self.view addSubview:self.codeText];
-    [self.view addSubview:self.passwordText];
-    [self.view addSubview:self.rePasswordText];
+//    [self.view addSubview:self.passwordText];
+//    [self.view addSubview:self.rePasswordText];
     [self.view addSubview:self.btDone];
     [self layout];
 }
@@ -69,7 +70,7 @@
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
     [MBProgressHUD showLoadingHUDAddedTo:self.view withText:nil];
     NSDictionary *param = @{@"mobile" : self.phoneNumber,
-                            @"type" : @"password"};
+                            @"type" : @"codelogin"};
     [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -86,22 +87,25 @@
 }
 
 - (void)doneClick {
+    [self.codeText resignFirstResponder];
     if (self.codeText.text.length == 0) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入验证码"];
-        return;
-    } else if (self.passwordText.text.length == 0 || self.rePasswordText.text.length == 0) {
-        [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入新密码"];
         return;
     }
     
     NSDictionary *param = @{@"mobile": self.phoneNumber,
-                            @"verify_code" : self.codeText.text,
-                            @"new_pwd" : [SMEncryptTool md5:self.passwordText.text],
-                            @"type" : @"password"};
-    [NetWorkTool executePOST:@"/api/cuser/findpwd" paramters:param success:^(id responseObject) {
+                            @"verify_code" : self.codeText.text};
+    [NetWorkTool executePOST:@"/api/cuser/codelogin" paramters:param success:^(id responseObject) {
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
-            [MBProgressHUD showHUDAddedTo:self.view withText:@"修改成功"];
-            [self performSelector:@selector(backToLogin) withObject:nil afterDelay:1.0];
+            
+            SMUserModel *userModel = [SMUserModel mj_objectWithKeyValues:responseObject];
+            userModel.loginStatus = SCLoginStateOnline;
+            
+            
+            [SMUserModel saveUserData:userModel];
+            AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appdelegate jumpToInfoListVC];
+            
         } else {
             [MBProgressHUD showHUDAddedTo:self.view withText:[responseObject objectForKey:@"msg"]];
         }
@@ -137,18 +141,18 @@
         make.height.mas_equalTo(textHeight);
     }];
     
-    [self.passwordText mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.codeText.mas_bottom).offset(1);
-        make.left.right.height.equalTo(self.codeText);
-    }];
-    
-    [self.rePasswordText mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.passwordText.mas_bottom).offset(1);
-        make.left.right.height.equalTo(self.codeText);
-    }];
+//    [self.passwordText mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.codeText.mas_bottom).offset(1);
+//        make.left.right.height.equalTo(self.codeText);
+//    }];
+//    
+//    [self.rePasswordText mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.passwordText.mas_bottom).offset(1);
+//        make.left.right.height.equalTo(self.codeText);
+//    }];
     
     [self.btDone mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.rePasswordText.mas_bottom).offset(60);
+        make.top.equalTo(self.codeText.mas_bottom).offset(60);
         make.centerX.equalTo(self.view);
         make.width.equalTo(@280);
         make.height.equalTo(@44);

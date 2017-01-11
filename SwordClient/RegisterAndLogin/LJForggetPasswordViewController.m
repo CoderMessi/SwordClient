@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"忘记密码";
+    self.title = @"验证码登录";
     self.view.backgroundColor = ViewBGColor;
     
     [self.view addSubview:self.phoneText];
@@ -50,7 +50,7 @@
 
 - (void)getVerifyCode {
     NSDictionary *param = @{@"mobile" : self.phoneText.text,
-                            @"type" : @"reg"};
+                            @"type" : @"codelogin"};
     [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
         
     } failure:^(NSError *error) {
