@@ -18,6 +18,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import <UMSocialCore/UMSocialCore.h>
 #import "WXApi.h"
+#import <TencentOpenAPI/TencentOAuth.h>
 
 #import "SMUserModel.h"
 #import "LJPageViewController.h"
@@ -67,7 +68,7 @@
     //设置友盟appkey
     [[UMSocialManager defaultManager] setUmSocialAppkey:kUMAppKey];
     
-    
+    // 微信
     [WXApi registerApp:kWechatAppID withDescription:@"wechat"];
     
     
@@ -118,10 +119,16 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    if ([[url absoluteString] hasPrefix:@"tencent"]) {
+        [TencentOAuth HandleOpenURL:url];
+    }
     return [WXApi handleOpenURL:url delegate:self];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    if ([[url absoluteString] hasPrefix:@"tencent"]) {
+        [TencentOAuth HandleOpenURL:url];
+    }
     return [WXApi handleOpenURL:url delegate:self];
 }
 

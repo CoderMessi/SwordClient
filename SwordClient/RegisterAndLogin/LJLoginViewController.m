@@ -15,13 +15,14 @@
 #import <UMMobClick/MobClick.h>
 #import "WXApi.h"
 #import <AFNetworking.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 
 #import "LJRegisterViewController1.h"
 #import "LJNavigationController.h"
 #import "LJForggetPasswordViewController.h"
 #import "AppDelegate.h"
 
-@interface LJLoginViewController () <LJLoginDelegate>
+@interface LJLoginViewController () <LJLoginDelegate, TencentSessionDelegate>
 
 @property (nonatomic, strong) UIImageView *bgImageView;
 @property (nonatomic, strong) UIImageView *iconView;
@@ -36,6 +37,7 @@
 @property (nonatomic, strong) UIButton *btQQ;
 @property (nonatomic, strong) UIButton *btWechat;
 
+@property (nonatomic, strong) TencentOAuth *tencentOAuth;
 
 @end
 
@@ -103,7 +105,10 @@
 }
 
 - (void)QQClick {
-    
+    // QQ
+    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:kQQAppID andDelegate:self];
+    NSArray *permissions = [NSArray arrayWithObjects:kOPEN_PERMISSION_GET_INFO, kOPEN_PERMISSION_GET_USER_INFO, kOPEN_PERMISSION_GET_SIMPLE_USER_INFO, nil];
+    [_tencentOAuth authorize:permissions];
 }
 
 - (void)wechatClick {
@@ -121,6 +126,45 @@
     }
 }
 
+#pragma mark - Tencent delegate
+- (void)tencentDidLogin {
+    if (_tencentOAuth.accessToken.length > 0) {
+        BOOL b = [_tencentOAuth getUserInfo];
+        NSLog(@"获取用户信息>>>%d", b);
+    } else {
+        NSLog(@"QQ登录不成功 没有获取accesstoken");
+    }
+}
+
+- (void)tencentDidNotLogin:(BOOL)cancelled {
+    if (cancelled) {
+        NSLog(@"用户取消登录");
+    } else {
+        NSLog(@"登录失败");
+    }
+}
+
+- (void)tencentDidNotNetWork{
+    NSLog(@"没有网络了， 怎么登录成功呢");
+    [MBProgressHUD showHUDAddedTo:self.view withText:@"没有网络，请稍后再试"];
+}
+
+- (void)getUserInfoResponse:(APIResponse *)response {
+    if (response && response.retCode == URLREQUEST_SUCCEED) {
+        NSDictionary *userInfo = [response jsonResponse];
+        NSLog(@"QQ用户信息>>>%@", userInfo);
+        
+        NSString *headImageUrl = [userInfo objectForKey:@"figureurl"];
+        NSString *name = [userInfo objectForKey:@"nickname"];
+        NSString *openId = self.tencentOAuth.openId;
+        
+        [self loginViaQQWithOpenID:openId avatar:headImageUrl name:name];
+    } else {
+        NSLog(@"获取QQ用户信息失败:%d---msg:%@", response.detailRetCode, response.errorMsg);
+    }
+}
+
+#pragma mark - request QQ wechat login
 - (void)loginViaQQWithOpenID:(NSString *)openID avatar:(NSString *)avatar name:(NSString *)name {
     NSDictionary *param = @{@"open_id" : openID,
                             @"type" : [NSNumber numberWithInt:1],
