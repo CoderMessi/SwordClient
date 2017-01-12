@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) NSTimer *timer;
 
+@property (nonatomic, strong) UIImageView *backImageView;
 @property (nonatomic, strong) UIButton *btBack;
 @property (nonatomic, strong) UIWebView *web;
 @end
@@ -21,22 +22,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor yellowColor];
     
-    self.web = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    self.backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    self.backImageView.userInteractionEnabled = YES;
+    self.backImageView.image = [self sizedImage];
+    [self.view addSubview:self.backImageView];
     
-    [self.view addSubview:self.web];
+    
     [self getLaunchInfo];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+}
+
+- (UIImage *)sizedImage {
+    UIImage *image = [UIImage imageNamed:@"launch6"];
+    if(IS_IPHONE_4_OR_LESS)
+    {
+        image = [UIImage imageNamed:@"launch4"];
+    } else if (IS_IPHONE_5) {
+        image = [UIImage imageNamed:@"launch5"];
+    } else if (IS_IPHONE_6) {
+        image = [UIImage imageNamed:@"launch6"];
+    } else if (IS_IPHONE_6P) {
+        image = [UIImage imageNamed:@"launch6p"];
+    } else if (IS_IPAD) {
+        image = [UIImage imageNamed:@"launch4"];
+    }
+    
+    return image;
 }
 
 - (void)getLaunchInfo {
@@ -48,6 +68,8 @@
             NSInteger time = [[data objectForKey:@"start_time"] integerValue];
             self.time = time;
             
+            self.web = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+            [self.view addSubview:self.web];
             [self.web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:launchUrl]]];
             
             [self.view addSubview:self.btBack];
@@ -84,7 +106,6 @@
         _btBack = [UIButton buttonWithType:UIButtonTypeCustom];
         _btBack.frame = CGRectMake(kScreenWidth - 17 - 77, 45*RATIO, 77, 25);
         [_btBack setBackgroundImage:Image(@"btn") forState:UIControlStateNormal];
-//        _btBack.backgroundColor = [UIColor colorWithRed:69 green:156 blue:208 alpha:1.0];
         _btBack.layer.masksToBounds = YES;
         _btBack.layer.cornerRadius = 25.0/2;
         [_btBack setTitle:[NSString stringWithFormat:@"跳过(%ld)", self.time] forState:UIControlStateNormal];
@@ -93,6 +114,10 @@
         [_btBack addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btBack;
+}
+
+- (void)dealloc {
+    NSLog(@">>>广告页释放了");
 }
 
 - (void)didReceiveMemoryWarning {
