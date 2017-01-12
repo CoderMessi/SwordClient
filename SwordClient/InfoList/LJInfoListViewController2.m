@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, assign) NSInteger page;
+@property (nonatomic, assign) int hasMoreData;
 
 @end
 
@@ -65,6 +66,10 @@
             self.dataArray = [NSMutableArray arrayWithArray:[responseObject objectForKey:@"data"]];
             [self.listView reloadData];
             [self.listView.mj_header endRefreshing];
+            self.hasMoreData = [[responseObject objectForKey:@"hasnext"] intValue];
+            if (self.hasMoreData == 0) {
+                [self.listView.mj_footer endRefreshingWithNoMoreData];
+            }
         } else {
             [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
@@ -86,6 +91,10 @@
             [self.dataArray addObjectsFromArray:[responseObject objectForKey:@"data"]];
             [self.listView reloadData];
             [self.listView.mj_footer endRefreshing];
+            self.hasMoreData = [[responseObject objectForKey:@"hasnext"] intValue];
+            if (self.hasMoreData == 0) {
+                [self.listView.mj_footer endRefreshingWithNoMoreData];
+            }
         } else {
             [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }

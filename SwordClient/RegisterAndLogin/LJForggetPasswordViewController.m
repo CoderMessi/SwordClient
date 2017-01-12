@@ -8,8 +8,9 @@
 
 #import "LJForggetPasswordViewController.h"
 #import "LJForgetPasswordViewController2.h"
+#import "SMEncryptTool.h"
 
-@interface LJForggetPasswordViewController ()
+@interface LJForggetPasswordViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *phoneText;
 @property (nonatomic, strong) UILabel *tintLabel;
@@ -36,26 +37,59 @@
     if (self.phoneText.text.length != 11) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确的手机号"];
         return;
+    } else if (![SMEncryptTool isValidPhoneNumber:self.phoneText.text]) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"手机号不合法"];
     }
     
-    LJForgetPasswordViewController2 *vc = [[LJForgetPasswordViewController2 alloc] init];
-    vc.phoneNumber = self.phoneText.text;
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    
-    
-    
-    
+    [self getVerifyCode];
 }
 
 - (void)getVerifyCode {
+//    NSDictionary *param = @{@"mobile" : self.phoneText.text,
+//                            @"type" : @"codelogin"};
+//    [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
+//        
+//    } failure:^(NSError *error) {
+//        
+//    }];
+    
     NSDictionary *param = @{@"mobile" : self.phoneText.text,
                             @"type" : @"codelogin"};
+    __weak typeof(self) weakSelf = self;
     [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            
+            LJForgetPasswordViewController2 *vc = [[LJForgetPasswordViewController2 alloc] init];
+            vc.phoneNumber = weakSelf.phoneText.text;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else {
+            [MBProgressHUD showHUDAddedTo:weakSelf.view withText:[responseObject objectForKey:@"msg"]];
+        }
         
     } failure:^(NSError *error) {
-        
+        [MBProgressHUD showHUDAddedTo:weakSelf.view withText:@"获取验证码失败，请稍后再试"];
     }];
+}
+
+//当手机号码大于11位时
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField == self.phoneText) {
+        NSString *phoneStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        phoneStr  = [phoneStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        UIButton *btRight = (UIButton *)[self.view viewWithTag:100];
+        if (phoneStr.length == 11 && [SMEncryptTool isValidPhoneNumber:phoneStr]) {
+            
+            btRight.hidden = NO;
+        } else {
+            btRight.hidden = YES;
+        }
+        if (phoneStr.length >11) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 
@@ -94,6 +128,7 @@
         _phoneText.placeholder = @"请输入手机号";
         _phoneText.font = Font(15);
         _phoneText.keyboardType = UIKeyboardTypeNumberPad;
+        _phoneText.delegate = self;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);
@@ -106,6 +141,7 @@
         rightView.enabled = NO;
         rightView.frame = CGRectMake(0, 0, 50, 100);
         rightView.right = kScreenWidth - 30;
+        rightView.tag = 100;
         _phoneText.rightView = rightView;
         _phoneText.rightViewMode = UITextFieldViewModeAlways;
     }

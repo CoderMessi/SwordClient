@@ -9,7 +9,7 @@
 #import "LJChangePasswordViewController.h"
 #import "SMEncryptTool.h"
 
-@interface LJChangePasswordViewController ()
+@interface LJChangePasswordViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *oldPasswordText;
 @property (nonatomic,strong) UITextField *passwordText;
@@ -25,7 +25,7 @@
     self.title = @"修改密码";
     self.view.backgroundColor = ViewBGColor;
     
-    [self.view addSubview:self.oldPasswordText];
+//    [self.view addSubview:self.oldPasswordText];
     [self.view addSubview:self.passwordText];
     [self.view addSubview:self.rePasswordText];
     [self.view addSubview:self.btDone];
@@ -39,7 +39,6 @@
     }
     SMUserModel *user = [SMUserModel getUserData];
     NSDictionary *param = @{@"uid" : [NSNumber numberWithInteger:user.userId],
-                            @"old_pwd" : [SMEncryptTool md5:self.oldPasswordText.text],
                             @"new_pwd" : [SMEncryptTool md5:self.passwordText.text]};
     [NetWorkTool executePOST:@"/api/cuser/pwd" paramters:param success:^(id responseObject) {
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
@@ -53,19 +52,34 @@
     }];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == self.rePasswordText) {
+        NSString *phoneStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        phoneStr  = [phoneStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        UIButton *btRight = (UIButton *)[self.view viewWithTag:100];
+        if ([phoneStr isEqualToString:self.passwordText.text]) {
+            btRight.hidden = NO;
+        } else {
+            btRight.hidden = YES;
+        }
+    }
+    return YES;
+}
+
 - (void)layout {
     CGFloat topOffset = 30;
     CGFloat textHeight = 50;
     
-    [self.oldPasswordText mas_makeConstraints:^(MASConstraintMaker *make) {
+//    [self.oldPasswordText mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.view).offset(topOffset);
+//        make.left.right.equalTo(self.view);
+//        make.height.mas_equalTo(textHeight);
+//    }];
+    
+    [self.passwordText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(topOffset);
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(textHeight);
-    }];
-    
-    [self.passwordText mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.oldPasswordText.mas_bottom).offset(1);
-        make.left.right.height.equalTo(self.oldPasswordText);
     }];
     
     [self.rePasswordText mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -120,6 +134,7 @@
         _rePasswordText.placeholder = @"请再次输入密码";
         _rePasswordText.font = Font(15);
         _rePasswordText.secureTextEntry = YES;
+        _rePasswordText.delegate = self;
         
         UIView *leftView = [UIView new];
         leftView.frame = CGRectMake(0, 0, 10, 1);
@@ -131,6 +146,8 @@
         [rightView setImage:Image(@"ico_btn9") forState:UIControlStateDisabled];
         rightView.frame = CGRectMake(0, 0, 50, 100);
         rightView.right = kScreenWidth - 30;
+        rightView.tag = 100;
+        rightView.hidden = YES;
         _rePasswordText.rightView = rightView;
         _rePasswordText.rightViewMode = UITextFieldViewModeAlways;
     }

@@ -26,7 +26,7 @@
 @property (nonatomic, strong) NSMutableArray *dataArray2;
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, assign) int listType;   //1 列表  2 图标
-
+@property (nonatomic, assign) int hasMoreData;
 
 @end
 
@@ -79,23 +79,10 @@
             self.dataArray = [NSMutableArray arrayWithArray:[responseObject objectForKey:@"data"]];
             [self.listView reloadData];
             [self.listView.mj_header endRefreshing];
-        } else {
-            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
-        }
-    } failure:^(NSError *error) {
-        
-    }];
-    
-    NSDictionary *param2 = @{@"uid" : [NSNumber numberWithInteger:user.userId],
-                            @"page" : [NSNumber numberWithInteger:self.page],
-                            @"num" : @"15",
-                            @"show_type" : @"1"};
-    [NetWorkTool executePOST:@"/api/message/notice" paramters:param2 success:^(id responseObject) {
-        [MBProgressHUD hideHUDForView:self.view animated:nil];
-        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
-            self.dataArray2 = [NSMutableArray arrayWithArray:[responseObject objectForKey:@"data"]];
-            [self.listView reloadData];
-            [self.listView.mj_header endRefreshing];
+            self.hasMoreData = [[responseObject objectForKey:@"hasnext"] intValue];
+            if (self.hasMoreData == 0) {
+                [self.listView.mj_footer endRefreshingWithNoMoreData];
+            }
         } else {
             [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
@@ -117,23 +104,10 @@
             [self.dataArray addObjectsFromArray:[responseObject objectForKey:@"data"]];
             [self.listView reloadData];
             [self.listView.mj_footer endRefreshing];
-        } else {
-            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
-        }
-    } failure:^(NSError *error) {
-        
-    }];
-    
-    NSDictionary *param2 = @{@"uid" : [NSNumber numberWithInteger:user.userId],
-                            @"page" : [NSNumber numberWithInteger:self.page],
-                            @"num" : @"15",
-                            @"show_type" : @"2"};
-    [NetWorkTool executePOST:@"/api/message/notice" paramters:param2 success:^(id responseObject) {
-        [MBProgressHUD hideHUDForView:self.view animated:nil];
-        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
-            [self.dataArray2 addObjectsFromArray:[responseObject objectForKey:@"data"]];
-            [self.listView reloadData];
-            [self.listView.mj_footer endRefreshing];
+            self.hasMoreData = [[responseObject objectForKey:@"hasnext"] intValue];
+            if (self.hasMoreData == 0) {
+                [self.listView.mj_footer endRefreshingWithNoMoreData];
+            }
         } else {
             [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
@@ -156,12 +130,12 @@
     };
     
     self.menuView.goInfoList = ^ {
-        if (weakSelf.listType == 1) {
-            weakSelf.listType = 2;
-        } else {
-            weakSelf.listType =1;
-        }
-        [weakSelf.listView reloadData];
+//        if (weakSelf.listType == 1) {
+//            weakSelf.listType = 2;
+//        } else {
+//            weakSelf.listType =1;
+//        }
+//        [weakSelf.listView reloadData];
     };
     
     self.menuView.goPersonInfo = ^ {

@@ -92,6 +92,7 @@
 
 - (void)jumpToLoginVC {
     LJLoginViewController *loginVc = [[LJLoginViewController alloc] init];
+    self.window.rootViewController = nil;
     self.window.rootViewController = loginVc;
 }
 
@@ -101,6 +102,7 @@
     pageVc.title = @"消息列表";
     pageVc.menuHeight = 0;
     LJNavigationController *nav = [[LJNavigationController alloc] initWithRootViewController:pageVc];
+    self.window.rootViewController = nil;
     self.window.rootViewController = nav;
 }
 

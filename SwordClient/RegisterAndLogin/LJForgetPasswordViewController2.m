@@ -40,7 +40,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self getVerifyCode];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -50,6 +50,10 @@
         [self.timer invalidate];
         self.timer = nil;
     }
+}
+
+- (void)dealloc {
+    
 }
 
 - (void)countDown {
@@ -67,24 +71,30 @@
 
 - (void)getVerifyCode {
     self.btReGet.enabled = NO;
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
     [MBProgressHUD showLoadingHUDAddedTo:self.view withText:nil];
     NSDictionary *param = @{@"mobile" : self.phoneNumber,
                             @"type" : @"codelogin"};
+    __weak typeof(self) weakSelf = self;
     [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             
             
         } else {
-            [MBProgressHUD showHUDAddedTo:self.view withText:[responseObject objectForKey:@"msg"]];
+            [MBProgressHUD showHUDAddedTo:weakSelf.view withText:[responseObject objectForKey:@"msg"]];
         }
         
     } failure:^(NSError *error) {
-        [MBProgressHUD showHUDAddedTo:self.view withText:@"获取验证码失败，请稍后再试"];
+        [MBProgressHUD showHUDAddedTo:weakSelf.view withText:@"获取验证码失败，请稍后再试"];
     }];
 }
+
 
 - (void)doneClick {
     [self.codeText resignFirstResponder];
@@ -95,8 +105,14 @@
     
     NSDictionary *param = @{@"mobile": self.phoneNumber,
                             @"verify_code" : self.codeText.text};
+    __weak typeof(self) weakSelf = self;
     [NetWorkTool executePOST:@"/api/cuser/codelogin" paramters:param success:^(id responseObject) {
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            
+            if (weakSelf.timer) {
+                [weakSelf.timer invalidate];
+                weakSelf.timer = nil;
+            }
             
             SMUserModel *userModel = [SMUserModel mj_objectWithKeyValues:responseObject];
             userModel.loginStatus = SCLoginStateOnline;
@@ -104,10 +120,12 @@
             
             [SMUserModel saveUserData:userModel];
             AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [self dismissViewControllerAnimated:NO completion:nil];
+            
             [appdelegate jumpToInfoListVC];
             
         } else {
-            [MBProgressHUD showHUDAddedTo:self.view withText:[responseObject objectForKey:@"msg"]];
+            [MBProgressHUD showHUDAddedTo:weakSelf.view withText:[responseObject objectForKey:@"msg"]];
         }
     } failure:^(NSError *error) {
         

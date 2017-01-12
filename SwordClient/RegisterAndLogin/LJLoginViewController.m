@@ -22,7 +22,7 @@
 #import "LJForggetPasswordViewController.h"
 #import "AppDelegate.h"
 
-@interface LJLoginViewController () <LJLoginDelegate, TencentSessionDelegate>
+@interface LJLoginViewController () <LJLoginDelegate, TencentSessionDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) UIImageView *bgImageView;
 @property (nonatomic, strong) UIImageView *iconView;
@@ -124,6 +124,22 @@
     } else {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"请先安装微信客户端"];
     }
+}
+
+#pragma mark - textField delegate
+//当手机号码大于11位时
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField == self.phoneText) {
+        NSString *phoneStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        phoneStr  = [phoneStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        if (phoneStr.length >11) {
+            [self.phoneText resignFirstResponder];
+            [self.passwordText becomeFirstResponder];
+            return NO;
+        }
+    }
+    return YES;
 }
 
 #pragma mark - Tencent delegate
@@ -395,6 +411,7 @@
         _phoneText.textColor = [UIColor whiteColor];
         _phoneText.tintColor = [UIColor whiteColor];
         _phoneText.keyboardType = UIKeyboardTypeNumberPad;
+        _phoneText.delegate = self;
         
         UIButton *leftView = [UIButton buttonWithType:UIButtonTypeCustom];
         leftView.enabled = NO;
@@ -477,6 +494,9 @@
     return _btWechat;
 }
 
+- (void)dealloc {
+    NSLog(@"%@释放了", [NSString stringWithUTF8String:object_getClassName(self)]);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

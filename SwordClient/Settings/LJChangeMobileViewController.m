@@ -8,6 +8,7 @@
 
 #import "LJChangeMobileViewController.h"
 #import "LJGetVerifyViewController.h"
+#import "SMEncryptTool.h"
 
 @interface LJChangeMobileViewController ()
 
@@ -34,32 +35,27 @@
     if (self.phoneText.text.length != 11) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确手机号"];
         return;
+    } else if (![SMEncryptTool isValidPhoneNumber:self.phoneText.text]) {
+        [MBProgressHUD showHUDAddedTo:self.view withText:@"手机号不合法"];
+        return;
     }
     [self.phoneText resignFirstResponder];
     
-    LJGetVerifyViewController *getCode = [[LJGetVerifyViewController alloc] init];
-    getCode.mobile = self.phoneText.text;
-    [self.navigationController pushViewController:getCode animated:YES];
-    
-    /* 请求验证码在下级页面获取
     NSDictionary *param = @{@"mobile" : self.phoneText.text,
                             @"type" : @"checkmobile"};
     [NetWorkTool executePOST:@"/api/system/sendsms" paramters:param success:^(id responseObject) {
-        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+        if ([[responseObject objectForKey:@"code"] integerValue] != 0) {
+            [MBProgressHUD showHUDAddedTo:self.view withText:[responseObject objectForKey:@"msg"]];
+        } else {
             
             LJGetVerifyViewController *getCode = [[LJGetVerifyViewController alloc] init];
             getCode.mobile = self.phoneText.text;
             [self.navigationController pushViewController:getCode animated:YES];
-        } else if ([[responseObject objectForKey:@"code"] integerValue] == 1007) {
-            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
         }
-        else {
-            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
-        }
+        
     } failure:^(NSError *error) {
-        [MBProgressHUD showHUDAddedTo:self.view withText:@"获取验证码失败，请稍后再试"];
+        
     }];
-    */
 }
 
 - (void)layout {

@@ -37,7 +37,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self getVerifyCode];
+    self.btReGet.enabled = NO;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -91,7 +92,11 @@
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             self.user.mobile = self.mobile;
             [SMUserModel saveUserData:self.user];
-//            [self.navigationController popToRootViewControllerAnimated:YES];
+            if (self.timer) {
+                [self.timer invalidate];
+                self.timer = nil;
+            }
+            
             for (UIViewController *controller in self.navigationController.viewControllers) {
                 if ([controller isKindOfClass:[LJPersonInfoViewController class]]) {
                     [self.navigationController popToViewController:controller animated:YES];

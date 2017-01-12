@@ -11,7 +11,9 @@
 #import "LJPersonInfoViewController.h"
 #import "LJMenuView.h"
 
-@interface LJPageViewController ()
+#define kSelectIndexKey @"WMSelectIndex"
+
+@interface LJPageViewController ()<WMPageControllerDelegate>
 
 @property (nonatomic, strong) LJMenuView *menusView;
 
@@ -26,14 +28,23 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tabBarController.navigationController.navigationBar.translucent=NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideMenuView) name:@"HideMenuView" object:nil];
+    self.delegate = self;
     
     [self.view addSubview:self.menusView];
     [self subViewEvent];
+    self.selectIndex = (int)[[NSUserDefaults standardUserDefaults] integerForKey:kSelectIndexKey];
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (void)pageController:(WMPageController *)pageController didEnterViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info {
+    NSLog(@"进入哪个controller:%d>>>名字:%@", self.selectIndex, [NSString stringWithFormat:@"%@", [viewController class]]);
+    [[NSUserDefaults standardUserDefaults] setInteger:self.selectIndex forKey:kSelectIndexKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 
 #pragma mark - events
 - (void)rightItemClick {

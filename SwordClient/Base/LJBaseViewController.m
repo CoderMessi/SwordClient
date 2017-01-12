@@ -37,6 +37,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)dealloc {
+    NSLog(@"%@释放了", [NSString stringWithUTF8String:object_getClassName(self)]);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

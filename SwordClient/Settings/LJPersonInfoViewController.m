@@ -74,14 +74,16 @@
     } else if (indexPath.row == 1) {
         LJChangeNameViewController *changeName = [[LJChangeNameViewController alloc] init];
         changeName.changeType = LJTypeQQ;
+        changeName.name = self.user.qqAccount;
         [self.navigationController pushViewController:changeName animated:YES];
     } else if (indexPath.row == 2) {
         LJChangeNameViewController *changeName = [[LJChangeNameViewController alloc] init];
         changeName.changeType = LJTypeWechat;
+        changeName.name = self.user.wechat;
         [self.navigationController pushViewController:changeName animated:YES];
     } else if (indexPath.row == 3) {
         LJChangeMobileViewController *changeMobile = [[LJChangeMobileViewController alloc] init];
-        changeMobile.mobile = self.user.mobile;
+
         [self.navigationController pushViewController:changeMobile animated:YES];
     }
 }
