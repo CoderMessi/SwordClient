@@ -12,7 +12,7 @@
 #define rowHeight 50
 #define headerHeight 30
 
-@interface LJSettViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface LJSettViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
 @property (nonatomic,strong) SMUserModel *userModel;
 
@@ -39,22 +39,29 @@
 }
 
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        NSDictionary *param = @{@"uid" : [NSNumber numberWithInteger:self.userModel.userId]};
+        [NetWorkTool executePOST:@"/api/cuser/signout" paramters:param success:^(id responseObject) {
+            if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+                SMUserModel *userModel = [[SMUserModel alloc]init];
+                userModel.loginStatus = SCLoginStateDropped;
+                [SMUserModel saveUserData:userModel];
+                
+                AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                [appdelegate jumpToLoginVC];
+            } else {
+                [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+            [MBProgressHUD showHUDAddedTo:self.view withText:@"登出失败，请稍后再试"];
+        }];
+    }
+}
+
 - (void)logoutClick {
-    NSDictionary *param = @{@"uid" : [NSNumber numberWithInteger:self.userModel.userId]};
-    [NetWorkTool executePOST:@"/api/cuser/signout" paramters:param success:^(id responseObject) {
-        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
-            SMUserModel *userModel = [[SMUserModel alloc]init];
-            userModel.loginStatus = SCLoginStateDropped;
-            [SMUserModel saveUserData:userModel];
-            
-            AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            [appdelegate jumpToLoginVC];
-        } else {
-            [MBProgressHUD showHUDAddedTo:self.view withText:responseObject[@"msg"]];
-        }
-    } failure:^(NSError *error) {
-        [MBProgressHUD showHUDAddedTo:self.view withText:@"登出失败，请稍后再试"];
-    }];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您是要退出当前账号吗？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
 }
 
 - (void)infoClick:(UISwitch *)sender {

@@ -139,6 +139,7 @@
         [rightView addTarget:self action:@selector(getVerifyCode) forControlEvents:UIControlEventTouchUpInside];
         [rightView setImage:Image(@"ico_btn9") forState:UIControlStateDisabled];
         rightView.enabled = NO;
+        rightView.hidden = YES;
         rightView.frame = CGRectMake(0, 0, 50, 100);
         rightView.right = kScreenWidth - 30;
         rightView.tag = 100;
