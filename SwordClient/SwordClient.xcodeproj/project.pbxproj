@@ -840,8 +840,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sword.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7545ceb9-2893-4348-9ebb-05456e059be2";
+				PROVISIONING_PROFILE = "1488de6d-f9ef-48c6-a336-fff0ab4a427a";
 				PROVISIONING_PROFILE_SPECIFIER = swordClient;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -917,8 +918,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sword.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6404ab8f-76f9-4fe4-a265-cfbe5c9d7db6";
-				PROVISIONING_PROFILE_SPECIFIER = Distribution_adhoc;
+				PROVISIONING_PROFILE = "d5fc9004-e71d-4654-942a-9687bce0249f";
+				PROVISIONING_PROFILE_SPECIFIER = ToAppStore;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

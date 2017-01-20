@@ -80,6 +80,7 @@
 }
 
 - (void)doneClick {
+    [self.codeText resignFirstResponder];
     if (self.codeText.text.length == 0) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入验证码"];
         return;

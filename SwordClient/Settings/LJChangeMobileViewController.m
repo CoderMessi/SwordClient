@@ -10,7 +10,7 @@
 #import "LJGetVerifyViewController.h"
 #import "SMEncryptTool.h"
 
-@interface LJChangeMobileViewController ()
+@interface LJChangeMobileViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *phoneText;
 @property (nonatomic, strong) UILabel *tintLabel;
@@ -32,6 +32,7 @@
 }
 
 - (void)sureClick {
+    [self.phoneText resignFirstResponder];
     if (self.phoneText.text.length != 11) {
         [MBProgressHUD showHUDAddedTo:self.view withText:@"请输入正确手机号"];
         return;
@@ -39,7 +40,6 @@
         [MBProgressHUD showHUDAddedTo:self.view withText:@"手机号不合法"];
         return;
     }
-    [self.phoneText resignFirstResponder];
     
     NSDictionary *param = @{@"mobile" : self.phoneText.text,
                             @"type" : @"checkmobile"};
@@ -56,6 +56,21 @@
     } failure:^(NSError *error) {
         
     }];
+}
+
+#pragma mark - textField delegate
+//当手机号码大于11位时
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField == self.phoneText) {
+        NSString *phoneStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        phoneStr  = [phoneStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        if (phoneStr.length >11) {
+            [self.phoneText resignFirstResponder];
+            return NO;
+        }
+    }
+    return YES;
 }
 
 - (void)layout {
@@ -90,6 +105,7 @@
         _phoneText.text = self.mobile;
         _phoneText.font = Font(15);
         _phoneText.keyboardType = UIKeyboardTypeNumberPad;
+        _phoneText.delegate = self;
         
         UILabel *leftView = [UILabel new];
         leftView.frame = CGRectMake(0, 0, 80, 50);

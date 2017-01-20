@@ -16,7 +16,8 @@ static NSString *const kWechatAppID = @"wx01f4645ef3ae442c";
 static NSString *const kUMAppKey = @"5870e981aed17974510018ef";
 static NSString *const kWXAppSecret = @"bea7f2d08f757bf2e6665d5a6a278a2f";
 
-#define KServerUrl @"http://api.loulan360.com"
+//#define KServerUrl @"http://api.loulan360.com"
+#define KServerUrl @"https://iosapp.fxacn.tv"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
