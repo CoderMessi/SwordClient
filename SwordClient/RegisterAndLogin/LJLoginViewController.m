@@ -332,16 +332,29 @@
         make.right.equalTo(self.inputBgView).offset(-20*RATIO);
     }];
     
-    [self.btQQ mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.equalTo(@45);
-        make.right.equalTo(self.inputBgView.mas_centerX).offset(-10);
-        make.top.equalTo(self.orImageView.mas_bottom).offset(10*RATIO);
-    }];
     
-    [self.btWechat mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.width.height.equalTo(self.btQQ);
-        make.left.equalTo(self.inputBgView.mas_centerX).offset(10*RATIO);
-    }];
+    
+    AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if ([appdelegate isWechatInstalled]) {
+        
+        [self.btQQ mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.equalTo(@45);
+            make.right.equalTo(self.inputBgView.mas_centerX).offset(-10);
+            make.top.equalTo(self.orImageView.mas_bottom).offset(10*RATIO);
+        }];
+        
+        
+        [self.btWechat mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.width.height.equalTo(self.btQQ);
+            make.left.equalTo(self.inputBgView.mas_centerX).offset(10*RATIO);
+        }];
+    } else {
+        [self.btQQ mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.equalTo(@45);
+            make.centerX.equalTo(self.inputBgView.mas_centerX);
+            make.top.equalTo(self.orImageView.mas_bottom).offset(10*RATIO);
+        }];
+    }
 }
 
 #pragma mark - init subviews
@@ -353,11 +366,14 @@
     [self.textBgView addSubview:self.line];
     [self.textBgView addSubview:self.phoneText];
     [self.textBgView addSubview:self.passwordText];
-//    [self.inputBgView addSubview:self.btRegister];
     [self.inputBgView addSubview:self.btLogin];
     [self.inputBgView addSubview:self.orImageView];
     [self.inputBgView addSubview:self.btQQ];
-    [self.inputBgView addSubview:self.btWechat];
+    
+    AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if ([appdelegate isWechatInstalled]) {
+        [self.inputBgView addSubview:self.btWechat];
+    }
 }
 
 - (UIImageView *)bgImageView {

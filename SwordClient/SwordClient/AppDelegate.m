@@ -115,6 +115,10 @@
     }
 }
 
+- (BOOL)isWechatInstalled {
+    return [WXApi isWXAppInstalled];
+}
+
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     if ([[url absoluteString] hasPrefix:@"tencent"]) {
         [TencentOAuth HandleOpenURL:url];

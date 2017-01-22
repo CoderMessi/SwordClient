@@ -24,5 +24,7 @@
 - (void)jumpToInfoListVC;
 - (void)goAppController;
 
+- (BOOL)isWechatInstalled;
+
 @end
 
