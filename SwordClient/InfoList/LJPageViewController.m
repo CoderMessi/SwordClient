@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[Image(@"ico_menu") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[Image(@"phone") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(rightItemClick)];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tabBarController.navigationController.navigationBar.translucent=NO;
@@ -48,7 +48,9 @@
 
 #pragma mark - events
 - (void)rightItemClick {
-    self.menusView.hidden = !self.menusView.hidden;
+//    self.menusView.hidden = !self.menusView.hidden;
+    LJConnectUsViewController *connectUs = [[LJConnectUsViewController alloc] init];
+    [self.navigationController pushViewController:connectUs animated:YES];
 }
 
 - (void)hideMenuView {
@@ -63,12 +65,7 @@
     };
     
     self.menusView.goInfoList = ^ {
-//        if (weakSelf.listType == 1) {
-//            weakSelf.listType = 2;
-//        } else {
-//            weakSelf.listType =1;
-//        }
-//        [weakSelf.listView reloadData];
+        
     };
     
     self.menusView.goPersonInfo = ^ {
@@ -82,7 +79,7 @@
         _menusView = [[LJMenuView alloc] initWithFrame:CGRectMake(0, 0, 215, 168)];
         _menusView.right = kScreenWidth - 9;
         _menusView.top = 4.5;
-        _menusView.image = Image(@"pic_menuBg");
+        _menusView.image = Image(@"phone");
         _menusView.userInteractionEnabled = YES;
         _menusView.hidden = YES;
     }

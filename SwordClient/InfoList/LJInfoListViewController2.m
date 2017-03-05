@@ -144,7 +144,7 @@
 #pragma mark - UI
 - (UITableView *)listView {
     if (!_listView) {
-        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64) style:UITableViewStylePlain];
+        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64 - 49) style:UITableViewStylePlain];
         _listView.delegate = self;
         _listView.dataSource = self;
     }

@@ -85,7 +85,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return (kScreenHeight - rowHeight * 4 - headerHeight - 64);
+    return (kScreenHeight - rowHeight * 3 - headerHeight - 64);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -119,7 +119,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *footer = [UIView new];
     footer.backgroundColor = ViewBGColor;
-    footer.frame = CGRectMake(0, 0, kScreenWidth, 400);
+    footer.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - rowHeight * 3 - headerHeight - 64 - 49);
     
     _QRCodeView = [[UIImageView alloc] initWithImage:Image(@"pic_erweima")];
     [footer addSubview:_QRCodeView];
@@ -209,11 +209,11 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 49 - 64) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = ViewBGColor;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.scrollEnabled = NO;
+//        _tableView.scrollEnabled = NO;
     }
     return _tableView;
 }

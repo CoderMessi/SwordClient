@@ -207,7 +207,7 @@
 #pragma mark - UI
 - (UITableView *)listView {
     if (!_listView) {
-        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64) style:UITableViewStylePlain];
+        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64 - 49) style:UITableViewStylePlain];
         _listView.delegate = self;
         _listView.dataSource = self;
     }
@@ -219,7 +219,7 @@
         _menuView = [[LJMenuView alloc] initWithFrame:CGRectMake(0, 0, 215, 168)];
         _menuView.right = kScreenWidth - 9;
         _menuView.top = 4.5;
-        _menuView.image = Image(@"pic_menuBg");
+        _menuView.image = Image(@"phone");
         _menuView.userInteractionEnabled = YES;
         _menuView.hidden = YES;
     }

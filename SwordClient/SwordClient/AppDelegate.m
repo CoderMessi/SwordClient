@@ -23,9 +23,12 @@
 #import "SMUserModel.h"
 #import "LJPageViewController.h"
 #import "LJLaunchViewController.h"
+#import "LJPersonInfoViewController.h"
 
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate, WXApiDelegate>
+
+@property (nonatomic, strong) UITabBarController *tabBarController;
 
 @end
 
@@ -97,13 +100,13 @@
 }
 
 - (void)jumpToInfoListVC {
-    NSArray *viewControllers = @[[LJInfoListViewController class], [LJInfoListViewController2 class]];
-    LJPageViewController *pageVc = [[LJPageViewController alloc] initWithViewControllerClasses:viewControllers andTheirTitles:@[@"",@""]];
-    pageVc.title = @"消息列表";
-    pageVc.menuHeight = 0;
-    LJNavigationController *nav = [[LJNavigationController alloc] initWithRootViewController:pageVc];
+//    NSArray *viewControllers = @[[LJInfoListViewController class], [LJInfoListViewController2 class]];
+//    LJPageViewController *pageVc = [[LJPageViewController alloc] initWithViewControllerClasses:viewControllers andTheirTitles:@[@"",@""]];
+//    pageVc.title = @"消息列表";
+//    pageVc.menuHeight = 0;
+//    LJNavigationController *nav = [[LJNavigationController alloc] initWithRootViewController:pageVc];
     self.window.rootViewController = nil;
-    self.window.rootViewController = nav;
+    self.window.rootViewController = self.tabBarController;
 }
 
 - (void)goAppController {
@@ -210,6 +213,54 @@
 }
 
 
+- (UITabBarController *)tabBarController {
+    if (!_tabBarController) {
+        _tabBarController = [[UITabBarController alloc] init];
+        
+        NSArray *viewControllers = @[[LJInfoListViewController class], [LJInfoListViewController2 class]];
+        LJPageViewController *pageVc = [[LJPageViewController alloc] initWithViewControllerClasses:viewControllers andTheirTitles:@[@"",@""]];
+        pageVc.title = @"消息列表";
+        pageVc.menuHeight = 0;
+        LJNavigationController *nav = [[LJNavigationController alloc] initWithRootViewController:pageVc];
+        
+        UIViewController *videoVc = [[UIViewController alloc] init];
+        videoVc.title = @"视频";
+        videoVc.view.backgroundColor = [UIColor whiteColor];
+        LJNavigationController *videoNav = [[LJNavigationController alloc] initWithRootViewController:videoVc];
+        
+        UIViewController *messageVc = [[UIViewController alloc] init];
+        messageVc.title = @"留言";
+        messageVc.view.backgroundColor = [UIColor whiteColor];
+        LJNavigationController *messageNav = [[LJNavigationController alloc] initWithRootViewController:messageVc];
+        
+        LJPersonInfoViewController *presonInfo = [[LJPersonInfoViewController alloc] init];
+        LJNavigationController *personNav = [[LJNavigationController alloc] initWithRootViewController:presonInfo];
+        
+        NSArray *vcs = [NSArray arrayWithObjects:nav, videoNav, messageNav, personNav, nil];
+        _tabBarController.viewControllers = vcs;
+        
+        _tabBarController.tabBar.barTintColor = ColorBlue;
+        
+        [[UITabBarItem appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+        
+        //未选中时候的颜色
+        [[UITabBarItem appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+        
+        NSArray*unSelectArray=@[@"btn1_x",@"btn2_x",@"btn3_x",@"btn4_x"];
+        //_press
+        NSArray*selectArray=@[@"btn1_s",@"btn2_s",@"btn3_s",@"btn4_s"];
+        NSArray*tabBarTitleArray=@[@"数据消息",@"视频",@"留言",@"我的"];
+        
+        for (int j=0; j<self.tabBarController.tabBar.items.count; j++) {
+            
+            UITabBarItem*item=[self.tabBarController.tabBar.items objectAtIndex:j];
+            //注意：这里是image，不是字符串，如果填写是字符串，也不会报错，但是在编译的时候，会造成报错信息size，从而程序崩溃
+            [item setFinishedSelectedImage:[UIImage imageNamed:[selectArray objectAtIndex:j]] withFinishedUnselectedImage:[UIImage imageNamed:[unSelectArray objectAtIndex:j]]];
+            item.title=tabBarTitleArray[j];
+        }
+    }
+    return _tabBarController;
+}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
