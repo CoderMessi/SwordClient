@@ -255,7 +255,7 @@
             
             UITabBarItem*item=[self.tabBarController.tabBar.items objectAtIndex:j];
             //注意：这里是image，不是字符串，如果填写是字符串，也不会报错，但是在编译的时候，会造成报错信息size，从而程序崩溃
-            [item setFinishedSelectedImage:[UIImage imageNamed:[selectArray objectAtIndex:j]] withFinishedUnselectedImage:[UIImage imageNamed:[unSelectArray objectAtIndex:j]]];
+            [item setFinishedSelectedImage:[[UIImage imageNamed:[selectArray objectAtIndex:j]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] withFinishedUnselectedImage:[[UIImage imageNamed:[unSelectArray objectAtIndex:j]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
             item.title=tabBarTitleArray[j];
         }
     }
