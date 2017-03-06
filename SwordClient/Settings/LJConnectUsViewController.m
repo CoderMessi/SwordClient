@@ -7,11 +7,12 @@
 //
 
 #import "LJConnectUsViewController.h"
+#import<AssetsLibrary/AssetsLibrary.h>
 
 #define rowHeight 50
 #define headerHeight 162
 
-@interface LJConnectUsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface LJConnectUsViewController () <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIImageView *headImageView;
@@ -59,15 +60,50 @@
     }];
 }
 
+- (void)handleLongPress:(UITapGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+        
+        if(author == ALAuthorizationStatusRestricted || author ==ALAuthorizationStatusDenied){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请在设置中允许应用访问相册" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+            
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"保存图片到相册吗" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+    }else if (gesture.state == UIGestureRecognizerStateEnded){
+        
+    }
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self loadImageFinished:self.QRCodeView.image];
+    }
+}
+
+- (void)loadImageFinished:(UIImage *)image
+{
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    
+    NSLog(@"image = %@, error = %@, contextInfo = %@", image, error, contextInfo);
+}
+
 #pragma mark - tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-        NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",self.QQ.text];
-        NSURL *url = [NSURL URLWithString:qqstr];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [webView loadRequest:request];
-        [self.view addSubview:webView];
+//        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+//        NSString *qqstr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",self.QQ.text];
+//        NSURL *url = [NSURL URLWithString:qqstr];
+//        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//        [webView loadRequest:request];
+//        [self.view addSubview:webView];
     } else if (indexPath.row == 1) {
         NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.mobile.text];
         UIWebView *callWebview = [[UIWebView alloc] init];
@@ -122,7 +158,12 @@
     footer.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - rowHeight * 3 - headerHeight - 64 - 49);
     
     _QRCodeView = [[UIImageView alloc] initWithImage:Image(@"pic_erweima")];
+    _QRCodeView.userInteractionEnabled = YES;
     [footer addSubview:_QRCodeView];
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    [_QRCodeView addGestureRecognizer:longPress];
+    
     [_QRCodeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(footer).offset(18);
         make.centerX.equalTo(footer);
@@ -171,7 +212,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"QQ";
+        cell.textLabel.text = @"邮箱";
         
         _QQ = [UILabel new];
         _QQ.frame = CGRectMake(0, 0, 200, rowHeight);
