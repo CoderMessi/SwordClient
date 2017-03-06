@@ -32,6 +32,10 @@ static NSString *const kWXAppSecret = @"bea7f2d08f757bf2e6665d5a6a278a2f";
 #define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
+#define IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+#define IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#define IOS9 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
+
 // app版本
 #define LJAPPBUILDVERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
 
