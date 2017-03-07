@@ -50,6 +50,7 @@
 - (void)rightItemClick {
 //    self.menusView.hidden = !self.menusView.hidden;
     LJConnectUsViewController *connectUs = [[LJConnectUsViewController alloc] init];
+    connectUs.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:connectUs animated:YES];
 }
 

@@ -219,7 +219,7 @@
         
         NSArray *viewControllers = @[[LJInfoListViewController class], [LJInfoListViewController2 class]];
         LJPageViewController *pageVc = [[LJPageViewController alloc] initWithViewControllerClasses:viewControllers andTheirTitles:@[@"",@""]];
-        pageVc.title = @"消息列表";
+        pageVc.title = @"数据消息";
         pageVc.menuHeight = 0;
         LJNavigationController *nav = [[LJNavigationController alloc] initWithRootViewController:pageVc];
         
