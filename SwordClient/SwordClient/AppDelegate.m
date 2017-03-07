@@ -24,6 +24,8 @@
 #import "LJPageViewController.h"
 #import "LJLaunchViewController.h"
 #import "LJPersonInfoViewController.h"
+#import "LJVideoViewController.h"
+#import "LJMessageViewController.h"
 
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate, WXApiDelegate>
@@ -223,14 +225,12 @@
         pageVc.menuHeight = 0;
         LJNavigationController *nav = [[LJNavigationController alloc] initWithRootViewController:pageVc];
         
-        UIViewController *videoVc = [[UIViewController alloc] init];
+        LJVideoViewController *videoVc = [[LJVideoViewController alloc] init];
         videoVc.title = @"视频";
-        videoVc.view.backgroundColor = [UIColor whiteColor];
         LJNavigationController *videoNav = [[LJNavigationController alloc] initWithRootViewController:videoVc];
         
-        UIViewController *messageVc = [[UIViewController alloc] init];
+        LJMessageViewController *messageVc = [[LJMessageViewController alloc] init];
         messageVc.title = @"留言";
-        messageVc.view.backgroundColor = [UIColor whiteColor];
         LJNavigationController *messageNav = [[LJNavigationController alloc] initWithRootViewController:messageVc];
         
         LJPersonInfoViewController *presonInfo = [[LJPersonInfoViewController alloc] init];

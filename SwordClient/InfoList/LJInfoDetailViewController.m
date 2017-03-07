@@ -18,7 +18,7 @@
     [super viewDidLoad];
     self.title = @"消息详情";
     self.view.backgroundColor = ViewBGColor;
-    UIWebView *web = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64)];
+    UIWebView *web = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64 - 49)];
     web.delegate = self;
     [web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
     [self.view addSubview:web];

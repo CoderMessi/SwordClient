@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E599DE11E6EE15800C1CF7D /* LJVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E599DE01E6EE15800C1CF7D /* LJVideoViewController.m */; };
+		5E599DE41E6EE17800C1CF7D /* LJMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E599DE31E6EE17800C1CF7D /* LJMessageViewController.m */; };
 		5EC441E71E233AF60029EE15 /* LJChangeMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC441E61E233AF60029EE15 /* LJChangeMobileViewController.m */; };
 		5EC441EA1E2370140029EE15 /* LJGetVerifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC441E91E2370140029EE15 /* LJGetVerifyViewController.m */; };
 		5EC441EE1E2380AD0029EE15 /* libUMessage_Sdk_1.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC441EC1E2380AD0029EE15 /* libUMessage_Sdk_1.4.0.a */; };
@@ -65,6 +67,10 @@
 
 /* Begin PBXFileReference section */
 		4A243E3F48EF0F6755273BC1 /* Pods-SwordClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordClient/Pods-SwordClient.release.xcconfig"; sourceTree = "<group>"; };
+		5E599DDF1E6EE15800C1CF7D /* LJVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJVideoViewController.h; sourceTree = "<group>"; };
+		5E599DE01E6EE15800C1CF7D /* LJVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJVideoViewController.m; sourceTree = "<group>"; };
+		5E599DE21E6EE17800C1CF7D /* LJMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJMessageViewController.h; sourceTree = "<group>"; };
+		5E599DE31E6EE17800C1CF7D /* LJMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJMessageViewController.m; sourceTree = "<group>"; };
 		5EC441E51E233AF60029EE15 /* LJChangeMobileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJChangeMobileViewController.h; sourceTree = "<group>"; };
 		5EC441E61E233AF60029EE15 /* LJChangeMobileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJChangeMobileViewController.m; sourceTree = "<group>"; };
 		5EC441E81E2370140029EE15 /* LJGetVerifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJGetVerifyViewController.h; sourceTree = "<group>"; };
@@ -354,6 +360,10 @@
 				713DE4C61E1CDEA600ACAED0 /* ViewController.m */,
 				5EC441FC1E2668340029EE15 /* LJLaunchViewController.h */,
 				5EC441FD1E2668340029EE15 /* LJLaunchViewController.m */,
+				5E599DDF1E6EE15800C1CF7D /* LJVideoViewController.h */,
+				5E599DE01E6EE15800C1CF7D /* LJVideoViewController.m */,
+				5E599DE21E6EE17800C1CF7D /* LJMessageViewController.h */,
+				5E599DE31E6EE17800C1CF7D /* LJMessageViewController.m */,
 				5EC441F41E239F5F0029EE15 /* Assets.xcassets */,
 				713DE4C81E1CDEA600ACAED0 /* Main.storyboard */,
 				713DE4CD1E1CDEA600ACAED0 /* LaunchScreen.storyboard */,
@@ -611,8 +621,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E599DE41E6EE17800C1CF7D /* LJMessageViewController.m in Sources */,
 				717799711E2228E3002A93BC /* LJSettViewController.m in Sources */,
 				7177997D1E224043002A93BC /* LJForgetPasswordViewController2.m in Sources */,
+				5E599DE11E6EE15800C1CF7D /* LJVideoViewController.m in Sources */,
 				715571831E1F288300F4746B /* SvUDIDTools.m in Sources */,
 				5EC441FE1E2668340029EE15 /* LJLaunchViewController.m in Sources */,
 				713DE4C71E1CDEA600ACAED0 /* ViewController.m in Sources */,
