@@ -930,8 +930,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sword.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5f473f34-e52a-476c-9f51-6acdad2c3960";
-				PROVISIONING_PROFILE_SPECIFIER = Distribution_adhoc;
+				PROVISIONING_PROFILE = "5726c603-d8cc-4e3b-8db4-52a56a43aed7";
+				PROVISIONING_PROFILE_SPECIFIER = swordClient;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
